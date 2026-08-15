@@ -6,6 +6,7 @@ import type { Restaurant } from "@/lib/supabase/restaurants";
 import { buttonClass } from "@/lib/buttonStyles";
 import AvatarUpload from "@/components/AvatarUpload";
 import FavoriteButton from "@/components/FavoriteButton";
+import ProfileNameEditor from "@/components/ProfileNameEditor";
 
 export default async function ProfilePage() {
   const supabase = await createClient();
@@ -39,11 +40,15 @@ export default async function ProfilePage() {
           avatarUrl={user.user_metadata?.avatar_url ?? null}
           name={user.user_metadata?.full_name ?? user.email ?? ""}
         />
-        <div>
+        <div className="flex flex-col gap-1">
           <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">
             {user.user_metadata?.full_name ?? "โปรไฟล์ของฉัน"}
           </h1>
           <p className="text-sm text-stone-500 dark:text-stone-400">{user.email}</p>
+          <ProfileNameEditor
+            initialName={user.user_metadata?.full_name ?? user.email ?? ""}
+            changedAt={user.user_metadata?.full_name_changed_at ?? null}
+          />
         </div>
       </div>
 
