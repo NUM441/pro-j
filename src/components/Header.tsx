@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { isAdmin } from "@/lib/supabase/admin";
 import { buttonClass } from "@/lib/buttonStyles";
 import ThemeToggle from "./ThemeToggle";
+import BackButton from "./BackButton";
 
 export default async function Header() {
   const supabase = await createClient();
@@ -15,6 +16,7 @@ export default async function Header() {
     <header className="border-b-2 border-amber-600">
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3 sm:py-4">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+          <BackButton />
           <Link href="/" aria-label="กลับหน้าหลัก" className="flex items-baseline gap-2">
             <span className="text-lg" aria-hidden="true">🏠</span>
             <span className="text-base font-bold text-stone-900 sm:text-lg dark:text-stone-50">
@@ -75,7 +77,7 @@ export default async function Header() {
               <Link href="/welcome" className={buttonClass("secondary", "sm")}>
                 เข้าสู่ระบบ
               </Link>
-              <Link href="/signup" className={buttonClass("primary", "sm")}>
+              <Link href="/welcome?next=signup" className={buttonClass("primary", "sm")}>
                 สมัครสมาชิก
               </Link>
             </>

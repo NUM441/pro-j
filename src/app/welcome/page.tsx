@@ -4,20 +4,26 @@ import { createClient } from "@/lib/supabase/server";
 import { buttonClass } from "@/lib/buttonStyles";
 import { WELCOME_IMAGE_KEY, type SiteSetting } from "@/lib/supabase/settings";
 
-export default async function WelcomePage() {
+export default async function WelcomePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ next?: string }>;
+}) {
   const supabase = await createClient();
-  const [{ data: userData }, { data: setting }] = await Promise.all([
+  const [{ data: userData }, { data: setting }, { next }] = await Promise.all([
     supabase.auth.getUser(),
     supabase
       .from("site_settings")
       .select("*")
       .eq("key", WELCOME_IMAGE_KEY)
       .maybeSingle<SiteSetting>(),
+    searchParams,
   ]);
 
   const user = userData.user;
   const name = user?.user_metadata?.full_name ?? "";
   const welcomeImageUrl = setting?.value ?? null;
+  const continueHref = next === "signup" ? "/signup" : "/login";
 
   return (
     <main className="mx-auto flex min-h-[70vh] max-w-lg flex-col items-center justify-center gap-6 px-4 text-center">
@@ -87,7 +93,7 @@ export default async function WelcomePage() {
             </li>
           </ul>
 
-          <Link href="/login" className={buttonClass("primary")}>
+          <Link href={continueHref} className={buttonClass("primary")}>
             ต่อไป
           </Link>
         </>
