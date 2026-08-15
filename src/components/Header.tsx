@@ -12,21 +12,21 @@ export default async function Header() {
   } = await supabase.auth.getUser();
 
   return (
-    <header className="border-b-2 border-green-600">
+    <header className="border-b-2 border-amber-600">
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3 sm:py-4">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
           <Link href="/" aria-label="กลับหน้าหลัก" className="flex items-baseline gap-2">
             <span className="text-lg" aria-hidden="true">🏠</span>
-            <span className="text-base font-bold text-neutral-900 sm:text-lg dark:text-neutral-50">
+            <span className="text-base font-bold text-stone-900 sm:text-lg dark:text-stone-50">
               Nakhon Sawan Food Guide
             </span>
-            <span className="hidden text-sm text-neutral-400 sm:inline">
+            <span className="hidden text-sm text-stone-400 sm:inline">
               คู่มือร้านอาหารนครสวรรค์
             </span>
           </Link>
           <Link
             href="/restaurants"
-            className="flex items-center gap-1 text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-50"
+            className="flex items-center gap-1 text-sm font-medium text-stone-600 hover:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50"
           >
             <span aria-hidden="true">🔍</span> ร้านอาหาร
           </Link>
@@ -38,14 +38,14 @@ export default async function Header() {
               {isAdmin(user.email) && (
                 <Link
                   href="/admin"
-                  className="text-sm font-medium text-green-700 hover:underline dark:text-green-400"
+                  className="text-sm font-medium text-amber-700 hover:underline dark:text-amber-400"
                 >
                   Admin
                 </Link>
               )}
               <Link
                 href="/profile"
-                className="hidden items-center gap-2 text-sm font-medium text-neutral-600 hover:underline sm:flex dark:text-neutral-300"
+                className="hidden items-center gap-2 text-sm font-medium text-stone-600 hover:underline sm:flex dark:text-stone-300"
               >
                 {user.user_metadata?.avatar_url ? (
                   <span className="relative h-6 w-6 flex-shrink-0 overflow-hidden rounded-full">
@@ -58,7 +58,7 @@ export default async function Header() {
                     />
                   </span>
                 ) : (
-                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-xs font-semibold text-green-700 dark:bg-green-950 dark:text-green-300">
+                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-amber-100 text-xs font-semibold text-amber-700 dark:bg-amber-950 dark:text-amber-300">
                     {(user.user_metadata?.full_name ?? user.email ?? "?").charAt(0).toUpperCase()}
                   </span>
                 )}

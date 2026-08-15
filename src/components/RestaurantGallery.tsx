@@ -39,7 +39,7 @@ export default function RestaurantGallery({ restaurantName, coverUrl, foodUrls }
 
       {foodUrls.length > 0 && (
         <div>
-          <h2 className="mb-3 text-lg font-semibold text-neutral-900 dark:text-neutral-50">รูปอาหาร</h2>
+          <h2 className="mb-3 text-lg font-semibold text-stone-900 dark:text-stone-50">รูปอาหาร</h2>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
             {foodUrls.map((url, i) => (
               <button

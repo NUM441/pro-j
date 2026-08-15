@@ -24,8 +24,8 @@ export default function ReservationForm({ restaurantId, currentUserId, currentUs
 
   if (!currentUserId) {
     return (
-      <p className="rounded-xl border border-dashed border-neutral-300 p-4 text-center text-sm text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">
-        <Link href="/login" className="font-medium text-green-700 hover:underline dark:text-green-400">
+      <p className="rounded-xl border border-dashed border-stone-300 p-4 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
+        <Link href="/login" className="font-medium text-amber-700 hover:underline dark:text-amber-400">
           เข้าสู่ระบบ
         </Link>{" "}
         เพื่อจองโต๊ะ
@@ -81,10 +81,10 @@ export default function ReservationForm({ restaurantId, currentUserId, currentUs
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-xl border border-neutral-200 p-4 dark:border-neutral-800">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-xl border border-stone-200 p-4 dark:border-stone-800">
       <div className="grid grid-cols-2 gap-3">
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="date" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+          <label htmlFor="date" className="text-sm font-medium text-stone-700 dark:text-stone-300">
             วันที่
           </label>
           <input
@@ -93,11 +93,11 @@ export default function ReservationForm({ restaurantId, currentUserId, currentUs
             required
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-green-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
+            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-amber-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
           />
         </div>
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="time" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+          <label htmlFor="time" className="text-sm font-medium text-stone-700 dark:text-stone-300">
             เวลา
           </label>
           <input
@@ -106,14 +106,14 @@ export default function ReservationForm({ restaurantId, currentUserId, currentUs
             required
             value={time}
             onChange={(e) => setTime(e.target.value)}
-            className="rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-green-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
+            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-amber-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
           />
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-3">
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="partySize" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+          <label htmlFor="partySize" className="text-sm font-medium text-stone-700 dark:text-stone-300">
             จำนวนคน
           </label>
           <input
@@ -123,11 +123,11 @@ export default function ReservationForm({ restaurantId, currentUserId, currentUs
             required
             value={partySize}
             onChange={(e) => setPartySize(Number(e.target.value))}
-            className="rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-green-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
+            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-amber-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
           />
         </div>
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="phone" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+          <label htmlFor="phone" className="text-sm font-medium text-stone-700 dark:text-stone-300">
             เบอร์โทร
           </label>
           <input
@@ -136,13 +136,13 @@ export default function ReservationForm({ restaurantId, currentUserId, currentUs
             required
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            className="rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-green-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
+            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-amber-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
           />
         </div>
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="note" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+        <label htmlFor="note" className="text-sm font-medium text-stone-700 dark:text-stone-300">
           หมายเหตุ (ถ้ามี)
         </label>
         <textarea
@@ -150,7 +150,7 @@ export default function ReservationForm({ restaurantId, currentUserId, currentUs
           rows={2}
           value={note}
           onChange={(e) => setNote(e.target.value)}
-          className="rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-green-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
+          className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-amber-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
         />
       </div>
 
@@ -167,7 +167,7 @@ export default function ReservationForm({ restaurantId, currentUserId, currentUs
         <button
           type="button"
           onClick={() => setOpen(false)}
-          className="text-sm text-neutral-500 hover:underline dark:text-neutral-400"
+          className="text-sm text-stone-500 hover:underline dark:text-stone-400"
         >
           ยกเลิก
         </button>

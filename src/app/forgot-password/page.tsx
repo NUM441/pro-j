@@ -26,10 +26,10 @@ export default function ForgotPasswordPage() {
   if (submitted) {
     return (
       <main className="mx-auto flex min-h-[70vh] max-w-sm flex-col items-center justify-center gap-3 px-4 text-center">
-        <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
+        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">
           เช็คอีเมลของคุณ
         </h1>
-        <p className="text-sm text-neutral-500 dark:text-neutral-400">
+        <p className="text-sm text-stone-500 dark:text-stone-400">
           ถ้าอีเมลนี้มีอยู่ในระบบ เราได้ส่งลิงก์สำหรับตั้งรหัสผ่านใหม่ไปให้แล้ว
         </p>
       </main>
@@ -39,17 +39,17 @@ export default function ForgotPasswordPage() {
   return (
     <main className="mx-auto flex min-h-[70vh] max-w-sm flex-col items-center justify-center gap-6 px-4">
       <div className="space-y-2 text-center">
-        <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
+        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">
           ลืมรหัสผ่าน
         </h1>
-        <p className="text-sm text-neutral-500 dark:text-neutral-400">
+        <p className="text-sm text-stone-500 dark:text-stone-400">
           กรอกอีเมลที่ใช้สมัครสมาชิก เราจะส่งลิงก์สำหรับตั้งรหัสผ่านใหม่ให้
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="flex w-full flex-col gap-4">
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="email" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+          <label htmlFor="email" className="text-sm font-medium text-stone-700 dark:text-stone-300">
             อีเมล
           </label>
           <input
@@ -59,7 +59,7 @@ export default function ForgotPasswordPage() {
             autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
+            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
           />
         </div>
 
@@ -72,8 +72,8 @@ export default function ForgotPasswordPage() {
         </button>
       </form>
 
-      <p className="text-sm text-neutral-500 dark:text-neutral-400">
-        <Link href="/login" className="font-medium text-neutral-900 hover:underline dark:text-neutral-100">
+      <p className="text-sm text-stone-500 dark:text-stone-400">
+        <Link href="/login" className="font-medium text-stone-900 hover:underline dark:text-stone-100">
           กลับไปหน้าเข้าสู่ระบบ
         </Link>
       </p>

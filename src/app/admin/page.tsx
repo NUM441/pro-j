@@ -56,12 +56,12 @@ export default async function AdminInboxPage() {
   return (
     <main className="mx-auto flex max-w-2xl flex-col gap-6 px-4 py-12">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
+        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">
           กล่องข้อความ (แอดมิน)
         </h1>
         <Link
           href="/admin/owner-applications"
-          className="flex items-center gap-1.5 text-sm font-medium text-green-700 hover:underline dark:text-green-400"
+          className="flex items-center gap-1.5 text-sm font-medium text-amber-700 hover:underline dark:text-amber-400"
         >
           คำขอเป็นเจ้าของร้าน
           {!!pendingApplications && (
@@ -73,26 +73,26 @@ export default async function AdminInboxPage() {
       </div>
 
       {conversations.size === 0 ? (
-        <p className="rounded-xl border border-dashed border-neutral-300 p-8 text-center text-sm text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">
+        <p className="rounded-xl border border-dashed border-stone-300 p-8 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
           ยังไม่มีข้อความเข้ามา
         </p>
       ) : (
-        <div className="flex flex-col divide-y divide-neutral-200 rounded-xl border border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800">
+        <div className="flex flex-col divide-y divide-stone-200 rounded-xl border border-stone-200 dark:divide-stone-800 dark:border-stone-800">
           {[...conversations.values()].map((c) => (
             <Link
               key={c.userId}
               href={`/admin/${c.userId}`}
-              className="flex flex-col gap-1 p-4 transition hover:bg-green-50 dark:hover:bg-green-950"
+              className="flex flex-col gap-1 p-4 transition hover:bg-amber-50 dark:hover:bg-amber-950"
             >
               <div className="flex items-center justify-between">
-                <span className="font-medium text-neutral-900 dark:text-neutral-50">
+                <span className="font-medium text-stone-900 dark:text-stone-50">
                   {c.userName}
                 </span>
-                <span className="text-xs text-neutral-400">
+                <span className="text-xs text-stone-400">
                   {new Date(c.latestMessage.created_at).toLocaleString("th-TH")}
                 </span>
               </div>
-              <p className="line-clamp-1 text-sm text-neutral-500 dark:text-neutral-400">
+              <p className="line-clamp-1 text-sm text-stone-500 dark:text-stone-400">
                 {c.latestMessage.is_admin ? "คุณ: " : ""}
                 {c.latestMessage.message}
               </p>

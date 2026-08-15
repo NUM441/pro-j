@@ -9,9 +9,9 @@ const sizes: Record<Size, string> = {
 };
 
 const variants: Record<Variant, string> = {
-  primary: "bg-green-700 text-white hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-500",
+  primary: "bg-amber-700 text-white hover:bg-amber-600 dark:bg-amber-600 dark:hover:bg-amber-500",
   secondary:
-    "border border-neutral-300 text-neutral-700 hover:bg-green-50 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-green-950",
+    "border border-stone-300 text-stone-700 hover:bg-amber-50 dark:border-stone-700 dark:text-stone-200 dark:hover:bg-amber-950",
   danger:
     "border border-red-300 text-red-600 hover:bg-red-50 dark:border-red-900 dark:text-red-400 dark:hover:bg-red-950",
 };
@@ -22,6 +22,10 @@ export function buttonClass(variant: Variant = "primary", size: Size = "md") {
 
 export function chipClass(active: boolean) {
   return active
-    ? "rounded-full bg-green-700 px-3 py-2 text-sm font-medium text-white"
-    : "rounded-full border border-neutral-300 px-3 py-2 text-sm text-neutral-600 hover:bg-green-50 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-green-950";
+    ? "rounded-full bg-amber-700 px-3 py-2 text-sm font-medium text-white"
+    : "rounded-full border border-stone-300 px-3 py-2 text-sm text-stone-600 hover:bg-amber-50 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-amber-950";
+}
+
+export function badgeClass() {
+  return "rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-800 dark:bg-amber-950 dark:text-amber-300";
 }

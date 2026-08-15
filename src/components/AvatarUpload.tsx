@@ -62,7 +62,7 @@ export default function AvatarUpload({ userId, avatarUrl, name }: Props) {
         type="button"
         onClick={() => fileInputRef.current?.click()}
         disabled={loading}
-        className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-full border border-neutral-200 bg-green-100 text-2xl font-semibold text-green-700 disabled:opacity-60 dark:border-neutral-800 dark:bg-green-950 dark:text-green-300"
+        className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-full border border-stone-200 bg-amber-100 text-2xl font-semibold text-amber-700 disabled:opacity-60 dark:border-stone-800 dark:bg-amber-950 dark:text-amber-300"
         aria-label="เปลี่ยนรูปโปรไฟล์"
       >
         {preview ? (
@@ -77,7 +77,7 @@ export default function AvatarUpload({ userId, avatarUrl, name }: Props) {
           type="button"
           onClick={() => fileInputRef.current?.click()}
           disabled={loading}
-          className="w-fit text-sm font-medium text-green-700 hover:underline disabled:opacity-60 dark:text-green-400"
+          className="w-fit text-sm font-medium text-amber-700 hover:underline disabled:opacity-60 dark:text-amber-400"
         >
           {loading ? "กำลังอัปโหลด..." : "เปลี่ยนรูปโปรไฟล์"}
         </button>

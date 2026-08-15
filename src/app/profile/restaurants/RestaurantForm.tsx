@@ -189,7 +189,7 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
   return (
     <form onSubmit={handleSubmit} className="flex w-full max-w-lg flex-col gap-5">
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="name" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+        <label htmlFor="name" className="text-sm font-medium text-stone-700 dark:text-stone-300">
           ชื่อร้าน
         </label>
         <input
@@ -198,12 +198,12 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
           required
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
+          className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
         />
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="description" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+        <label htmlFor="description" className="text-sm font-medium text-stone-700 dark:text-stone-300">
           รายละเอียดร้าน
         </label>
         <textarea
@@ -212,12 +212,12 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
           rows={4}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
+          className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
         />
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">ประเภทอาหาร</span>
+        <span className="text-sm font-medium text-stone-700 dark:text-stone-300">ประเภทอาหาร</span>
         <div className="flex flex-wrap gap-2">
           {CATEGORIES.map((category) => {
             const active = selectedCategories.includes(category);
@@ -236,7 +236,7 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="googleMapsUrl" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+        <label htmlFor="googleMapsUrl" className="text-sm font-medium text-stone-700 dark:text-stone-300">
           ลิงก์ Google Maps
         </label>
         <input
@@ -246,14 +246,14 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
           placeholder="https://maps.app.goo.gl/..."
           value={googleMapsUrl}
           onChange={(e) => setGoogleMapsUrl(e.target.value)}
-          className="rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
+          className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
         />
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">รูปหน้าร้าน</span>
+        <span className="text-sm font-medium text-stone-700 dark:text-stone-300">รูปหน้าร้าน</span>
         {coverPreviewUrl && (
-          <div className="relative h-40 w-full overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-800">
+          <div className="relative h-40 w-full overflow-hidden rounded-lg border border-stone-200 dark:border-stone-800">
             <Image src={coverPreviewUrl} alt="รูปหน้าร้าน" fill className="object-cover" unoptimized />
           </div>
         )}
@@ -261,13 +261,13 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+        <span className="text-sm font-medium text-stone-700 dark:text-stone-300">
           รูปอาหาร (สูงสุด {MAX_FOOD_PHOTOS} รูป)
         </span>
         {foodPhotos.length > 0 && (
           <div className="grid grid-cols-3 gap-2 sm:grid-cols-5">
             {foodPhotos.map((photo, i) => (
-              <div key={i} className="relative aspect-square overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-800">
+              <div key={i} className="relative aspect-square overflow-hidden rounded-lg border border-stone-200 dark:border-stone-800">
                 <Image
                   src={photo.type === "existing" ? photo.url : photo.previewUrl}
                   alt={`รูปอาหาร ${i + 1}`}

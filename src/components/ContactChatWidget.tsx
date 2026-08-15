@@ -94,8 +94,8 @@ export default function ContactChatWidget() {
   return (
     <div className="fixed right-4 bottom-4 z-50 flex flex-col items-end gap-3">
       {open && (
-        <div className="flex h-96 w-80 max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-xl dark:border-neutral-800 dark:bg-neutral-900">
-          <div className="flex items-center justify-between border-b border-neutral-200 bg-green-700 px-4 py-3 dark:border-neutral-800">
+        <div className="flex h-96 w-80 max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-xl dark:border-stone-800 dark:bg-stone-900">
+          <div className="flex items-center justify-between border-b border-stone-200 bg-amber-700 px-4 py-3 dark:border-stone-800">
             <span className="text-sm font-semibold text-white">ติดต่อแอดมิน</span>
             <button
               type="button"
@@ -108,12 +108,12 @@ export default function ContactChatWidget() {
           </div>
 
           {checkingAuth ? (
-            <div className="flex flex-1 items-center justify-center text-sm text-neutral-400">
+            <div className="flex flex-1 items-center justify-center text-sm text-stone-400">
               กำลังโหลด...
             </div>
           ) : !userId ? (
             <div className="flex flex-1 flex-col items-center justify-center gap-2 p-4 text-center">
-              <p className="text-sm text-neutral-500 dark:text-neutral-400">
+              <p className="text-sm text-stone-500 dark:text-stone-400">
                 เข้าสู่ระบบเพื่อติดต่อแอดมิน
               </p>
               <Link href="/login" className={buttonClass("primary", "sm")}>
@@ -124,7 +124,7 @@ export default function ContactChatWidget() {
             <>
               <div className="flex flex-1 flex-col gap-2 overflow-y-auto p-3">
                 {messages.length === 0 ? (
-                  <p className="mt-4 text-center text-sm text-neutral-400">
+                  <p className="mt-4 text-center text-sm text-stone-400">
                     ส่งข้อความหาแอดมินได้เลย
                   </p>
                 ) : (
@@ -133,8 +133,8 @@ export default function ContactChatWidget() {
                       key={m.id}
                       className={
                         m.is_admin
-                          ? "max-w-[85%] rounded-2xl rounded-tl-sm bg-neutral-100 px-3 py-2 text-sm text-neutral-800 dark:bg-neutral-800 dark:text-neutral-100"
-                          : "ml-auto max-w-[85%] rounded-2xl rounded-tr-sm bg-green-100 px-3 py-2 text-sm text-green-900 dark:bg-green-950 dark:text-green-200"
+                          ? "max-w-[85%] rounded-2xl rounded-tl-sm bg-stone-100 px-3 py-2 text-sm text-stone-800 dark:bg-stone-800 dark:text-stone-100"
+                          : "ml-auto max-w-[85%] rounded-2xl rounded-tr-sm bg-amber-100 px-3 py-2 text-sm text-amber-900 dark:bg-amber-950 dark:text-amber-200"
                       }
                     >
                       {m.message}
@@ -143,13 +143,13 @@ export default function ContactChatWidget() {
                 )}
               </div>
 
-              <form onSubmit={handleSend} className="flex items-center gap-2 border-t border-neutral-200 p-3 dark:border-neutral-800">
+              <form onSubmit={handleSend} className="flex items-center gap-2 border-t border-stone-200 p-3 dark:border-stone-800">
                 <input
                   type="text"
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                   placeholder="พิมพ์ข้อความ..."
-                  className="flex-1 rounded-full border border-neutral-300 px-3 py-2 text-sm outline-none focus:border-green-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
+                  className="flex-1 rounded-full border border-stone-300 px-3 py-2 text-sm outline-none focus:border-amber-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
                 />
                 <button type="submit" disabled={sending} className={buttonClass("primary", "sm")}>
                   ส่ง
@@ -164,7 +164,7 @@ export default function ContactChatWidget() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-green-700 text-2xl text-white shadow-lg transition hover:bg-green-600"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-amber-700 text-2xl text-white shadow-lg transition hover:bg-amber-600"
         aria-label="ติดต่อแอดมิน"
       >
         💬

@@ -42,7 +42,7 @@ export default function AdminReplyForm({ userId }: { userId: string }) {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         placeholder="พิมพ์ข้อความตอบกลับ..."
-        className="rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-green-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
+        className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-amber-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
       />
       {error && <p className="text-sm text-red-500">{error}</p>}
       <button

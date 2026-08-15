@@ -60,20 +60,20 @@ export default async function ProfilePage() {
           name={user.user_metadata?.full_name ?? user.email ?? ""}
         />
         <div>
-          <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
+          <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">
             {user.user_metadata?.full_name ?? "โปรไฟล์ของฉัน"}
           </h1>
-          <p className="text-sm text-neutral-500 dark:text-neutral-400">{user.email}</p>
+          <p className="text-sm text-stone-500 dark:text-stone-400">{user.email}</p>
         </div>
       </div>
 
       <div className="flex flex-col gap-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">ร้านของฉัน</h2>
+          <h2 className="text-lg font-semibold text-stone-900 dark:text-stone-50">ร้านของฉัน</h2>
           <div className="flex items-center gap-3">
             <Link
               href="/profile/reservations"
-              className="text-sm font-medium text-green-700 hover:underline dark:text-green-400"
+              className="text-sm font-medium text-amber-700 hover:underline dark:text-amber-400"
             >
               การจองที่เข้ามา
             </Link>
@@ -84,7 +84,7 @@ export default async function ProfilePage() {
         </div>
 
         {!restaurants || restaurants.length === 0 ? (
-          <p className="rounded-xl border border-dashed border-neutral-300 p-8 text-center text-sm text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">
+          <p className="rounded-xl border border-dashed border-stone-300 p-8 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
             คุณยังไม่ได้ลงร้านอาหาร กดปุ่ม &quot;เพิ่มร้านใหม่&quot; เพื่อเริ่มต้น
           </p>
         ) : (
@@ -93,7 +93,7 @@ export default async function ProfilePage() {
               <Link
                 key={restaurant.id}
                 href={`/profile/restaurants/${restaurant.id}/edit`}
-                className="flex items-center gap-3 rounded-xl border border-neutral-200 p-3 transition hover:bg-neutral-50 dark:border-neutral-800 dark:hover:bg-neutral-900"
+                className="flex items-center gap-3 rounded-xl border border-stone-200 p-3 transition hover:bg-stone-50 dark:border-stone-800 dark:hover:bg-stone-900"
               >
                 <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
                   <Image
@@ -105,10 +105,10 @@ export default async function ProfilePage() {
                   />
                 </div>
                 <div className="min-w-0">
-                  <p className="truncate font-medium text-neutral-900 dark:text-neutral-50">
+                  <p className="truncate font-medium text-stone-900 dark:text-stone-50">
                     {restaurant.name}
                   </p>
-                  <p className="text-sm text-neutral-500 dark:text-neutral-400">แก้ไขร้าน</p>
+                  <p className="text-sm text-stone-500 dark:text-stone-400">แก้ไขร้าน</p>
                 </div>
               </Link>
             ))}
@@ -117,10 +117,10 @@ export default async function ProfilePage() {
       </div>
 
       <div className="flex flex-col gap-4">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">การจองของฉัน</h2>
+        <h2 className="text-lg font-semibold text-stone-900 dark:text-stone-50">การจองของฉัน</h2>
 
         {!myReservations || myReservations.length === 0 ? (
-          <p className="rounded-xl border border-dashed border-neutral-300 p-8 text-center text-sm text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">
+          <p className="rounded-xl border border-dashed border-stone-300 p-8 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
             คุณยังไม่เคยจองร้านอาหาร
           </p>
         ) : (
@@ -128,13 +128,13 @@ export default async function ProfilePage() {
             {myReservations.map((r) => (
               <div
                 key={r.id}
-                className="flex items-center justify-between gap-3 rounded-xl border border-neutral-200 p-3 dark:border-neutral-800"
+                className="flex items-center justify-between gap-3 rounded-xl border border-stone-200 p-3 dark:border-stone-800"
               >
                 <div>
-                  <p className="font-medium text-neutral-900 dark:text-neutral-50">
+                  <p className="font-medium text-stone-900 dark:text-stone-50">
                     {r.restaurants?.name ?? "ร้าน"}
                   </p>
-                  <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                  <p className="text-sm text-stone-500 dark:text-stone-400">
                     {r.reservation_date} เวลา {r.reservation_time} · {r.party_size} ที่นั่ง
                   </p>
                 </div>
@@ -148,10 +148,10 @@ export default async function ProfilePage() {
       </div>
 
       <div className="flex flex-col gap-4">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">รายการโปรด</h2>
+        <h2 className="text-lg font-semibold text-stone-900 dark:text-stone-50">รายการโปรด</h2>
 
         {!myFavorites || myFavorites.length === 0 ? (
-          <p className="rounded-xl border border-dashed border-neutral-300 p-8 text-center text-sm text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">
+          <p className="rounded-xl border border-dashed border-stone-300 p-8 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
             คุณยังไม่มีร้านโปรด กดรูปหัวใจที่การ์ดร้านหรือหน้าร้านเพื่อบันทึกไว้
           </p>
         ) : (
@@ -162,7 +162,7 @@ export default async function ProfilePage() {
                 <Link
                   key={f.restaurant_id}
                   href={`/restaurants/${f.restaurant_id}`}
-                  className="flex items-center gap-3 rounded-xl border border-neutral-200 p-3 transition hover:bg-neutral-50 dark:border-neutral-800 dark:hover:bg-neutral-900"
+                  className="flex items-center gap-3 rounded-xl border border-stone-200 p-3 transition hover:bg-stone-50 dark:border-stone-800 dark:hover:bg-stone-900"
                 >
                   <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
                     <Image
@@ -174,10 +174,10 @@ export default async function ProfilePage() {
                     />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate font-medium text-neutral-900 dark:text-neutral-50">
+                    <p className="truncate font-medium text-stone-900 dark:text-stone-50">
                       {f.restaurants!.name}
                     </p>
-                    <p className="text-sm text-neutral-500 dark:text-neutral-400">ดูร้าน</p>
+                    <p className="text-sm text-stone-500 dark:text-stone-400">ดูร้าน</p>
                   </div>
                   <FavoriteButton
                     restaurantId={f.restaurant_id}

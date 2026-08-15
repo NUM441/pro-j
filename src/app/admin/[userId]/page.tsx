@@ -36,23 +36,23 @@ export default async function AdminConversationPage({
   return (
     <main className="mx-auto flex max-w-2xl flex-col gap-6 px-4 py-12">
       <div>
-        <Link href="/admin" className="text-sm text-green-700 hover:underline dark:text-green-400">
+        <Link href="/admin" className="text-sm text-amber-700 hover:underline dark:text-amber-400">
           ← กลับไปกล่องข้อความ
         </Link>
-        <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
+        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">
           {userMessage?.sender_name ?? "ผู้ใช้"}
         </h1>
-        <p className="text-sm text-neutral-500 dark:text-neutral-400">{userMessage?.sender_email}</p>
+        <p className="text-sm text-stone-500 dark:text-stone-400">{userMessage?.sender_email}</p>
       </div>
 
-      <div className="flex flex-col gap-2 rounded-xl border border-neutral-200 p-4 dark:border-neutral-800">
+      <div className="flex flex-col gap-2 rounded-xl border border-stone-200 p-4 dark:border-stone-800">
         {(messages ?? []).map((m) => (
           <div
             key={m.id}
             className={
               m.is_admin
-                ? "max-w-[80%] rounded-2xl rounded-tl-sm bg-neutral-100 px-3 py-2 text-sm text-neutral-800 dark:bg-neutral-800 dark:text-neutral-100"
-                : "ml-auto max-w-[80%] rounded-2xl rounded-tr-sm bg-green-100 px-3 py-2 text-sm text-green-900 dark:bg-green-950 dark:text-green-200"
+                ? "max-w-[80%] rounded-2xl rounded-tl-sm bg-stone-100 px-3 py-2 text-sm text-stone-800 dark:bg-stone-800 dark:text-stone-100"
+                : "ml-auto max-w-[80%] rounded-2xl rounded-tr-sm bg-amber-100 px-3 py-2 text-sm text-amber-900 dark:bg-amber-950 dark:text-amber-200"
             }
           >
             {m.message}

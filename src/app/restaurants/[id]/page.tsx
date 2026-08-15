@@ -64,7 +64,7 @@ export default async function RestaurantDetailPage({
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">{restaurant.name}</h1>
+            <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">{restaurant.name}</h1>
             {userData.user && (
               <FavoriteButton
                 restaurantId={restaurant.id}
@@ -75,7 +75,7 @@ export default async function RestaurantDetailPage({
           </div>
           <div className="flex items-center gap-2">
             <StarRating rating={avgRating} />
-            <span className="text-sm text-neutral-500 dark:text-neutral-400">
+            <span className="text-sm text-stone-500 dark:text-stone-400">
               {reviewCount > 0
                 ? `${avgRating.toFixed(1)} (${reviewCount} รีวิว)`
                 : "ยังไม่มีรีวิว"}
@@ -86,7 +86,7 @@ export default async function RestaurantDetailPage({
               {restaurant.categories.map((c) => (
                 <span
                   key={c}
-                  className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700 dark:bg-green-950 dark:text-green-300"
+                  className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700 dark:bg-amber-950 dark:text-amber-300"
                 >
                   {c}
                 </span>
@@ -97,7 +97,7 @@ export default async function RestaurantDetailPage({
             href={restaurant.google_maps_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium text-green-700 hover:underline dark:text-green-400"
+            className="text-sm font-medium text-amber-700 hover:underline dark:text-amber-400"
           >
             เปิดใน Google Maps ↗
           </a>
@@ -118,10 +118,10 @@ export default async function RestaurantDetailPage({
         currentUserName={currentUserName}
       />
 
-      <p className="whitespace-pre-wrap text-neutral-700 dark:text-neutral-300">{restaurant.description}</p>
+      <p className="whitespace-pre-wrap text-stone-700 dark:text-stone-300">{restaurant.description}</p>
 
-      <div className="flex flex-col gap-4 border-t border-neutral-200 pt-6 dark:border-neutral-800">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">รีวิว</h2>
+      <div className="flex flex-col gap-4 border-t border-stone-200 pt-6 dark:border-stone-800">
+        <h2 className="text-lg font-semibold text-stone-900 dark:text-stone-50">รีวิว</h2>
 
         <ReviewForm
           restaurantId={restaurant.id}
@@ -133,14 +133,14 @@ export default async function RestaurantDetailPage({
         {allReviews.length > 0 && (
           <div className="flex flex-col gap-4">
             {allReviews.map((review) => (
-              <div key={review.id} className="border-b border-neutral-200 pb-4 last:border-0 dark:border-neutral-800">
+              <div key={review.id} className="border-b border-stone-200 pb-4 last:border-0 dark:border-stone-800">
                 <div className="flex items-center justify-between">
-                  <span className="font-medium text-neutral-900 dark:text-neutral-50">
+                  <span className="font-medium text-stone-900 dark:text-stone-50">
                     {review.reviewer_name}
                   </span>
                   <StarRating rating={review.rating} />
                 </div>
-                <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-300">{review.comment}</p>
+                <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">{review.comment}</p>
               </div>
             ))}
           </div>

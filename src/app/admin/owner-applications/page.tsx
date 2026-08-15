@@ -41,24 +41,24 @@ export default async function OwnerApplicationsPage() {
   return (
     <main className="mx-auto flex max-w-2xl flex-col gap-6 px-4 py-12">
       <div>
-        <Link href="/admin" className="text-sm text-green-700 hover:underline dark:text-green-400">
+        <Link href="/admin" className="text-sm text-amber-700 hover:underline dark:text-amber-400">
           ← กล่องข้อความ
         </Link>
-        <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">คำขอเป็นเจ้าของร้าน</h1>
+        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">คำขอเป็นเจ้าของร้าน</h1>
       </div>
 
       {!applications || applications.length === 0 ? (
-        <p className="rounded-xl border border-dashed border-neutral-300 p-8 text-center text-sm text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">
+        <p className="rounded-xl border border-dashed border-stone-300 p-8 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
           ยังไม่มีคำขอเข้ามา
         </p>
       ) : (
         <div className="flex flex-col gap-4">
           {applications.map((a) => (
-            <div key={a.id} className="flex flex-col gap-2 rounded-xl border border-neutral-200 p-4 dark:border-neutral-800">
+            <div key={a.id} className="flex flex-col gap-2 rounded-xl border border-stone-200 p-4 dark:border-stone-800">
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <p className="font-semibold text-neutral-900 dark:text-neutral-50">{a.restaurant_name}</p>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-300">
+                  <p className="font-semibold text-stone-900 dark:text-stone-50">{a.restaurant_name}</p>
+                  <p className="text-sm text-stone-600 dark:text-stone-300">
                     {a.applicant_name} · {a.applicant_email} · {a.phone}
                   </p>
                 </div>
@@ -67,7 +67,7 @@ export default async function OwnerApplicationsPage() {
                 </span>
               </div>
 
-              <p className="text-sm text-neutral-700 dark:text-neutral-300">{a.message}</p>
+              <p className="text-sm text-stone-700 dark:text-stone-300">{a.message}</p>
 
               {a.status === "pending" && <OwnerApplicationActions applicationId={a.id} />}
             </div>

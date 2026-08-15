@@ -30,8 +30,8 @@ export default function ReviewForm({
 
   if (!currentUserId) {
     return (
-      <p className="rounded-xl border border-dashed border-neutral-300 p-6 text-center text-sm text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">
-        <Link href="/login" className="font-medium text-green-700 hover:underline dark:text-green-400">
+      <p className="rounded-xl border border-dashed border-stone-300 p-6 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
+        <Link href="/login" className="font-medium text-amber-700 hover:underline dark:text-amber-400">
           เข้าสู่ระบบ
         </Link>{" "}
         เพื่อเขียนรีวิว
@@ -95,9 +95,9 @@ export default function ReviewForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-xl border border-neutral-200 p-4 dark:border-neutral-800">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-xl border border-stone-200 p-4 dark:border-stone-800">
       <div className="flex items-center gap-2">
-        <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">ให้คะแนน</span>
+        <span className="text-sm font-medium text-stone-700 dark:text-stone-300">ให้คะแนน</span>
         <StarRating rating={rating} size="md" onRate={setRating} />
       </div>
 
@@ -107,7 +107,7 @@ export default function ReviewForm({
         placeholder="เล่าประสบการณ์ของคุณที่ร้านนี้..."
         value={comment}
         onChange={(e) => setComment(e.target.value)}
-        className="rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
+        className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
       />
 
       {error && <p className="text-sm text-red-500">{error}</p>}
