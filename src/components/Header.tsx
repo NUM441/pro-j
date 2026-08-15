@@ -45,10 +45,10 @@ export default async function Header() {
               )}
               <Link
                 href="/profile"
-                className="hidden items-center gap-2 text-sm font-medium text-stone-600 hover:underline sm:flex dark:text-stone-300"
+                className="flex items-center gap-2 text-sm font-medium text-stone-600 hover:underline dark:text-stone-300"
               >
                 {user.user_metadata?.avatar_url ? (
-                  <span className="relative h-6 w-6 flex-shrink-0 overflow-hidden rounded-full">
+                  <span className="relative h-7 w-7 flex-shrink-0 overflow-hidden rounded-full border border-stone-300 dark:border-stone-700">
                     <Image
                       src={user.user_metadata.avatar_url}
                       alt=""
@@ -58,11 +58,11 @@ export default async function Header() {
                     />
                   </span>
                 ) : (
-                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-amber-100 text-xs font-semibold text-amber-700 dark:bg-amber-950 dark:text-amber-300">
+                  <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-amber-200 bg-amber-100 text-xs font-semibold text-amber-700 dark:border-amber-800 dark:bg-amber-950 dark:text-amber-300">
                     {(user.user_metadata?.full_name ?? user.email ?? "?").charAt(0).toUpperCase()}
                   </span>
                 )}
-                {user.user_metadata?.full_name ?? user.email}
+                <span className="hidden sm:inline">{user.user_metadata?.full_name ?? user.email}</span>
               </Link>
               <form action="/auth/signout" method="post">
                 <button type="submit" className={buttonClass("secondary", "sm")}>
