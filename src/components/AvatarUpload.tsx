@@ -77,7 +77,7 @@ export default function AvatarUpload({ userId, avatarUrl, name }: Props) {
           type="button"
           onClick={() => fileInputRef.current?.click()}
           disabled={loading}
-          className="w-fit text-sm font-medium text-amber-700 hover:underline disabled:opacity-60 dark:text-amber-400"
+          className="w-fit rounded-full border border-amber-300 px-3 py-1.5 text-sm font-medium text-amber-700 transition hover:bg-amber-50 disabled:opacity-60 dark:border-amber-800 dark:text-amber-400 dark:hover:bg-amber-950"
         >
           {loading ? "กำลังอัปโหลด..." : "เปลี่ยนรูปโปรไฟล์"}
         </button>

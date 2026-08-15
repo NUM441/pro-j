@@ -167,7 +167,7 @@ export default function ReservationForm({ restaurantId, currentUserId, currentUs
         <button
           type="button"
           onClick={() => setOpen(false)}
-          className="text-sm text-stone-500 hover:underline dark:text-stone-400"
+          className={buttonClass("secondary", "sm")}
         >
           ยกเลิก
         </button>

@@ -32,7 +32,7 @@ export default function RestaurantGallery({ restaurantName, coverUrl, foodUrls }
       <button
         type="button"
         onClick={() => setOpenIndex(0)}
-        className="relative h-64 w-full cursor-zoom-in overflow-hidden rounded-2xl"
+        className="relative h-64 w-full cursor-zoom-in overflow-hidden rounded-2xl border border-stone-200 dark:border-stone-800"
       >
         <Image src={coverUrl} alt={restaurantName} fill className="object-cover" unoptimized />
       </button>
@@ -46,7 +46,7 @@ export default function RestaurantGallery({ restaurantName, coverUrl, foodUrls }
                 key={i}
                 type="button"
                 onClick={() => setOpenIndex(i + 1)}
-                className="relative aspect-square cursor-zoom-in overflow-hidden rounded-lg"
+                className="relative aspect-square cursor-zoom-in overflow-hidden rounded-lg border border-stone-200 dark:border-stone-800"
               >
                 <Image
                   src={url}
