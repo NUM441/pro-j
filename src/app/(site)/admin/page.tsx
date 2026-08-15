@@ -33,6 +33,14 @@ export default async function AdminInboxPage() {
     }
   }
 
+  await Promise.all(
+    [...conversations.values()].map(async (c) => {
+      const { data } = await adminClient.auth.admin.getUserById(c.userId);
+      const currentName = data.user?.user_metadata?.full_name;
+      if (currentName) c.userName = currentName;
+    }),
+  );
+
   return (
     <div className="flex flex-col gap-6">
       <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">

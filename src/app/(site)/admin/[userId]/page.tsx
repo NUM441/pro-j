@@ -28,16 +28,18 @@ export default async function AdminConversationPage({
 
   const userMessage = (messages ?? []).find((m) => !m.is_admin);
 
+  const { data: accountData } = await adminClient.auth.admin.getUserById(userId);
+  const currentName = accountData.user?.user_metadata?.full_name ?? userMessage?.sender_name ?? "ผู้ใช้";
+  const currentEmail = accountData.user?.email ?? userMessage?.sender_email ?? "";
+
   return (
     <div className="flex flex-col gap-6">
       <div>
         <Link href="/admin" className="text-sm text-amber-700 hover:underline dark:text-amber-400">
           ← กลับไปกล่องข้อความ
         </Link>
-        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">
-          {userMessage?.sender_name ?? "ผู้ใช้"}
-        </h1>
-        <p className="text-sm text-stone-500 dark:text-stone-400">{userMessage?.sender_email}</p>
+        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">{currentName}</h1>
+        <p className="text-sm text-stone-500 dark:text-stone-400">{currentEmail}</p>
       </div>
 
       <div className="flex flex-col gap-2 rounded-xl border border-stone-200 p-4 dark:border-stone-800">

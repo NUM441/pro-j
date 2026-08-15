@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import type { Reservation } from "@/lib/supabase/reservations";
 import ReservationStatusButtons from "./ReservationStatusButtons";
 
@@ -44,6 +45,16 @@ export default async function OwnerReservationsPage() {
         .returns<ReservationWithRestaurant[]>()
     : { data: [] as ReservationWithRestaurant[] };
 
+  const adminClient = createAdminClient();
+  const currentNames = new Map<string, string>();
+  await Promise.all(
+    [...new Set((reservations ?? []).map((r) => r.customer_id))].map(async (customerId) => {
+      const { data } = await adminClient.auth.admin.getUserById(customerId);
+      const currentName = data.user?.user_metadata?.full_name;
+      if (currentName) currentNames.set(customerId, currentName);
+    }),
+  );
+
   return (
     <main className="mx-auto flex max-w-2xl flex-col gap-6 px-4 py-12">
       <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">การจองที่เข้ามา</h1>
@@ -62,7 +73,7 @@ export default async function OwnerReservationsPage() {
                     {r.restaurants?.name ?? "ร้าน"}
                   </p>
                   <p className="text-sm text-stone-600 dark:text-stone-300">
-                    {r.customer_name} · {r.customer_phone}
+                    {currentNames.get(r.customer_id) ?? r.customer_name} · {r.customer_phone}
                   </p>
                 </div>
                 <span className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${STATUS_STYLE[r.status]}`}>
