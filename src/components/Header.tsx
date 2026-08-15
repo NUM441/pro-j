@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { isAdmin } from "@/lib/supabase/admin";
@@ -43,8 +44,23 @@ export default async function Header() {
               )}
               <Link
                 href="/profile"
-                className="hidden text-sm font-medium text-neutral-600 hover:underline sm:inline dark:text-neutral-300"
+                className="hidden items-center gap-2 text-sm font-medium text-neutral-600 hover:underline sm:flex dark:text-neutral-300"
               >
+                {user.user_metadata?.avatar_url ? (
+                  <span className="relative h-6 w-6 flex-shrink-0 overflow-hidden rounded-full">
+                    <Image
+                      src={user.user_metadata.avatar_url}
+                      alt=""
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
+                  </span>
+                ) : (
+                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-green-100 text-xs font-semibold text-green-700 dark:bg-green-950 dark:text-green-300">
+                    {(user.user_metadata?.full_name ?? user.email ?? "?").charAt(0).toUpperCase()}
+                  </span>
+                )}
                 {user.user_metadata?.full_name ?? user.email}
               </Link>
               <form action="/auth/signout" method="post">

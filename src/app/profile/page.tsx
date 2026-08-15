@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 import type { Restaurant } from "@/lib/supabase/restaurants";
 import type { Reservation } from "@/lib/supabase/reservations";
 import { buttonClass } from "@/lib/buttonStyles";
+import AvatarUpload from "@/components/AvatarUpload";
 
 const STATUS_LABEL = {
   pending: "รอดำเนินการ",
@@ -44,11 +45,18 @@ export default async function ProfilePage() {
 
   return (
     <main className="mx-auto flex max-w-3xl flex-col gap-8 px-4 py-12">
-      <div>
-        <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
-          {user.user_metadata?.full_name ?? "โปรไฟล์ของฉัน"}
-        </h1>
-        <p className="text-sm text-neutral-500 dark:text-neutral-400">{user.email}</p>
+      <div className="flex flex-col gap-4">
+        <AvatarUpload
+          userId={user.id}
+          avatarUrl={user.user_metadata?.avatar_url ?? null}
+          name={user.user_metadata?.full_name ?? user.email ?? ""}
+        />
+        <div>
+          <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
+            {user.user_metadata?.full_name ?? "โปรไฟล์ของฉัน"}
+          </h1>
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">{user.email}</p>
+        </div>
       </div>
 
       <div className="flex flex-col gap-4">
