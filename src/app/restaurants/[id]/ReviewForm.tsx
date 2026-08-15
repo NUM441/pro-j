@@ -14,6 +14,7 @@ type Props = {
   restaurantId: string;
   currentUserId: string | null;
   currentUserName: string;
+  currentUserAvatarUrl: string | null;
   existingReview: Review | null;
 };
 
@@ -21,6 +22,7 @@ export default function ReviewForm({
   restaurantId,
   currentUserId,
   currentUserName,
+  currentUserAvatarUrl,
   existingReview,
 }: Props) {
   const router = useRouter();
@@ -88,6 +90,7 @@ export default function ReviewForm({
       restaurant_id: restaurantId,
       reviewer_id: currentUserId,
       reviewer_name: currentUserName,
+      reviewer_avatar_url: currentUserAvatarUrl,
       rating,
       comment,
       photo_url: photoUrl,

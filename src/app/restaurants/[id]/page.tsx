@@ -53,6 +53,7 @@ export default async function RestaurantDetailPage({
     allReviews.find((r) => r.reviewer_id === userData.user?.id) ?? null;
   const currentUserName =
     userData.user?.user_metadata?.full_name ?? userData.user?.email ?? "";
+  const currentUserAvatarUrl: string | null = userData.user?.user_metadata?.avatar_url ?? null;
 
   return (
     <main className="mx-auto flex max-w-3xl flex-col gap-6 px-4 py-12">
@@ -128,6 +129,7 @@ export default async function RestaurantDetailPage({
           restaurantId={restaurant.id}
           currentUserId={userData.user?.id ?? null}
           currentUserName={currentUserName}
+          currentUserAvatarUrl={currentUserAvatarUrl}
           existingReview={existingReview}
         />
 
@@ -136,9 +138,26 @@ export default async function RestaurantDetailPage({
             {allReviews.map((review) => (
               <div key={review.id} className="border-b border-stone-200 pb-4 last:border-0 dark:border-stone-800">
                 <div className="flex items-center justify-between">
-                  <span className="font-medium text-stone-900 dark:text-stone-50">
-                    {review.reviewer_name}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    {review.reviewer_avatar_url ? (
+                      <span className="relative h-7 w-7 flex-shrink-0 overflow-hidden rounded-full border border-stone-300 dark:border-stone-700">
+                        <Image
+                          src={review.reviewer_avatar_url}
+                          alt=""
+                          fill
+                          className="object-cover"
+                          unoptimized
+                        />
+                      </span>
+                    ) : (
+                      <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-amber-200 bg-amber-100 text-xs font-semibold text-amber-700 dark:border-amber-800 dark:bg-amber-950 dark:text-amber-300">
+                        {review.reviewer_name.charAt(0).toUpperCase()}
+                      </span>
+                    )}
+                    <span className="font-medium text-stone-900 dark:text-stone-50">
+                      {review.reviewer_name}
+                    </span>
+                  </div>
                   <StarRating rating={review.rating} />
                 </div>
                 <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">{review.comment}</p>

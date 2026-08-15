@@ -3,6 +3,7 @@ export type Review = {
   restaurant_id: string;
   reviewer_id: string;
   reviewer_name: string;
+  reviewer_avatar_url: string | null;
   rating: number;
   comment: string;
   photo_url: string | null;
