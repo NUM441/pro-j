@@ -12,8 +12,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 
-  const { message } = await request.json();
-  if (typeof message !== "string" || message.trim() === "") {
+  const { message, imageUrl } = await request.json();
+  if (typeof message !== "string" || (message.trim() === "" && !imageUrl)) {
     return NextResponse.json({ error: "invalid_message" }, { status: 400 });
   }
 
@@ -29,6 +29,7 @@ export async function POST(request: Request) {
       sender_email: senderEmail,
       is_admin: false,
       message,
+      image_url: imageUrl ?? null,
     })
     .select()
     .single();
@@ -53,7 +54,7 @@ export async function POST(request: Request) {
       to: process.env.ADMIN_EMAIL,
       replyTo: senderEmail,
       subject: `[Nakhon Sawan Food Guide] ข้อความใหม่จาก ${senderName}`,
-      text: `จาก: ${senderName} (${senderEmail})\n\n${message}`,
+      text: `จาก: ${senderName} (${senderEmail})\n\n${message}${imageUrl ? "\n[แนบรูปภาพ]" : ""}`,
     });
   } catch {
     return NextResponse.json({ data: saved, emailSent: false });

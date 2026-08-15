@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { createAdminClient } from "@/lib/supabase/admin";
 import type { ContactMessage } from "@/lib/supabase/messages";
@@ -38,11 +39,16 @@ export default async function AdminConversationPage({
             key={m.id}
             className={
               m.is_admin
-                ? "max-w-[80%] rounded-2xl rounded-tl-sm bg-stone-100 px-3 py-2 text-sm text-stone-800 dark:bg-stone-800 dark:text-stone-100"
-                : "ml-auto max-w-[80%] rounded-2xl rounded-tr-sm bg-amber-100 px-3 py-2 text-sm text-amber-900 dark:bg-amber-950 dark:text-amber-200"
+                ? "flex max-w-[80%] flex-col gap-1 rounded-2xl rounded-tl-sm bg-stone-100 px-3 py-2 text-sm text-stone-800 dark:bg-stone-800 dark:text-stone-100"
+                : "ml-auto flex max-w-[80%] flex-col gap-1 rounded-2xl rounded-tr-sm bg-amber-100 px-3 py-2 text-sm text-amber-900 dark:bg-amber-950 dark:text-amber-200"
             }
           >
-            {m.message}
+            {m.image_url && (
+              <div className="relative h-40 w-52 overflow-hidden rounded-lg">
+                <Image src={m.image_url} alt="" fill className="object-cover" unoptimized />
+              </div>
+            )}
+            {m.message && <span>{m.message}</span>}
           </div>
         ))}
       </div>

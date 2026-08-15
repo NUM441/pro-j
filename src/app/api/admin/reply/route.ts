@@ -12,8 +12,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 
-  const { userId, message } = await request.json();
-  if (typeof userId !== "string" || typeof message !== "string" || message.trim() === "") {
+  const { userId, message, imageUrl } = await request.json();
+  if (
+    typeof userId !== "string" ||
+    typeof message !== "string" ||
+    (message.trim() === "" && !imageUrl)
+  ) {
     return NextResponse.json({ error: "invalid_request" }, { status: 400 });
   }
 
@@ -27,6 +31,7 @@ export async function POST(request: Request) {
       sender_email: user.email,
       is_admin: true,
       message,
+      image_url: imageUrl ?? null,
     })
     .select()
     .single();

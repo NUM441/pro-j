@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { buttonClass } from "@/lib/buttonStyles";
+import { RESTAURANT_PHOTOS_BUCKET } from "@/lib/supabase/restaurants";
 import type { ContactMessage } from "@/lib/supabase/messages";
 
 export default function ContactChatWidget() {
@@ -12,6 +14,8 @@ export default function ContactChatWidget() {
   const [userId, setUserId] = useState<string | null>(null);
   const [messages, setMessages] = useState<ContactMessage[]>([]);
   const [text, setText] = useState("");
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -62,18 +66,42 @@ export default function ContactChatWidget() {
     };
   }, [open, userId]);
 
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setImageFile(file);
+    setImagePreview(URL.createObjectURL(file));
+  }
+
+  function handleRemoveImage() {
+    setImageFile(null);
+    setImagePreview(null);
+  }
+
   async function handleSend(e: React.FormEvent) {
     e.preventDefault();
-    if (!text.trim()) return;
+    if (!text.trim() && !imageFile) return;
 
     setSending(true);
     setError(null);
 
     try {
+      let imageUrl: string | null = null;
+      if (imageFile && userId) {
+        const supabase = createClient();
+        const ext = imageFile.name.split(".").pop() ?? "jpg";
+        const path = `${userId}/chat-${Date.now()}.${ext}`;
+        const { error: uploadError } = await supabase.storage
+          .from(RESTAURANT_PHOTOS_BUCKET)
+          .upload(path, imageFile, { upsert: true });
+        if (uploadError) throw uploadError;
+        imageUrl = supabase.storage.from(RESTAURANT_PHOTOS_BUCKET).getPublicUrl(path).data.publicUrl;
+      }
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text }),
+        body: JSON.stringify({ message: text, imageUrl }),
       });
       const body = await res.json();
 
@@ -84,6 +112,7 @@ export default function ContactChatWidget() {
 
       setMessages((prev) => [...prev, body.data]);
       setText("");
+      handleRemoveImage();
     } catch {
       setError("ส่งข้อความไม่สำเร็จ กรุณาลองใหม่อีกครั้ง");
     } finally {
@@ -133,27 +162,53 @@ export default function ContactChatWidget() {
                       key={m.id}
                       className={
                         m.is_admin
-                          ? "max-w-[85%] rounded-2xl rounded-tl-sm bg-stone-100 px-3 py-2 text-sm text-stone-800 dark:bg-stone-800 dark:text-stone-100"
-                          : "ml-auto max-w-[85%] rounded-2xl rounded-tr-sm bg-amber-100 px-3 py-2 text-sm text-amber-900 dark:bg-amber-950 dark:text-amber-200"
+                          ? "flex max-w-[85%] flex-col gap-1 rounded-2xl rounded-tl-sm bg-stone-100 px-3 py-2 text-sm text-stone-800 dark:bg-stone-800 dark:text-stone-100"
+                          : "ml-auto flex max-w-[85%] flex-col gap-1 rounded-2xl rounded-tr-sm bg-amber-100 px-3 py-2 text-sm text-amber-900 dark:bg-amber-950 dark:text-amber-200"
                       }
                     >
-                      {m.message}
+                      {m.image_url && (
+                        <div className="relative h-32 w-40 overflow-hidden rounded-lg">
+                          <Image src={m.image_url} alt="" fill className="object-cover" unoptimized />
+                        </div>
+                      )}
+                      {m.message && <span>{m.message}</span>}
                     </div>
                   ))
                 )}
               </div>
 
-              <form onSubmit={handleSend} className="flex items-center gap-2 border-t border-stone-200 p-3 dark:border-stone-800">
-                <input
-                  type="text"
-                  value={text}
-                  onChange={(e) => setText(e.target.value)}
-                  placeholder="พิมพ์ข้อความ..."
-                  className="flex-1 rounded-full border border-stone-300 px-3 py-2 text-sm outline-none focus:border-amber-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
-                />
-                <button type="submit" disabled={sending} className={buttonClass("primary", "sm")}>
-                  ส่ง
-                </button>
+              <form onSubmit={handleSend} className="flex flex-col gap-2 border-t border-stone-200 p-3 dark:border-stone-800">
+                {imagePreview && (
+                  <div className="relative h-20 w-20">
+                    <div className="relative h-full w-full overflow-hidden rounded-lg border border-stone-200 dark:border-stone-800">
+                      <Image src={imagePreview} alt="" fill className="object-cover" unoptimized />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleRemoveImage}
+                      className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-stone-900 text-xs text-white"
+                      aria-label="ลบรูป"
+                    >
+                      ×
+                    </button>
+                  </div>
+                )}
+                <div className="flex items-center gap-2">
+                  <label className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-stone-300 text-sm dark:border-stone-700">
+                    📎
+                    <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
+                  </label>
+                  <input
+                    type="text"
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    placeholder="พิมพ์ข้อความ..."
+                    className="flex-1 rounded-full border border-stone-300 px-3 py-2 text-sm outline-none focus:border-amber-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+                  />
+                  <button type="submit" disabled={sending} className={buttonClass("primary", "sm")}>
+                    ส่ง
+                  </button>
+                </div>
               </form>
               {error && <p className="px-3 pb-2 text-xs text-red-500">{error}</p>}
             </>
