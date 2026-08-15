@@ -12,7 +12,10 @@ export async function GET(request: Request) {
     const supabase = await createClient();
     const { error } = await supabase.auth.verifyOtp({ type, token_hash });
     if (!error) {
-      return NextResponse.redirect(`${origin}${next}`);
+      // Signup confirmations always land on the welcome page, regardless of
+      // the `next` param baked into the Supabase email template.
+      const destination = type === "email" ? "/welcome" : next;
+      return NextResponse.redirect(`${origin}${destination}`);
     }
   }
 
