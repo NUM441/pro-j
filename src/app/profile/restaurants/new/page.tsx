@@ -11,7 +11,7 @@ export default async function NewRestaurantPage() {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect("/login");
+    redirect("/welcome");
   }
 
   const { data: application } = await supabase

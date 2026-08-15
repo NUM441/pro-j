@@ -37,7 +37,7 @@ export default function ReviewForm({
   if (!currentUserId) {
     return (
       <p className="rounded-xl border border-dashed border-stone-300 p-6 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
-        <Link href="/login" className="font-medium text-amber-700 hover:underline dark:text-amber-400">
+        <Link href="/welcome" className="font-medium text-amber-700 hover:underline dark:text-amber-400">
           เข้าสู่ระบบ
         </Link>{" "}
         เพื่อเขียนรีวิว

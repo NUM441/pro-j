@@ -15,7 +15,7 @@ export default async function EditRestaurantPage({
   } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect("/login");
+    redirect("/welcome");
   }
 
   const { data: restaurant } = await supabase

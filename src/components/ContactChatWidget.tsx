@@ -116,7 +116,7 @@ export default function ContactChatWidget() {
               <p className="text-sm text-stone-500 dark:text-stone-400">
                 เข้าสู่ระบบเพื่อติดต่อแอดมิน
               </p>
-              <Link href="/login" className={buttonClass("primary", "sm")}>
+              <Link href="/welcome" className={buttonClass("primary", "sm")}>
                 เข้าสู่ระบบ
               </Link>
             </div>

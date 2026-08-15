@@ -126,7 +126,7 @@ export default function SignupPage() {
 
       <p className="text-sm text-stone-500 dark:text-stone-400">
         มีบัญชีอยู่แล้ว?{" "}
-        <Link href="/login" className="font-medium text-stone-900 hover:underline dark:text-stone-100">
+        <Link href="/welcome" className="font-medium text-stone-900 hover:underline dark:text-stone-100">
           เข้าสู่ระบบ
         </Link>
       </p>

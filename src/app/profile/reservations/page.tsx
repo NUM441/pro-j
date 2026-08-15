@@ -24,7 +24,7 @@ export default async function OwnerReservationsPage() {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect("/login");
+    redirect("/welcome");
   }
 
   const { data: reservations } = await supabase

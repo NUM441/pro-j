@@ -72,7 +72,7 @@ export default async function Header() {
             </>
           ) : (
             <>
-              <Link href="/login" className={buttonClass("secondary", "sm")}>
+              <Link href="/welcome" className={buttonClass("secondary", "sm")}>
                 เข้าสู่ระบบ
               </Link>
               <Link href="/signup" className={buttonClass("primary", "sm")}>
