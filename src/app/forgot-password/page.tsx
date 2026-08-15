@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { buttonClass } from "@/lib/buttonStyles";
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
@@ -65,7 +66,7 @@ export default function ForgotPasswordPage() {
         <button
           type="submit"
           disabled={loading}
-          className="rounded-full bg-green-700 px-6 py-2.5 text-sm font-medium text-white transition hover:bg-green-600 disabled:opacity-60 dark:bg-green-600 dark:hover:bg-green-500"
+          className={buttonClass("primary")}
         >
           {loading ? "กำลังส่ง..." : "ส่งลิงก์ตั้งรหัสผ่านใหม่"}
         </button>

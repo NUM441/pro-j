@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { buttonClass } from "@/lib/buttonStyles";
 
 export default function OwnerApplicationForm({ rejected }: { rejected?: boolean }) {
   const [restaurantName, setRestaurantName] = useState("");
@@ -99,7 +100,7 @@ export default function OwnerApplicationForm({ rejected }: { rejected?: boolean 
         <button
           type="submit"
           disabled={loading}
-          className="w-fit rounded-full bg-green-700 px-6 py-2.5 text-sm font-medium text-white transition hover:bg-green-600 disabled:opacity-60"
+          className={`w-fit ${buttonClass("primary")}`}
         >
           {loading ? "กำลังส่ง..." : "ส่งคำขอ"}
         </button>

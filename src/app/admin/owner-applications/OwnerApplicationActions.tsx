@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { OwnerApplicationStatus } from "@/lib/supabase/owner-applications";
+import { buttonClass } from "@/lib/buttonStyles";
 
 export default function OwnerApplicationActions({ applicationId }: { applicationId: string }) {
   const router = useRouter();
@@ -20,12 +21,12 @@ export default function OwnerApplicationActions({ applicationId }: { application
   }
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-3">
       <button
         type="button"
         onClick={() => decide("approved")}
         disabled={loading}
-        className="rounded-full bg-green-700 px-3 py-1 text-xs font-medium text-white transition hover:bg-green-600 disabled:opacity-60"
+        className={buttonClass("primary", "sm")}
       >
         อนุมัติ
       </button>
@@ -33,7 +34,7 @@ export default function OwnerApplicationActions({ applicationId }: { application
         type="button"
         onClick={() => decide("rejected")}
         disabled={loading}
-        className="rounded-full border border-red-300 px-3 py-1 text-xs font-medium text-red-600 transition hover:bg-red-50 disabled:opacity-60 dark:border-red-900 dark:text-red-400 dark:hover:bg-red-950"
+        className={buttonClass("danger", "sm")}
       >
         ปฏิเสธ
       </button>

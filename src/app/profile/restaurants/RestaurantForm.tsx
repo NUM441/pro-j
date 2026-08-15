@@ -10,6 +10,7 @@ import {
   RESTAURANT_PHOTOS_BUCKET,
   type Restaurant,
 } from "@/lib/supabase/restaurants";
+import { buttonClass, chipClass } from "@/lib/buttonStyles";
 
 type FoodPhoto =
   | { type: "existing"; url: string }
@@ -225,11 +226,7 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
                 key={category}
                 type="button"
                 onClick={() => toggleCategory(category)}
-                className={
-                  active
-                    ? "rounded-full bg-green-700 px-3 py-1 text-sm font-medium text-white"
-                    : "rounded-full border border-neutral-300 px-3 py-1 text-sm text-neutral-600 hover:bg-green-50 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-green-950"
-                }
+                className={chipClass(active)}
               >
                 {category}
               </button>
@@ -307,7 +304,7 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
         <button
           type="submit"
           disabled={loading || deleting}
-          className="rounded-full bg-green-700 px-6 py-2.5 text-sm font-medium text-white transition hover:bg-green-600 disabled:opacity-60 dark:bg-green-600 dark:hover:bg-green-500"
+          className={buttonClass("primary")}
         >
           {loading ? "กำลังบันทึก..." : mode === "new" ? "บันทึกร้าน" : "บันทึกการแก้ไข"}
         </button>
@@ -317,7 +314,7 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
             type="button"
             onClick={handleDelete}
             disabled={loading || deleting}
-            className="rounded-full border border-red-300 px-6 py-2.5 text-sm font-medium text-red-600 transition hover:bg-red-50 disabled:opacity-60 dark:border-red-900 dark:text-red-400 dark:hover:bg-red-950"
+            className={buttonClass("danger")}
           >
             {deleting ? "กำลังลบ..." : "ลบร้านนี้"}
           </button>

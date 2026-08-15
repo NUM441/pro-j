@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { buttonClass } from "@/lib/buttonStyles";
 import type { ContactMessage } from "@/lib/supabase/messages";
 
 export default function ContactChatWidget() {
@@ -99,7 +100,7 @@ export default function ContactChatWidget() {
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="text-white/80 hover:text-white"
+              className="flex h-8 w-8 items-center justify-center text-xl text-white/80 hover:text-white"
               aria-label="ปิด"
             >
               ×
@@ -115,10 +116,7 @@ export default function ContactChatWidget() {
               <p className="text-sm text-neutral-500 dark:text-neutral-400">
                 เข้าสู่ระบบเพื่อติดต่อแอดมิน
               </p>
-              <Link
-                href="/login"
-                className="rounded-full bg-green-700 px-4 py-1.5 text-sm font-medium text-white hover:bg-green-600"
-              >
+              <Link href="/login" className={buttonClass("primary", "sm")}>
                 เข้าสู่ระบบ
               </Link>
             </div>
@@ -151,13 +149,9 @@ export default function ContactChatWidget() {
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                   placeholder="พิมพ์ข้อความ..."
-                  className="flex-1 rounded-full border border-neutral-300 px-3 py-1.5 text-sm outline-none focus:border-green-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
+                  className="flex-1 rounded-full border border-neutral-300 px-3 py-2 text-sm outline-none focus:border-green-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
                 />
-                <button
-                  type="submit"
-                  disabled={sending}
-                  className="rounded-full bg-green-700 px-4 py-1.5 text-sm font-medium text-white hover:bg-green-600 disabled:opacity-60"
-                >
+                <button type="submit" disabled={sending} className={buttonClass("primary", "sm")}>
                   ส่ง
                 </button>
               </form>

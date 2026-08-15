@@ -5,6 +5,7 @@ import type { Restaurant } from "@/lib/supabase/restaurants";
 import { averageRating, type Review } from "@/lib/supabase/reviews";
 import StarRating from "@/components/StarRating";
 import RestaurantGallery from "@/components/RestaurantGallery";
+import { buttonClass } from "@/lib/buttonStyles";
 import ReviewForm from "./ReviewForm";
 import ReservationForm from "./ReservationForm";
 
@@ -83,7 +84,7 @@ export default async function RestaurantDetailPage({
         {isOwner && (
           <Link
             href={`/profile/restaurants/${restaurant.id}/edit`}
-            className="flex-shrink-0 rounded-full border border-neutral-300 px-4 py-1.5 text-sm font-medium text-neutral-700 transition hover:bg-green-50 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-green-950"
+            className={`flex-shrink-0 ${buttonClass("secondary", "sm")}`}
           >
             แก้ไขร้าน
           </Link>

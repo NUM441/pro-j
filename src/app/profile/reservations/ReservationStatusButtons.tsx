@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { buttonClass } from "@/lib/buttonStyles";
 import type { ReservationStatus } from "@/lib/supabase/reservations";
 
 export default function ReservationStatusButtons({
@@ -37,12 +38,12 @@ export default function ReservationStatusButtons({
   }
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-3">
       <button
         type="button"
         onClick={() => updateStatus("confirmed")}
         disabled={loading}
-        className="rounded-full bg-green-700 px-3 py-1 text-xs font-medium text-white transition hover:bg-green-600 disabled:opacity-60"
+        className={buttonClass("primary", "sm")}
       >
         ยืนยัน
       </button>
@@ -50,7 +51,7 @@ export default function ReservationStatusButtons({
         type="button"
         onClick={() => updateStatus("declined")}
         disabled={loading}
-        className="rounded-full border border-red-300 px-3 py-1 text-xs font-medium text-red-600 transition hover:bg-red-50 disabled:opacity-60 dark:border-red-900 dark:text-red-400 dark:hover:bg-red-950"
+        className={buttonClass("danger", "sm")}
       >
         ปฏิเสธ
       </button>

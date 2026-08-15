@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { CATEGORIES, type Restaurant } from "@/lib/supabase/restaurants";
 import { averageRating } from "@/lib/supabase/reviews";
 import StarRating from "@/components/StarRating";
+import { chipClass } from "@/lib/buttonStyles";
 
 type RestaurantWithReviews = Restaurant & { reviews: { rating: number }[] };
 
@@ -38,11 +39,7 @@ export default async function RestaurantsPage({
       <div className="flex flex-wrap gap-2">
         <Link
           href="/restaurants"
-          className={
-            !category
-              ? "rounded-full bg-green-700 px-3 py-1 text-sm font-medium text-white"
-              : "rounded-full border border-neutral-300 px-3 py-1 text-sm text-neutral-600 hover:bg-green-50 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-green-950"
-          }
+          className={chipClass(!category)}
         >
           ทั้งหมด
         </Link>
@@ -50,11 +47,7 @@ export default async function RestaurantsPage({
           <Link
             key={c}
             href={`/restaurants?category=${encodeURIComponent(c)}`}
-            className={
-              category === c
-                ? "rounded-full bg-green-700 px-3 py-1 text-sm font-medium text-white"
-                : "rounded-full border border-neutral-300 px-3 py-1 text-sm text-neutral-600 hover:bg-green-50 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-green-950"
-            }
+            className={chipClass(category === c)}
           >
             {c}
           </Link>

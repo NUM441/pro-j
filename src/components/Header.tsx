@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { isAdmin } from "@/lib/supabase/admin";
+import { buttonClass } from "@/lib/buttonStyles";
 import ThemeToggle from "./ThemeToggle";
 
 export default async function Header() {
@@ -29,7 +30,7 @@ export default async function Header() {
           </Link>
         </div>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-3">
           {user ? (
             <>
               {isAdmin(user.email) && (
@@ -47,26 +48,17 @@ export default async function Header() {
                 {user.user_metadata?.full_name ?? user.email}
               </Link>
               <form action="/auth/signout" method="post">
-                <button
-                  type="submit"
-                  className="rounded-full border border-neutral-300 px-3 py-1.5 text-sm font-medium text-neutral-700 transition hover:bg-green-50 sm:px-4 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-green-950"
-                >
+                <button type="submit" className={buttonClass("secondary", "sm")}>
                   ออกจากระบบ
                 </button>
               </form>
             </>
           ) : (
             <>
-              <Link
-                href="/login"
-                className="rounded-full border border-neutral-300 px-3 py-1.5 text-sm font-medium text-neutral-700 transition hover:bg-green-50 sm:px-4 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-green-950"
-              >
+              <Link href="/login" className={buttonClass("secondary", "sm")}>
                 เข้าสู่ระบบ
               </Link>
-              <Link
-                href="/signup"
-                className="rounded-full bg-green-700 px-3 py-1.5 text-sm font-medium text-white transition hover:bg-green-600 sm:px-4 dark:bg-green-600 dark:hover:bg-green-500"
-              >
+              <Link href="/signup" className={buttonClass("primary", "sm")}>
                 สมัครสมาชิก
               </Link>
             </>

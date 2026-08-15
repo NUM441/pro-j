@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { buttonClass } from "@/lib/buttonStyles";
 
 export default function ResetPasswordPage() {
   const router = useRouter();
@@ -60,7 +61,7 @@ export default function ResetPasswordPage() {
         <button
           type="submit"
           disabled={loading}
-          className="rounded-full bg-green-700 px-6 py-2.5 text-sm font-medium text-white transition hover:bg-green-600 disabled:opacity-60 dark:bg-green-600 dark:hover:bg-green-500"
+          className={buttonClass("primary")}
         >
           {loading ? "กำลังบันทึก..." : "บันทึกรหัสผ่านใหม่"}
         </button>

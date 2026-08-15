@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import type { Restaurant } from "@/lib/supabase/restaurants";
 import type { Reservation } from "@/lib/supabase/reservations";
+import { buttonClass } from "@/lib/buttonStyles";
 
 const STATUS_LABEL = {
   pending: "รอดำเนินการ",
@@ -51,7 +52,7 @@ export default async function ProfilePage() {
       </div>
 
       <div className="flex flex-col gap-4">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between gap-3">
           <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">ร้านของฉัน</h2>
           <div className="flex items-center gap-3">
             <Link
@@ -60,10 +61,7 @@ export default async function ProfilePage() {
             >
               การจองที่เข้ามา
             </Link>
-            <Link
-              href="/profile/restaurants/new"
-              className="rounded-full bg-green-700 px-4 py-1.5 text-sm font-medium text-white transition hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-500"
-            >
+            <Link href="/profile/restaurants/new" className={buttonClass("primary", "sm")}>
               เพิ่มร้านใหม่
             </Link>
           </div>

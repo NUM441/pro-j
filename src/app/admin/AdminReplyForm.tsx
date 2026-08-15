@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { buttonClass } from "@/lib/buttonStyles";
 
 export default function AdminReplyForm({ userId }: { userId: string }) {
   const router = useRouter();
@@ -47,7 +48,7 @@ export default function AdminReplyForm({ userId }: { userId: string }) {
       <button
         type="submit"
         disabled={sending}
-        className="w-fit rounded-full bg-green-700 px-5 py-2 text-sm font-medium text-white transition hover:bg-green-600 disabled:opacity-60"
+        className={`w-fit ${buttonClass("primary", "sm")}`}
       >
         {sending ? "กำลังส่ง..." : "ส่งข้อความ"}
       </button>

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import StarRating from "@/components/StarRating";
+import { buttonClass } from "@/lib/buttonStyles";
 import type { Review } from "@/lib/supabase/reviews";
 
 type Props = {
@@ -115,7 +116,7 @@ export default function ReviewForm({
         <button
           type="submit"
           disabled={loading || deleting}
-          className="rounded-full bg-green-700 px-5 py-2 text-sm font-medium text-white transition hover:bg-green-600 disabled:opacity-60 dark:bg-green-600 dark:hover:bg-green-500"
+          className={buttonClass("primary", "sm")}
         >
           {loading ? "กำลังบันทึก..." : existingReview ? "แก้ไขรีวิว" : "ส่งรีวิว"}
         </button>
@@ -125,7 +126,7 @@ export default function ReviewForm({
             type="button"
             onClick={handleDelete}
             disabled={loading || deleting}
-            className="rounded-full border border-red-300 px-5 py-2 text-sm font-medium text-red-600 transition hover:bg-red-50 disabled:opacity-60 dark:border-red-900 dark:text-red-400 dark:hover:bg-red-950"
+            className={buttonClass("danger", "sm")}
           >
             {deleting ? "กำลังลบ..." : "ลบรีวิว"}
           </button>

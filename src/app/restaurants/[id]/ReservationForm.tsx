@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { buttonClass } from "@/lib/buttonStyles";
 
 type Props = {
   restaurantId: string;
@@ -45,7 +46,7 @@ export default function ReservationForm({ restaurantId, currentUserId, currentUs
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="w-fit rounded-full bg-green-700 px-5 py-2 text-sm font-medium text-white transition hover:bg-green-600"
+        className={`w-fit ${buttonClass("primary", "sm")}`}
       >
         จองโต๊ะ
       </button>
@@ -159,7 +160,7 @@ export default function ReservationForm({ restaurantId, currentUserId, currentUs
         <button
           type="submit"
           disabled={loading}
-          className="rounded-full bg-green-700 px-5 py-2 text-sm font-medium text-white transition hover:bg-green-600 disabled:opacity-60"
+          className={buttonClass("primary", "sm")}
         >
           {loading ? "กำลังส่ง..." : "ยืนยันการจอง"}
         </button>
