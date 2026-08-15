@@ -24,11 +24,17 @@ export default async function AdminInboxPage() {
   }
 
   const adminClient = createAdminClient();
-  const { data: messages } = await adminClient
-    .from("contact_messages")
-    .select("*")
-    .order("created_at", { ascending: false })
-    .returns<ContactMessage[]>();
+  const [{ data: messages }, { count: pendingApplications }] = await Promise.all([
+    adminClient
+      .from("contact_messages")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .returns<ContactMessage[]>(),
+    adminClient
+      .from("owner_applications")
+      .select("id", { count: "exact", head: true })
+      .eq("status", "pending"),
+  ]);
 
   const conversations = new Map<string, Conversation>();
   const userNames = new Map<string, string>();
@@ -49,9 +55,22 @@ export default async function AdminInboxPage() {
 
   return (
     <main className="mx-auto flex max-w-2xl flex-col gap-6 px-4 py-12">
-      <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
-        กล่องข้อความ (แอดมิน)
-      </h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">
+          กล่องข้อความ (แอดมิน)
+        </h1>
+        <Link
+          href="/admin/owner-applications"
+          className="flex items-center gap-1.5 text-sm font-medium text-green-700 hover:underline dark:text-green-400"
+        >
+          คำขอเป็นเจ้าของร้าน
+          {!!pendingApplications && (
+            <span className="rounded-full bg-red-600 px-1.5 py-0.5 text-xs font-bold text-white">
+              {pendingApplications}
+            </span>
+          )}
+        </Link>
+      </div>
 
       {conversations.size === 0 ? (
         <p className="rounded-xl border border-dashed border-neutral-300 p-8 text-center text-sm text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">
