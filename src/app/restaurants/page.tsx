@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { CATEGORIES, type Restaurant } from "@/lib/supabase/restaurants";
 import { averageRating } from "@/lib/supabase/reviews";
 import StarRating from "@/components/StarRating";
+import FavoriteButton from "@/components/FavoriteButton";
 import { chipClass } from "@/lib/buttonStyles";
 
 type RestaurantWithReviews = Restaurant & { reviews: { rating: number }[] };
@@ -11,9 +12,9 @@ type RestaurantWithReviews = Restaurant & { reviews: { rating: number }[] };
 export default async function RestaurantsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string }>;
+  searchParams: Promise<{ category?: string; q?: string }>;
 }) {
-  const { category } = await searchParams;
+  const { category, q } = await searchParams;
   const supabase = await createClient();
 
   let query = supabase
@@ -24,8 +25,25 @@ export default async function RestaurantsPage({
   if (category) {
     query = query.contains("categories", [category]);
   }
+  if (q) {
+    query = query.ilike("name", `%${q}%`);
+  }
 
-  const { data: restaurants } = await query.returns<RestaurantWithReviews[]>();
+  const [{ data: restaurants }, { data: userData }] = await Promise.all([
+    query.returns<RestaurantWithReviews[]>(),
+    supabase.auth.getUser(),
+  ]);
+
+  let favoritedIds = new Set<string>();
+  if (userData.user) {
+    const { data: favorites } = await supabase
+      .from("favorites")
+      .select("restaurant_id")
+      .eq("user_id", userData.user.id);
+    favoritedIds = new Set((favorites ?? []).map((f) => f.restaurant_id));
+  }
+
+  const qSuffix = q ? `&q=${encodeURIComponent(q)}` : "";
 
   return (
     <main className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-12">
@@ -36,17 +54,28 @@ export default async function RestaurantsPage({
         </p>
       </div>
 
+      <form action="/restaurants" method="get" className="flex items-center gap-2">
+        {category && <input type="hidden" name="category" value={category} />}
+        <input
+          type="search"
+          name="q"
+          defaultValue={q ?? ""}
+          placeholder="🔍 ค้นหาชื่อร้าน..."
+          className="w-full max-w-sm rounded-full border border-neutral-300 px-4 py-2 text-sm outline-none focus:border-green-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
+        />
+        <button type="submit" className={chipClass(false)}>
+          ค้นหา
+        </button>
+      </form>
+
       <div className="flex flex-wrap gap-2">
-        <Link
-          href="/restaurants"
-          className={chipClass(!category)}
-        >
+        <Link href={q ? `/restaurants?q=${encodeURIComponent(q)}` : "/restaurants"} className={chipClass(!category)}>
           ทั้งหมด
         </Link>
         {CATEGORIES.map((c) => (
           <Link
             key={c}
-            href={`/restaurants?category=${encodeURIComponent(c)}`}
+            href={`/restaurants?category=${encodeURIComponent(c)}${qSuffix}`}
             className={chipClass(category === c)}
           >
             {c}
@@ -56,7 +85,11 @@ export default async function RestaurantsPage({
 
       {!restaurants || restaurants.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-neutral-300 p-10 text-center text-sm text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">
-          {category ? `ยังไม่มีร้านในหมวด "${category}"` : "ยังไม่มีร้านอาหารในระบบ 🍜"}
+          {q
+            ? `ไม่พบร้านที่ชื่อตรงกับ "${q}"`
+            : category
+              ? `ยังไม่มีร้านในหมวด "${category}"`
+              : "ยังไม่มีร้านอาหารในระบบ 🍜"}
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
@@ -74,6 +107,14 @@ export default async function RestaurantsPage({
                   className="object-cover"
                   unoptimized
                 />
+                {userData.user && (
+                  <FavoriteButton
+                    restaurantId={restaurant.id}
+                    userId={userData.user.id}
+                    initialFavorited={favoritedIds.has(restaurant.id)}
+                    className="absolute top-2 right-2 bg-black/40 hover:bg-black/60"
+                  />
+                )}
               </div>
               <div className="flex flex-col gap-1 p-4">
                 <h2 className="font-semibold text-neutral-900 dark:text-neutral-50">

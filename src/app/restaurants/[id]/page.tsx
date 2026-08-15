@@ -6,6 +6,7 @@ import { averageRating, type Review } from "@/lib/supabase/reviews";
 import StarRating from "@/components/StarRating";
 import RestaurantGallery from "@/components/RestaurantGallery";
 import { buttonClass } from "@/lib/buttonStyles";
+import FavoriteButton from "@/components/FavoriteButton";
 import ReviewForm from "./ReviewForm";
 import ReservationForm from "./ReservationForm";
 
@@ -32,6 +33,17 @@ export default async function RestaurantDetailPage({
     notFound();
   }
 
+  let isFavorited = false;
+  if (userData.user) {
+    const { data: favorite } = await supabase
+      .from("favorites")
+      .select("id")
+      .eq("user_id", userData.user.id)
+      .eq("restaurant_id", restaurant.id)
+      .maybeSingle();
+    isFavorited = !!favorite;
+  }
+
   const isOwner = userData.user?.id === restaurant.owner_id;
   const allReviews = reviews ?? [];
   const reviewCount = allReviews.length;
@@ -51,7 +63,16 @@ export default async function RestaurantDetailPage({
 
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
-          <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">{restaurant.name}</h1>
+          <div className="flex items-center gap-2">
+            <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">{restaurant.name}</h1>
+            {userData.user && (
+              <FavoriteButton
+                restaurantId={restaurant.id}
+                userId={userData.user.id}
+                initialFavorited={isFavorited}
+              />
+            )}
+          </div>
           <div className="flex items-center gap-2">
             <StarRating rating={avgRating} />
             <span className="text-sm text-neutral-500 dark:text-neutral-400">

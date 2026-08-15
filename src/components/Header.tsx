@@ -15,7 +15,8 @@ export default async function Header() {
     <header className="border-b-2 border-green-600">
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3 sm:py-4">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-          <Link href="/" className="flex items-baseline gap-2">
+          <Link href="/" aria-label="กลับหน้าหลัก" className="flex items-baseline gap-2">
+            <span className="text-lg" aria-hidden="true">🏠</span>
             <span className="text-base font-bold text-neutral-900 sm:text-lg dark:text-neutral-50">
               Nakhon Sawan Food Guide
             </span>
@@ -25,9 +26,9 @@ export default async function Header() {
           </Link>
           <Link
             href="/restaurants"
-            className="text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-50"
+            className="flex items-center gap-1 text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-50"
           >
-            ร้านอาหาร
+            <span aria-hidden="true">🔍</span> ร้านอาหาร
           </Link>
         </div>
 

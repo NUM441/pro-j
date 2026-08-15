@@ -4,17 +4,30 @@ import { createClient } from "@/lib/supabase/server";
 import type { Restaurant } from "@/lib/supabase/restaurants";
 import { averageRating } from "@/lib/supabase/reviews";
 import StarRating from "@/components/StarRating";
+import FavoriteButton from "@/components/FavoriteButton";
 
 type RestaurantWithReviews = Restaurant & { reviews: { rating: number }[] };
 
 export default async function Home() {
   const supabase = await createClient();
-  const { data: restaurants } = await supabase
-    .from("restaurants")
-    .select("*, reviews(rating)")
-    .order("created_at", { ascending: false })
-    .limit(6)
-    .returns<RestaurantWithReviews[]>();
+  const [{ data: restaurants }, { data: userData }] = await Promise.all([
+    supabase
+      .from("restaurants")
+      .select("*, reviews(rating)")
+      .order("created_at", { ascending: false })
+      .limit(6)
+      .returns<RestaurantWithReviews[]>(),
+    supabase.auth.getUser(),
+  ]);
+
+  let favoritedIds = new Set<string>();
+  if (userData.user) {
+    const { data: favorites } = await supabase
+      .from("favorites")
+      .select("restaurant_id")
+      .eq("user_id", userData.user.id);
+    favoritedIds = new Set((favorites ?? []).map((f) => f.restaurant_id));
+  }
 
   return (
     <main className="flex flex-1 flex-col">
@@ -64,6 +77,14 @@ export default async function Home() {
                       className="object-cover"
                       unoptimized
                     />
+                    {userData.user && (
+                      <FavoriteButton
+                        restaurantId={restaurant.id}
+                        userId={userData.user.id}
+                        initialFavorited={favoritedIds.has(restaurant.id)}
+                        className="absolute top-2 right-2 bg-black/40 hover:bg-black/60"
+                      />
+                    )}
                   </div>
                   <div className="flex flex-col gap-1 p-4">
                     <h3 className="font-semibold text-neutral-900 dark:text-neutral-50">

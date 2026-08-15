@@ -6,6 +6,7 @@ import type { Restaurant } from "@/lib/supabase/restaurants";
 import type { Reservation } from "@/lib/supabase/reservations";
 import { buttonClass } from "@/lib/buttonStyles";
 import AvatarUpload from "@/components/AvatarUpload";
+import FavoriteButton from "@/components/FavoriteButton";
 
 const STATUS_LABEL = {
   pending: "รอดำเนินการ",
@@ -42,6 +43,13 @@ export default async function ProfilePage() {
     .eq("customer_id", user.id)
     .order("created_at", { ascending: false })
     .returns<(Reservation & { restaurants: { name: string } | null })[]>();
+
+  const { data: myFavorites } = await supabase
+    .from("favorites")
+    .select("restaurant_id, restaurants(*)")
+    .eq("user_id", user.id)
+    .order("created_at", { ascending: false })
+    .returns<{ restaurant_id: string; restaurants: Restaurant | null }[]>();
 
   return (
     <main className="mx-auto flex max-w-3xl flex-col gap-8 px-4 py-12">
@@ -135,6 +143,49 @@ export default async function ProfilePage() {
                 </span>
               </div>
             ))}
+          </div>
+        )}
+      </div>
+
+      <div className="flex flex-col gap-4">
+        <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">รายการโปรด</h2>
+
+        {!myFavorites || myFavorites.length === 0 ? (
+          <p className="rounded-xl border border-dashed border-neutral-300 p-8 text-center text-sm text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">
+            คุณยังไม่มีร้านโปรด กดรูปหัวใจที่การ์ดร้านหรือหน้าร้านเพื่อบันทึกไว้
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {myFavorites
+              .filter((f) => f.restaurants)
+              .map((f) => (
+                <Link
+                  key={f.restaurant_id}
+                  href={`/restaurants/${f.restaurant_id}`}
+                  className="flex items-center gap-3 rounded-xl border border-neutral-200 p-3 transition hover:bg-neutral-50 dark:border-neutral-800 dark:hover:bg-neutral-900"
+                >
+                  <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
+                    <Image
+                      src={f.restaurants!.cover_photo_url}
+                      alt={f.restaurants!.name}
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate font-medium text-neutral-900 dark:text-neutral-50">
+                      {f.restaurants!.name}
+                    </p>
+                    <p className="text-sm text-neutral-500 dark:text-neutral-400">ดูร้าน</p>
+                  </div>
+                  <FavoriteButton
+                    restaurantId={f.restaurant_id}
+                    userId={user.id}
+                    initialFavorited
+                  />
+                </Link>
+              ))}
           </div>
         )}
       </div>
