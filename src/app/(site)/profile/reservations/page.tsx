@@ -27,11 +27,22 @@ export default async function OwnerReservationsPage() {
     redirect("/welcome");
   }
 
-  const { data: reservations } = await supabase
-    .from("reservations")
-    .select("*, restaurants(name)")
-    .order("created_at", { ascending: false })
-    .returns<ReservationWithRestaurant[]>();
+  const { data: ownedRestaurants } = await supabase
+    .from("restaurants")
+    .select("id")
+    .eq("owner_id", user.id)
+    .returns<{ id: string }[]>();
+
+  const restaurantIds = (ownedRestaurants ?? []).map((r) => r.id);
+
+  const { data: reservations } = restaurantIds.length
+    ? await supabase
+        .from("reservations")
+        .select("*, restaurants(name)")
+        .in("restaurant_id", restaurantIds)
+        .order("created_at", { ascending: false })
+        .returns<ReservationWithRestaurant[]>()
+    : { data: [] as ReservationWithRestaurant[] };
 
   return (
     <main className="mx-auto flex max-w-2xl flex-col gap-6 px-4 py-12">
