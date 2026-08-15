@@ -87,14 +87,9 @@ export default async function WelcomePage() {
             </li>
           </ul>
 
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <Link href="/login" className={buttonClass("primary")}>
-              เข้าสู่ระบบ
-            </Link>
-            <Link href="/signup" className={buttonClass("secondary")}>
-              สมัครสมาชิก
-            </Link>
-          </div>
+          <Link href="/login" className={buttonClass("primary")}>
+            ต่อไป
+          </Link>
         </>
       )}
     </main>

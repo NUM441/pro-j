@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import Header from "@/components/Header";
-import ContactChatWidget from "@/components/ContactChatWidget";
 
 const themeInitScript = `
 (function () {
@@ -41,9 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Script id="theme-init" strategy="beforeInteractive">
           {themeInitScript}
         </Script>
-        <Header />
         {children}
-        <ContactChatWidget />
       </body>
     </html>
   );
