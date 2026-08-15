@@ -22,9 +22,12 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     .select("id", { count: "exact", head: true })
     .eq("status", "pending");
 
+  const { data: senderRows } = await adminClient.from("contact_messages").select("user_id");
+  const totalConversations = new Set((senderRows ?? []).map((r) => r.user_id)).size;
+
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-8 sm:flex-row sm:py-12">
-      <AdminSidebar pendingApplications={pendingApplications ?? 0} />
+      <AdminSidebar pendingApplications={pendingApplications ?? 0} totalConversations={totalConversations} />
       <div className="min-w-0 flex-1">{children}</div>
     </div>
   );

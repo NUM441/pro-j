@@ -3,11 +3,17 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function AdminSidebar({ pendingApplications }: { pendingApplications: number }) {
+export default function AdminSidebar({
+  pendingApplications,
+  totalConversations,
+}: {
+  pendingApplications: number;
+  totalConversations: number;
+}) {
   const pathname = usePathname();
 
   const items = [
-    { href: "/admin", label: "กล่องข้อความ", icon: "💬", badge: 0 },
+    { href: "/admin", label: "กล่องข้อความ", icon: "💬", badge: totalConversations },
     { href: "/admin/owner-applications", label: "คำขอเป็นเจ้าของร้าน", icon: "🏪", badge: pendingApplications },
     { href: "/admin/welcome-image", label: "รูปหน้า Welcome", icon: "🖼️", badge: 0 },
   ];
