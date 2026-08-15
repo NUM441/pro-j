@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import {
+  CATEGORIES,
   MAX_FOOD_PHOTOS,
   RESTAURANT_PHOTOS_BUCKET,
   type Restaurant,
@@ -29,6 +30,9 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
   const [name, setName] = useState(restaurant?.name ?? "");
   const [description, setDescription] = useState(restaurant?.description ?? "");
   const [googleMapsUrl, setGoogleMapsUrl] = useState(restaurant?.google_maps_url ?? "");
+  const [selectedCategories, setSelectedCategories] = useState<string[]>(
+    restaurant?.categories ?? [],
+  );
   const [coverFile, setCoverFile] = useState<File | null>(null);
   const [coverPreviewUrl, setCoverPreviewUrl] = useState<string | null>(
     restaurant?.cover_photo_url ?? null,
@@ -64,6 +68,12 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
 
   function removeFoodPhoto(index: number) {
     setFoodPhotos((prev) => prev.filter((_, i) => i !== index));
+  }
+
+  function toggleCategory(category: string) {
+    setSelectedCategories((prev) =>
+      prev.includes(category) ? prev.filter((c) => c !== category) : [...prev, category],
+    );
   }
 
   async function uploadImage(
@@ -122,6 +132,7 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
         google_maps_url: googleMapsUrl,
         cover_photo_url: coverPhotoUrl,
         food_photo_urls: foodPhotoUrls,
+        categories: selectedCategories,
       };
 
       const { error: dbError } =
@@ -202,6 +213,29 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
           onChange={(e) => setDescription(e.target.value)}
           className="rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
         />
+      </div>
+
+      <div className="flex flex-col gap-1.5">
+        <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">ประเภทอาหาร</span>
+        <div className="flex flex-wrap gap-2">
+          {CATEGORIES.map((category) => {
+            const active = selectedCategories.includes(category);
+            return (
+              <button
+                key={category}
+                type="button"
+                onClick={() => toggleCategory(category)}
+                className={
+                  active
+                    ? "rounded-full bg-orange-600 px-3 py-1 text-sm font-medium text-white"
+                    : "rounded-full border border-neutral-300 px-3 py-1 text-sm text-neutral-600 hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800"
+                }
+              >
+                {category}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       <div className="flex flex-col gap-1.5">

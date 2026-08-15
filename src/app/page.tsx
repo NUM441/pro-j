@@ -75,6 +75,18 @@ export default async function Home() {
                         ({restaurant.reviews.length})
                       </span>
                     </div>
+                    {restaurant.categories.length > 0 && (
+                      <div className="flex flex-wrap gap-1">
+                        {restaurant.categories.map((c) => (
+                          <span
+                            key={c}
+                            className="rounded-full bg-orange-100 px-2 py-0.5 text-xs font-medium text-orange-700 dark:bg-orange-950 dark:text-orange-300"
+                          >
+                            {c}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                     <p className="line-clamp-2 text-sm text-neutral-500 dark:text-neutral-400">
                       {restaurant.description}
                     </p>
