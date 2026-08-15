@@ -61,7 +61,7 @@ export default async function RestaurantDetailPage({
               {restaurant.categories.map((c) => (
                 <span
                   key={c}
-                  className="rounded-full bg-orange-100 px-2 py-0.5 text-xs font-medium text-orange-700 dark:bg-orange-950 dark:text-orange-300"
+                  className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700 dark:bg-green-950 dark:text-green-300"
                 >
                   {c}
                 </span>
@@ -72,7 +72,7 @@ export default async function RestaurantDetailPage({
             href={restaurant.google_maps_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium text-orange-600 hover:underline dark:text-orange-400"
+            className="text-sm font-medium text-green-700 hover:underline dark:text-green-400"
           >
             เปิดใน Google Maps ↗
           </a>
@@ -80,7 +80,7 @@ export default async function RestaurantDetailPage({
         {isOwner && (
           <Link
             href={`/profile/restaurants/${restaurant.id}/edit`}
-            className="flex-shrink-0 rounded-full border border-neutral-300 px-4 py-1.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800"
+            className="flex-shrink-0 rounded-full border border-neutral-300 px-4 py-1.5 text-sm font-medium text-neutral-700 transition hover:bg-green-50 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-green-950"
           >
             แก้ไขร้าน
           </Link>

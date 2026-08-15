@@ -19,7 +19,7 @@ export default async function Home() {
   return (
     <main className="flex flex-1 flex-col">
       <section className="mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 py-16 text-center sm:py-24">
-        <span className="rounded-full bg-orange-100 px-3 py-1 text-xs font-medium text-orange-700 dark:bg-orange-950 dark:text-orange-300">
+        <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700 dark:bg-green-950 dark:text-green-300">
           นครสวรรค์ / ปากน้ำโพ
         </span>
         <h1 className="text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl dark:text-neutral-50">
@@ -44,7 +44,7 @@ export default async function Home() {
               </h2>
               <Link
                 href="/restaurants"
-                className="text-sm font-medium text-orange-600 hover:underline dark:text-orange-400"
+                className="text-sm font-medium text-green-700 hover:underline dark:text-green-400"
               >
                 ดูร้านทั้งหมด →
               </Link>
@@ -80,7 +80,7 @@ export default async function Home() {
                         {restaurant.categories.map((c) => (
                           <span
                             key={c}
-                            className="rounded-full bg-orange-100 px-2 py-0.5 text-xs font-medium text-orange-700 dark:bg-orange-950 dark:text-orange-300"
+                            className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700 dark:bg-green-950 dark:text-green-300"
                           >
                             {c}
                           </span>

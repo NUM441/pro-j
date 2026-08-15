@@ -40,8 +40,8 @@ export default async function RestaurantsPage({
           href="/restaurants"
           className={
             !category
-              ? "rounded-full bg-orange-600 px-3 py-1 text-sm font-medium text-white"
-              : "rounded-full border border-neutral-300 px-3 py-1 text-sm text-neutral-600 hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800"
+              ? "rounded-full bg-green-700 px-3 py-1 text-sm font-medium text-white"
+              : "rounded-full border border-neutral-300 px-3 py-1 text-sm text-neutral-600 hover:bg-green-50 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-green-950"
           }
         >
           ทั้งหมด
@@ -52,8 +52,8 @@ export default async function RestaurantsPage({
             href={`/restaurants?category=${encodeURIComponent(c)}`}
             className={
               category === c
-                ? "rounded-full bg-orange-600 px-3 py-1 text-sm font-medium text-white"
-                : "rounded-full border border-neutral-300 px-3 py-1 text-sm text-neutral-600 hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800"
+                ? "rounded-full bg-green-700 px-3 py-1 text-sm font-medium text-white"
+                : "rounded-full border border-neutral-300 px-3 py-1 text-sm text-neutral-600 hover:bg-green-50 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-green-950"
             }
           >
             {c}
@@ -97,7 +97,7 @@ export default async function RestaurantsPage({
                     {restaurant.categories.map((c) => (
                       <span
                         key={c}
-                        className="rounded-full bg-orange-100 px-2 py-0.5 text-xs font-medium text-orange-700 dark:bg-orange-950 dark:text-orange-300"
+                        className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700 dark:bg-green-950 dark:text-green-300"
                       >
                         {c}
                       </span>

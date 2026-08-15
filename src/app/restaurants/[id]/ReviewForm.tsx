@@ -30,7 +30,7 @@ export default function ReviewForm({
   if (!currentUserId) {
     return (
       <p className="rounded-xl border border-dashed border-neutral-300 p-6 text-center text-sm text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">
-        <Link href="/login" className="font-medium text-orange-600 hover:underline dark:text-orange-400">
+        <Link href="/login" className="font-medium text-green-700 hover:underline dark:text-green-400">
           เข้าสู่ระบบ
         </Link>{" "}
         เพื่อเขียนรีวิว
@@ -115,7 +115,7 @@ export default function ReviewForm({
         <button
           type="submit"
           disabled={loading || deleting}
-          className="rounded-full bg-neutral-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-neutral-700 disabled:opacity-60 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200"
+          className="rounded-full bg-green-700 px-5 py-2 text-sm font-medium text-white transition hover:bg-green-600 disabled:opacity-60 dark:bg-green-600 dark:hover:bg-green-500"
         >
           {loading ? "กำลังบันทึก..." : existingReview ? "แก้ไขรีวิว" : "ส่งรีวิว"}
         </button>

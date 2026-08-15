@@ -35,7 +35,7 @@ export default async function ProfilePage() {
           <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">ร้านของฉัน</h2>
           <Link
             href="/profile/restaurants/new"
-            className="rounded-full bg-neutral-900 px-4 py-1.5 text-sm font-medium text-white transition hover:bg-neutral-700 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200"
+            className="rounded-full bg-green-700 px-4 py-1.5 text-sm font-medium text-white transition hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-500"
           >
             เพิ่มร้านใหม่
           </Link>

@@ -227,8 +227,8 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
                 onClick={() => toggleCategory(category)}
                 className={
                   active
-                    ? "rounded-full bg-orange-600 px-3 py-1 text-sm font-medium text-white"
-                    : "rounded-full border border-neutral-300 px-3 py-1 text-sm text-neutral-600 hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800"
+                    ? "rounded-full bg-green-700 px-3 py-1 text-sm font-medium text-white"
+                    : "rounded-full border border-neutral-300 px-3 py-1 text-sm text-neutral-600 hover:bg-green-50 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-green-950"
                 }
               >
                 {category}
@@ -307,7 +307,7 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
         <button
           type="submit"
           disabled={loading || deleting}
-          className="rounded-full bg-neutral-900 px-6 py-2.5 text-sm font-medium text-white transition hover:bg-neutral-700 disabled:opacity-60 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200"
+          className="rounded-full bg-green-700 px-6 py-2.5 text-sm font-medium text-white transition hover:bg-green-600 disabled:opacity-60 dark:bg-green-600 dark:hover:bg-green-500"
         >
           {loading ? "กำลังบันทึก..." : mode === "new" ? "บันทึกร้าน" : "บันทึกการแก้ไข"}
         </button>
