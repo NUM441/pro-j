@@ -1,7 +1,4 @@
-import Link from "next/link";
-import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
-import { createAdminClient, isAdmin } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/supabase/admin";
 import type { OwnerApplication } from "@/lib/supabase/owner-applications";
 import OwnerApplicationActions from "./OwnerApplicationActions";
 
@@ -18,18 +15,6 @@ const STATUS_STYLE = {
 };
 
 export default async function OwnerApplicationsPage() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/login");
-  }
-  if (!isAdmin(user.email)) {
-    redirect("/");
-  }
-
   const adminClient = createAdminClient();
   const { data: applications } = await adminClient
     .from("owner_applications")
@@ -39,13 +24,8 @@ export default async function OwnerApplicationsPage() {
     .returns<OwnerApplication[]>();
 
   return (
-    <main className="mx-auto flex max-w-2xl flex-col gap-6 px-4 py-12">
-      <div>
-        <Link href="/admin" className="text-sm text-amber-700 hover:underline dark:text-amber-400">
-          ← กล่องข้อความ
-        </Link>
-        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">คำขอเป็นเจ้าของร้าน</h1>
-      </div>
+    <div className="flex flex-col gap-6">
+      <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">คำขอเป็นเจ้าของร้าน</h1>
 
       {!applications || applications.length === 0 ? (
         <p className="rounded-xl border border-dashed border-stone-300 p-8 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
@@ -74,6 +54,6 @@ export default async function OwnerApplicationsPage() {
           ))}
         </div>
       )}
-    </main>
+    </div>
   );
 }

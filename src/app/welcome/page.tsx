@@ -1,18 +1,32 @@
+import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { buttonClass } from "@/lib/buttonStyles";
+import { WELCOME_IMAGE_KEY, type SiteSetting } from "@/lib/supabase/settings";
 
 export default async function WelcomePage() {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const [{ data: userData }, { data: setting }] = await Promise.all([
+    supabase.auth.getUser(),
+    supabase
+      .from("site_settings")
+      .select("*")
+      .eq("key", WELCOME_IMAGE_KEY)
+      .maybeSingle<SiteSetting>(),
+  ]);
 
-  const name = user?.user_metadata?.full_name ?? "";
+  const name = userData.user?.user_metadata?.full_name ?? "";
+  const welcomeImageUrl = setting?.value ?? null;
 
   return (
     <main className="mx-auto flex min-h-[70vh] max-w-lg flex-col items-center justify-center gap-6 px-4 text-center">
-      <span className="text-5xl">🎉</span>
+      {welcomeImageUrl ? (
+        <div className="relative h-40 w-40 overflow-hidden rounded-full border border-stone-200 dark:border-stone-800">
+          <Image src={welcomeImageUrl} alt="" fill className="object-cover" unoptimized />
+        </div>
+      ) : (
+        <span className="text-5xl">🎉</span>
+      )}
       <div className="space-y-2">
         <h1 className="text-3xl font-bold text-stone-900 dark:text-stone-50">
           ยินดีต้อนรับ{name ? ` ${name}` : ""}!

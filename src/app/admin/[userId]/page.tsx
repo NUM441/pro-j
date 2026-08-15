@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
-import { createAdminClient, isAdmin } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/supabase/admin";
 import type { ContactMessage } from "@/lib/supabase/messages";
 import AdminReplyForm from "../AdminReplyForm";
 
@@ -11,17 +9,6 @@ export default async function AdminConversationPage({
   params: Promise<{ userId: string }>;
 }) {
   const { userId } = await params;
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/login");
-  }
-  if (!isAdmin(user.email)) {
-    redirect("/");
-  }
 
   const adminClient = createAdminClient();
   const { data: messages } = await adminClient
@@ -34,7 +21,7 @@ export default async function AdminConversationPage({
   const userMessage = (messages ?? []).find((m) => !m.is_admin);
 
   return (
-    <main className="mx-auto flex max-w-2xl flex-col gap-6 px-4 py-12">
+    <div className="flex flex-col gap-6">
       <div>
         <Link href="/admin" className="text-sm text-amber-700 hover:underline dark:text-amber-400">
           ← กลับไปกล่องข้อความ
@@ -61,6 +48,6 @@ export default async function AdminConversationPage({
       </div>
 
       <AdminReplyForm userId={userId} />
-    </main>
+    </div>
   );
 }

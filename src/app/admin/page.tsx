@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
-import { createAdminClient, isAdmin } from "@/lib/supabase/admin";
+import { createAdminClient } from "@/lib/supabase/admin";
 import type { ContactMessage } from "@/lib/supabase/messages";
 
 type Conversation = {
@@ -11,30 +9,12 @@ type Conversation = {
 };
 
 export default async function AdminInboxPage() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect("/login");
-  }
-  if (!isAdmin(user.email)) {
-    redirect("/");
-  }
-
   const adminClient = createAdminClient();
-  const [{ data: messages }, { count: pendingApplications }] = await Promise.all([
-    adminClient
-      .from("contact_messages")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .returns<ContactMessage[]>(),
-    adminClient
-      .from("owner_applications")
-      .select("id", { count: "exact", head: true })
-      .eq("status", "pending"),
-  ]);
+  const { data: messages } = await adminClient
+    .from("contact_messages")
+    .select("*")
+    .order("created_at", { ascending: false })
+    .returns<ContactMessage[]>();
 
   const conversations = new Map<string, Conversation>();
   const userNames = new Map<string, string>();
@@ -54,23 +34,10 @@ export default async function AdminInboxPage() {
   }
 
   return (
-    <main className="mx-auto flex max-w-2xl flex-col gap-6 px-4 py-12">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">
-          กล่องข้อความ (แอดมิน)
-        </h1>
-        <Link
-          href="/admin/owner-applications"
-          className="flex items-center gap-1.5 text-sm font-medium text-amber-700 hover:underline dark:text-amber-400"
-        >
-          คำขอเป็นเจ้าของร้าน
-          {!!pendingApplications && (
-            <span className="rounded-full bg-red-600 px-1.5 py-0.5 text-xs font-bold text-white">
-              {pendingApplications}
-            </span>
-          )}
-        </Link>
-      </div>
+    <div className="flex flex-col gap-6">
+      <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">
+        กล่องข้อความ (แอดมิน)
+      </h1>
 
       {conversations.size === 0 ? (
         <p className="rounded-xl border border-dashed border-stone-300 p-8 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
@@ -100,6 +67,6 @@ export default async function AdminInboxPage() {
           ))}
         </div>
       )}
-    </main>
+    </div>
   );
 }
