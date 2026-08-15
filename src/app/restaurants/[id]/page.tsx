@@ -1,10 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import type { Restaurant } from "@/lib/supabase/restaurants";
 import { averageRating, type Review } from "@/lib/supabase/reviews";
 import StarRating from "@/components/StarRating";
+import RestaurantGallery from "@/components/RestaurantGallery";
 import ReviewForm from "./ReviewForm";
 
 export default async function RestaurantDetailPage({
@@ -41,9 +41,11 @@ export default async function RestaurantDetailPage({
 
   return (
     <main className="mx-auto flex max-w-3xl flex-col gap-6 px-4 py-12">
-      <div className="relative h-64 w-full overflow-hidden rounded-2xl">
-        <Image src={restaurant.cover_photo_url} alt={restaurant.name} fill className="object-cover" unoptimized />
-      </div>
+      <RestaurantGallery
+        restaurantName={restaurant.name}
+        coverUrl={restaurant.cover_photo_url}
+        foodUrls={restaurant.food_photo_urls}
+      />
 
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
@@ -88,25 +90,6 @@ export default async function RestaurantDetailPage({
       </div>
 
       <p className="whitespace-pre-wrap text-neutral-700 dark:text-neutral-300">{restaurant.description}</p>
-
-      {restaurant.food_photo_urls.length > 0 && (
-        <div>
-          <h2 className="mb-3 text-lg font-semibold text-neutral-900 dark:text-neutral-50">รูปอาหาร</h2>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            {restaurant.food_photo_urls.map((url, i) => (
-              <div key={i} className="relative aspect-square overflow-hidden rounded-lg">
-                <Image
-                  src={url}
-                  alt={`${restaurant.name} รูปอาหาร ${i + 1}`}
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
 
       <div className="flex flex-col gap-4 border-t border-neutral-200 pt-6 dark:border-neutral-800">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">รีวิว</h2>
