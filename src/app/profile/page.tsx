@@ -3,7 +3,6 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import type { Restaurant } from "@/lib/supabase/restaurants";
-import ChangePasswordForm from "./ChangePasswordForm";
 
 export default async function ProfilePage() {
   const supabase = await createClient();
@@ -73,11 +72,6 @@ export default async function ProfilePage() {
             ))}
           </div>
         )}
-      </div>
-
-      <div className="flex flex-col gap-4 border-t border-neutral-200 pt-8 dark:border-neutral-800">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">เปลี่ยนรหัสผ่าน</h2>
-        <ChangePasswordForm />
       </div>
     </main>
   );
