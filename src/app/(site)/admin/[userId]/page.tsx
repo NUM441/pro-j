@@ -19,6 +19,13 @@ export default async function AdminConversationPage({
     .order("created_at", { ascending: true })
     .returns<ContactMessage[]>();
 
+  await adminClient
+    .from("contact_messages")
+    .update({ is_read: true })
+    .eq("user_id", userId)
+    .eq("is_admin", false)
+    .eq("is_read", false);
+
   const userMessage = (messages ?? []).find((m) => !m.is_admin);
 
   return (

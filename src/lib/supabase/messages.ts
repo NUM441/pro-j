@@ -7,5 +7,6 @@ export type ContactMessage = {
   is_admin: boolean;
   message: string;
   image_url: string | null;
+  is_read: boolean;
   created_at: string;
 };
