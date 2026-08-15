@@ -1,0 +1,136 @@
+"use client";
+
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { createClient } from "@/lib/supabase/client";
+import StarRating from "@/components/StarRating";
+import type { Review } from "@/lib/supabase/reviews";
+
+type Props = {
+  restaurantId: string;
+  currentUserId: string | null;
+  currentUserName: string;
+  existingReview: Review | null;
+};
+
+export default function ReviewForm({
+  restaurantId,
+  currentUserId,
+  currentUserName,
+  existingReview,
+}: Props) {
+  const router = useRouter();
+  const [rating, setRating] = useState(existingReview?.rating ?? 0);
+  const [comment, setComment] = useState(existingReview?.comment ?? "");
+  const [loading, setLoading] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  if (!currentUserId) {
+    return (
+      <p className="rounded-xl border border-dashed border-neutral-300 p-6 text-center text-sm text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">
+        <Link href="/login" className="font-medium text-orange-600 hover:underline dark:text-orange-400">
+          เข้าสู่ระบบ
+        </Link>{" "}
+        เพื่อเขียนรีวิว
+      </p>
+    );
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (rating === 0) {
+      setError("กรุณาให้คะแนนดาว");
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    const supabase = createClient();
+    const payload = {
+      restaurant_id: restaurantId,
+      reviewer_id: currentUserId,
+      reviewer_name: currentUserName,
+      rating,
+      comment,
+    };
+
+    const { error: dbError } = existingReview
+      ? await supabase.from("reviews").update(payload).eq("id", existingReview.id)
+      : await supabase.from("reviews").insert(payload);
+
+    if (dbError) {
+      setError("บันทึกรีวิวไม่สำเร็จ กรุณาลองใหม่อีกครั้ง");
+      setLoading(false);
+      return;
+    }
+
+    router.refresh();
+    setLoading(false);
+  }
+
+  async function handleDelete() {
+    if (!existingReview) return;
+    if (!confirm("ต้องการลบรีวิวนี้ใช่ไหม?")) return;
+
+    setDeleting(true);
+    setError(null);
+
+    const supabase = createClient();
+    const { error: dbError } = await supabase.from("reviews").delete().eq("id", existingReview.id);
+
+    if (dbError) {
+      setError("ลบรีวิวไม่สำเร็จ กรุณาลองใหม่อีกครั้ง");
+      setDeleting(false);
+      return;
+    }
+
+    setRating(0);
+    setComment("");
+    router.refresh();
+    setDeleting(false);
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-xl border border-neutral-200 p-4 dark:border-neutral-800">
+      <div className="flex items-center gap-2">
+        <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">ให้คะแนน</span>
+        <StarRating rating={rating} size="md" onRate={setRating} />
+      </div>
+
+      <textarea
+        required
+        rows={3}
+        placeholder="เล่าประสบการณ์ของคุณที่ร้านนี้..."
+        value={comment}
+        onChange={(e) => setComment(e.target.value)}
+        className="rounded-lg border border-neutral-300 px-3 py-2 text-sm text-neutral-900 outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100"
+      />
+
+      {error && <p className="text-sm text-red-500">{error}</p>}
+
+      <div className="flex items-center gap-3">
+        <button
+          type="submit"
+          disabled={loading || deleting}
+          className="rounded-full bg-neutral-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-neutral-700 disabled:opacity-60 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200"
+        >
+          {loading ? "กำลังบันทึก..." : existingReview ? "แก้ไขรีวิว" : "ส่งรีวิว"}
+        </button>
+
+        {existingReview && (
+          <button
+            type="button"
+            onClick={handleDelete}
+            disabled={loading || deleting}
+            className="rounded-full border border-red-300 px-5 py-2 text-sm font-medium text-red-600 transition hover:bg-red-50 disabled:opacity-60 dark:border-red-900 dark:text-red-400 dark:hover:bg-red-950"
+          >
+            {deleting ? "กำลังลบ..." : "ลบรีวิว"}
+          </button>
+        )}
+      </div>
+    </form>
+  );
+}
