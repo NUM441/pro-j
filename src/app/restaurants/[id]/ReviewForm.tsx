@@ -1,11 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import StarRating from "@/components/StarRating";
 import { buttonClass } from "@/lib/buttonStyles";
+import { RESTAURANT_PHOTOS_BUCKET } from "@/lib/supabase/restaurants";
 import type { Review } from "@/lib/supabase/reviews";
 
 type Props = {
@@ -24,6 +26,8 @@ export default function ReviewForm({
   const router = useRouter();
   const [rating, setRating] = useState(existingReview?.rating ?? 0);
   const [comment, setComment] = useState(existingReview?.comment ?? "");
+  const [photoFile, setPhotoFile] = useState<File | null>(null);
+  const [photoPreview, setPhotoPreview] = useState<string | null>(existingReview?.photo_url ?? null);
   const [loading, setLoading] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -39,6 +43,18 @@ export default function ReviewForm({
     );
   }
 
+  function handlePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setPhotoFile(file);
+    setPhotoPreview(URL.createObjectURL(file));
+  }
+
+  function removePhoto() {
+    setPhotoFile(null);
+    setPhotoPreview(null);
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (rating === 0) {
@@ -50,12 +66,31 @@ export default function ReviewForm({
     setError(null);
 
     const supabase = createClient();
+    let photoUrl = photoPreview ? existingReview?.photo_url ?? null : null;
+
+    if (photoFile) {
+      const ext = photoFile.name.split(".").pop() ?? "jpg";
+      const path = `${currentUserId}/review-${restaurantId}-${Date.now()}.${ext}`;
+      const { error: uploadError } = await supabase.storage
+        .from(RESTAURANT_PHOTOS_BUCKET)
+        .upload(path, photoFile, { upsert: true });
+
+      if (uploadError) {
+        setError("อัปโหลดรูปไม่สำเร็จ กรุณาลองใหม่อีกครั้ง");
+        setLoading(false);
+        return;
+      }
+
+      photoUrl = supabase.storage.from(RESTAURANT_PHOTOS_BUCKET).getPublicUrl(path).data.publicUrl;
+    }
+
     const payload = {
       restaurant_id: restaurantId,
       reviewer_id: currentUserId,
       reviewer_name: currentUserName,
       rating,
       comment,
+      photo_url: photoUrl,
     };
 
     const { error: dbError } = existingReview
@@ -90,6 +125,8 @@ export default function ReviewForm({
 
     setRating(0);
     setComment("");
+    setPhotoFile(null);
+    setPhotoPreview(null);
     router.refresh();
     setDeleting(false);
   }
@@ -109,6 +146,25 @@ export default function ReviewForm({
         onChange={(e) => setComment(e.target.value)}
         className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
       />
+
+      <div className="flex flex-col gap-1.5">
+        <span className="text-sm font-medium text-stone-700 dark:text-stone-300">แนบรูป (ถ้ามี)</span>
+        {photoPreview ? (
+          <div className="relative h-32 w-32 overflow-hidden rounded-lg border border-stone-200 dark:border-stone-800">
+            <Image src={photoPreview} alt="รูปรีวิว" fill className="object-cover" unoptimized />
+            <button
+              type="button"
+              onClick={removePhoto}
+              className="absolute top-1 right-1 flex h-5 w-5 items-center justify-center rounded-full border border-white/40 bg-black/70 text-xs text-white"
+              aria-label="ลบรูปนี้"
+            >
+              ×
+            </button>
+          </div>
+        ) : (
+          <input type="file" accept="image/*" onChange={handlePhotoChange} className="text-sm" />
+        )}
+      </div>
 
       {error && <p className="text-sm text-red-500">{error}</p>}
 

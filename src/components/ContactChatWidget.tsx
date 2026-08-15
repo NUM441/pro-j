@@ -100,7 +100,7 @@ export default function ContactChatWidget() {
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="flex h-8 w-8 items-center justify-center text-xl text-white/80 hover:text-white"
+              className="flex h-8 w-8 items-center justify-center rounded-full border border-white/40 text-xl text-white/80 hover:text-white"
               aria-label="ปิด"
             >
               ×
@@ -164,7 +164,7 @@ export default function ContactChatWidget() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-amber-700 text-2xl text-white shadow-lg transition hover:bg-amber-600"
+        className="flex h-14 w-14 items-center justify-center rounded-full border border-amber-800 bg-amber-700 text-2xl text-white shadow-lg transition hover:bg-amber-600"
         aria-label="ติดต่อแอดมิน"
       >
         💬

@@ -69,7 +69,7 @@ export default function RestaurantGallery({ restaurantName, coverUrl, foodUrls }
           <button
             type="button"
             onClick={close}
-            className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-2xl text-white hover:bg-white/20"
+            className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-white/10 text-2xl text-white hover:bg-white/20"
             aria-label="ปิด"
           >
             ×
@@ -79,7 +79,7 @@ export default function RestaurantGallery({ restaurantName, coverUrl, foodUrls }
             <button
               type="button"
               onClick={showPrev}
-              className="absolute left-2 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-2xl text-white hover:bg-white/20 sm:left-4"
+              className="absolute left-2 flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-white/10 text-2xl text-white hover:bg-white/20 sm:left-4"
               aria-label="รูปก่อนหน้า"
             >
               ‹
@@ -100,7 +100,7 @@ export default function RestaurantGallery({ restaurantName, coverUrl, foodUrls }
             <button
               type="button"
               onClick={showNext}
-              className="absolute right-2 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-2xl text-white hover:bg-white/20 sm:right-4"
+              className="absolute right-2 flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-white/10 text-2xl text-white hover:bg-white/20 sm:right-4"
               aria-label="รูปถัดไป"
             >
               ›

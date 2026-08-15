@@ -278,7 +278,7 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
                 <button
                   type="button"
                   onClick={() => removeFoodPhoto(i)}
-                  className="absolute top-1 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-black/70 text-xs text-white"
+                  className="absolute top-1 right-1 flex h-5 w-5 items-center justify-center rounded-full border border-white/40 bg-black/70 text-xs text-white"
                   aria-label="ลบรูปนี้"
                 >
                   ×

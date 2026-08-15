@@ -20,7 +20,7 @@ export default function ThemeToggle() {
       onClick={toggle}
       aria-label="สลับโหมดมืด/สว่าง"
       suppressHydrationWarning
-      className="flex h-8 w-8 items-center justify-center rounded-full text-lg transition hover:bg-amber-50 dark:hover:bg-amber-950"
+      className="flex h-8 w-8 items-center justify-center rounded-full border border-stone-300 text-lg transition hover:bg-amber-50 dark:border-stone-700 dark:hover:bg-amber-950"
     >
       {isDark ? "☀️" : "🌙"}
     </button>

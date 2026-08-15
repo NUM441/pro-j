@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
@@ -141,6 +142,17 @@ export default async function RestaurantDetailPage({
                   <StarRating rating={review.rating} />
                 </div>
                 <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">{review.comment}</p>
+                {review.photo_url && (
+                  <div className="relative mt-2 h-32 w-32 overflow-hidden rounded-lg">
+                    <Image
+                      src={review.photo_url}
+                      alt={`รูปรีวิวจาก ${review.reviewer_name}`}
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
+                  </div>
+                )}
               </div>
             ))}
           </div>

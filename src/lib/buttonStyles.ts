@@ -9,7 +9,8 @@ const sizes: Record<Size, string> = {
 };
 
 const variants: Record<Variant, string> = {
-  primary: "bg-amber-700 text-white hover:bg-amber-600 dark:bg-amber-600 dark:hover:bg-amber-500",
+  primary:
+    "border border-amber-700 bg-amber-700 text-white hover:bg-amber-600 dark:border-amber-600 dark:bg-amber-600 dark:hover:bg-amber-500",
   secondary:
     "border border-stone-300 text-stone-700 hover:bg-amber-50 dark:border-stone-700 dark:text-stone-200 dark:hover:bg-amber-950",
   danger:
@@ -22,7 +23,7 @@ export function buttonClass(variant: Variant = "primary", size: Size = "md") {
 
 export function chipClass(active: boolean) {
   return active
-    ? "rounded-full bg-amber-700 px-3 py-2 text-sm font-medium text-white"
+    ? "rounded-full border border-amber-700 bg-amber-700 px-3 py-2 text-sm font-medium text-white dark:border-amber-600 dark:bg-amber-600"
     : "rounded-full border border-stone-300 px-3 py-2 text-sm text-stone-600 hover:bg-amber-50 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-amber-950";
 }
 

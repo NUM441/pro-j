@@ -5,6 +5,7 @@ export type Review = {
   reviewer_name: string;
   rating: number;
   comment: string;
+  photo_url: string | null;
   created_at: string;
   updated_at: string;
 };
