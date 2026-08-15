@@ -9,10 +9,10 @@ export default async function Header() {
 
   return (
     <header className="border-b border-neutral-200 dark:border-neutral-800">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
-        <div className="flex items-center gap-6">
+      <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3 sm:py-4">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
           <Link href="/" className="flex items-baseline gap-2">
-            <span className="text-lg font-bold text-neutral-900 dark:text-neutral-50">
+            <span className="text-base font-bold text-neutral-900 sm:text-lg dark:text-neutral-50">
               Nakhon Sawan Food Guide
             </span>
             <span className="hidden text-sm text-neutral-400 sm:inline">
@@ -28,7 +28,7 @@ export default async function Header() {
         </div>
 
         {user ? (
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <Link
               href="/profile"
               className="hidden text-sm font-medium text-neutral-600 hover:underline sm:inline dark:text-neutral-300"
@@ -38,23 +38,23 @@ export default async function Header() {
             <form action="/auth/signout" method="post">
               <button
                 type="submit"
-                className="rounded-full border border-neutral-300 px-4 py-1.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800"
+                className="rounded-full border border-neutral-300 px-3 py-1.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 sm:px-4 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800"
               >
                 ออกจากระบบ
               </button>
             </form>
           </div>
         ) : (
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <Link
               href="/login"
-              className="rounded-full border border-neutral-300 px-4 py-1.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800"
+              className="rounded-full border border-neutral-300 px-3 py-1.5 text-sm font-medium text-neutral-700 transition hover:bg-neutral-100 sm:px-4 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800"
             >
               เข้าสู่ระบบ
             </Link>
             <Link
               href="/signup"
-              className="rounded-full bg-neutral-900 px-4 py-1.5 text-sm font-medium text-white transition hover:bg-neutral-700 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200"
+              className="rounded-full bg-neutral-900 px-3 py-1.5 text-sm font-medium text-white transition hover:bg-neutral-700 sm:px-4 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200"
             >
               สมัครสมาชิก
             </Link>

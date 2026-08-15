@@ -18,7 +18,7 @@ export default async function Home() {
 
   return (
     <main className="flex flex-1 flex-col">
-      <section className="mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 py-24 text-center">
+      <section className="mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 py-16 text-center sm:py-24">
         <span className="rounded-full bg-orange-100 px-3 py-1 text-xs font-medium text-orange-700 dark:bg-orange-950 dark:text-orange-300">
           นครสวรรค์ / ปากน้ำโพ
         </span>

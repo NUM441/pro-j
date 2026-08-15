@@ -46,7 +46,7 @@ export default async function RestaurantDetailPage({
       </div>
 
       <div className="flex items-start justify-between gap-4">
-        <div>
+        <div className="min-w-0">
           <h1 className="text-2xl font-bold text-neutral-900 dark:text-neutral-50">{restaurant.name}</h1>
           <div className="flex items-center gap-2">
             <StarRating rating={avgRating} />

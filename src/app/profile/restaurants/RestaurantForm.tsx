@@ -268,7 +268,7 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
           รูปอาหาร (สูงสุด {MAX_FOOD_PHOTOS} รูป)
         </span>
         {foodPhotos.length > 0 && (
-          <div className="grid grid-cols-5 gap-2">
+          <div className="grid grid-cols-3 gap-2 sm:grid-cols-5">
             {foodPhotos.map((photo, i) => (
               <div key={i} className="relative aspect-square overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-800">
                 <Image
