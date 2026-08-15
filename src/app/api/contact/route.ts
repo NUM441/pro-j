@@ -23,9 +23,11 @@ export async function POST(request: Request) {
   const { data: saved, error: dbError } = await supabase
     .from("contact_messages")
     .insert({
+      user_id: user.id,
       sender_id: user.id,
       sender_name: senderName,
       sender_email: senderEmail,
+      is_admin: false,
       message,
     })
     .select()

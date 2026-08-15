@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { isAdmin } from "@/lib/supabase/admin";
 
 export default async function Header() {
   const supabase = await createClient();
@@ -29,6 +30,14 @@ export default async function Header() {
 
         {user ? (
           <div className="flex items-center gap-2 sm:gap-3">
+            {isAdmin(user.email) && (
+              <Link
+                href="/admin"
+                className="text-sm font-medium text-green-700 hover:underline dark:text-green-400"
+              >
+                Admin
+              </Link>
+            )}
             <Link
               href="/profile"
               className="hidden text-sm font-medium text-neutral-600 hover:underline sm:inline dark:text-neutral-300"

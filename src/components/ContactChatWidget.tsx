@@ -17,29 +17,49 @@ export default function ContactChatWidget() {
   useEffect(() => {
     if (!open) return;
 
-    async function load() {
+    let cancelled = false;
+
+    async function initUser() {
       const supabase = createClient();
       const {
         data: { user },
       } = await supabase.auth.getUser();
-
-      setUserId(user?.id ?? null);
-
-      if (user) {
-        const { data } = await supabase
-          .from("contact_messages")
-          .select("*")
-          .eq("sender_id", user.id)
-          .order("created_at", { ascending: true })
-          .returns<ContactMessage[]>();
-        setMessages(data ?? []);
+      if (!cancelled) {
+        setUserId(user?.id ?? null);
+        setCheckingAuth(false);
       }
-
-      setCheckingAuth(false);
     }
 
-    load();
+    initUser();
+    return () => {
+      cancelled = true;
+    };
   }, [open]);
+
+  useEffect(() => {
+    if (!open || !userId) return;
+
+    let cancelled = false;
+    const supabase = createClient();
+
+    async function loadMessages() {
+      const { data } = await supabase
+        .from("contact_messages")
+        .select("*")
+        .eq("user_id", userId as string)
+        .order("created_at", { ascending: true })
+        .returns<ContactMessage[]>();
+      if (!cancelled) setMessages(data ?? []);
+    }
+
+    loadMessages();
+    const interval = setInterval(loadMessages, 5000);
+
+    return () => {
+      cancelled = true;
+      clearInterval(interval);
+    };
+  }, [open, userId]);
 
   async function handleSend(e: React.FormEvent) {
     e.preventDefault();
@@ -113,7 +133,11 @@ export default function ContactChatWidget() {
                   messages.map((m) => (
                     <div
                       key={m.id}
-                      className="ml-auto max-w-[85%] rounded-2xl rounded-tr-sm bg-green-100 px-3 py-2 text-sm text-green-900 dark:bg-green-950 dark:text-green-200"
+                      className={
+                        m.is_admin
+                          ? "max-w-[85%] rounded-2xl rounded-tl-sm bg-neutral-100 px-3 py-2 text-sm text-neutral-800 dark:bg-neutral-800 dark:text-neutral-100"
+                          : "ml-auto max-w-[85%] rounded-2xl rounded-tr-sm bg-green-100 px-3 py-2 text-sm text-green-900 dark:bg-green-950 dark:text-green-200"
+                      }
                     >
                       {m.message}
                     </div>
