@@ -6,6 +6,7 @@ import { averageRating, type Review } from "@/lib/supabase/reviews";
 import StarRating from "@/components/StarRating";
 import RestaurantGallery from "@/components/RestaurantGallery";
 import ReviewForm from "./ReviewForm";
+import ReservationForm from "./ReservationForm";
 
 export default async function RestaurantDetailPage({
   params,
@@ -88,6 +89,12 @@ export default async function RestaurantDetailPage({
           </Link>
         )}
       </div>
+
+      <ReservationForm
+        restaurantId={restaurant.id}
+        currentUserId={userData.user?.id ?? null}
+        currentUserName={currentUserName}
+      />
 
       <p className="whitespace-pre-wrap text-neutral-700 dark:text-neutral-300">{restaurant.description}</p>
 
