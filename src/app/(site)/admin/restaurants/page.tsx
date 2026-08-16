@@ -39,7 +39,7 @@ export default async function AdminRestaurantsPage() {
             return (
               <div
                 key={r.id}
-                className="flex items-center gap-3 rounded-xl border border-slate-200 p-4 dark:border-slate-800"
+                className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900"
               >
                 <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
                   <Image src={r.cover_photo_url} alt={r.name} fill className="object-cover" unoptimized />

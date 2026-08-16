@@ -46,7 +46,7 @@ export default async function MyBookingsPage() {
           {myReservations.map((r) => (
             <div
               key={r.id}
-              className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 p-3 dark:border-slate-800"
+              className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white p-3 shadow-sm dark:border-slate-800 dark:bg-slate-900"
             >
               <div>
                 <p className="font-medium text-slate-900 dark:text-slate-50">

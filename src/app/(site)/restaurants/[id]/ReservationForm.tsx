@@ -81,7 +81,7 @@ export default function ReservationForm({ restaurantId, currentUserId, currentUs
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-xl border border-slate-200 p-4 dark:border-slate-800">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
           <label htmlFor="date" className="text-sm font-medium text-slate-700 dark:text-slate-300">

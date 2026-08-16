@@ -97,7 +97,7 @@ export default async function RestaurantsPage({
             <Link
               key={restaurant.id}
               href={`/restaurants/${restaurant.id}`}
-              className="flex flex-col overflow-hidden rounded-xl border border-slate-200 transition hover:shadow-md dark:border-slate-800"
+              className="flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md dark:border-slate-800 dark:bg-slate-900"
             >
               <div className="relative h-40 w-full">
                 <Image
@@ -128,7 +128,7 @@ export default async function RestaurantsPage({
                 </div>
                 {restaurant.categories.length > 0 && (
                   <div className="flex flex-wrap gap-1">
-                    {restaurant.categories.map((c) => (
+                    {restaurant.categories.slice(0, 3).map((c) => (
                       <span
                         key={c}
                         className="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-950 dark:text-blue-300"
@@ -136,6 +136,11 @@ export default async function RestaurantsPage({
                         {c}
                       </span>
                     ))}
+                    {restaurant.categories.length > 3 && (
+                      <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+                        +{restaurant.categories.length - 3}
+                      </span>
+                    )}
                   </div>
                 )}
                 <p className="line-clamp-2 text-sm text-slate-500 dark:text-slate-400">

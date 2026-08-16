@@ -34,7 +34,7 @@ export default async function OwnerApplicationsPage() {
       ) : (
         <div className="flex flex-col gap-4">
           {applications.map((a) => (
-            <div key={a.id} className="flex flex-col gap-2 rounded-xl border border-slate-200 p-4 dark:border-slate-800">
+            <div key={a.id} className="flex flex-col gap-2 rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="font-semibold text-slate-900 dark:text-slate-50">{a.restaurant_name}</p>

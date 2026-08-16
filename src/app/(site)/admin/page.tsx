@@ -52,7 +52,7 @@ export default async function AdminInboxPage() {
           ยังไม่มีข้อความเข้ามา
         </p>
       ) : (
-        <div className="flex flex-col divide-y divide-slate-200 rounded-xl border border-slate-200 dark:divide-slate-800 dark:border-slate-800">
+        <div className="flex flex-col divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white shadow-sm dark:divide-slate-800 dark:border-slate-800 dark:bg-slate-900">
           {[...conversations.values()].map((c) => (
             <Link
               key={c.userId}

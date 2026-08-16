@@ -84,7 +84,7 @@ export default async function ProfilePage() {
               <Link
                 key={restaurant.id}
                 href={`/profile/restaurants/${restaurant.id}/edit`}
-                className="flex items-center gap-3 rounded-xl border border-slate-200 p-3 transition hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-900"
+                className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-3 shadow-sm transition hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:bg-slate-800"
               >
                 <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
                   <Image
@@ -122,7 +122,7 @@ export default async function ProfilePage() {
                 <Link
                   key={f.restaurant_id}
                   href={`/restaurants/${f.restaurant_id}`}
-                  className="flex items-center gap-3 rounded-xl border border-slate-200 p-3 transition hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-900"
+                  className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-3 shadow-sm transition hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:hover:bg-slate-800"
                 >
                   <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
                     <Image

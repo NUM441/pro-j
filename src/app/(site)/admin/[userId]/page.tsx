@@ -42,7 +42,7 @@ export default async function AdminConversationPage({
         <p className="text-sm text-slate-500 dark:text-slate-400">{currentEmail}</p>
       </div>
 
-      <div className="flex flex-col gap-2 rounded-xl border border-slate-200 p-4 dark:border-slate-800">
+      <div className="flex flex-col gap-2 rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
         {(messages ?? []).map((m) => (
           <div
             key={m.id}
