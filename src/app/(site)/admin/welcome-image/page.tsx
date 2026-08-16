@@ -16,8 +16,8 @@ export default async function WelcomeImagePage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">รูปหน้า Welcome</h1>
-        <p className="text-sm text-stone-500 dark:text-stone-400">
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50">รูปหน้า Welcome</h1>
+        <p className="text-sm text-slate-500 dark:text-slate-400">
           รูปนี้จะใช้เป็นพื้นหลังของหน้าต้อนรับ (Welcome) ที่ผู้ใช้เห็นตอนเข้าสู่ระบบหรือสมัครสมาชิก
         </p>
       </div>

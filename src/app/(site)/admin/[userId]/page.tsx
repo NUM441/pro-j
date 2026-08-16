@@ -35,21 +35,21 @@ export default async function AdminConversationPage({
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <Link href="/admin" className="text-sm text-amber-700 hover:underline dark:text-amber-400">
+        <Link href="/admin" className="text-sm text-blue-700 hover:underline dark:text-blue-400">
           ← กลับไปกล่องข้อความ
         </Link>
-        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">{currentName}</h1>
-        <p className="text-sm text-stone-500 dark:text-stone-400">{currentEmail}</p>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50">{currentName}</h1>
+        <p className="text-sm text-slate-500 dark:text-slate-400">{currentEmail}</p>
       </div>
 
-      <div className="flex flex-col gap-2 rounded-xl border border-stone-200 p-4 dark:border-stone-800">
+      <div className="flex flex-col gap-2 rounded-xl border border-slate-200 p-4 dark:border-slate-800">
         {(messages ?? []).map((m) => (
           <div
             key={m.id}
             className={
               m.is_admin
-                ? "flex max-w-[80%] flex-col gap-1 rounded-2xl rounded-tl-sm bg-stone-100 px-3 py-2 text-sm text-stone-800 dark:bg-stone-800 dark:text-stone-100"
-                : "ml-auto flex max-w-[80%] flex-col gap-1 rounded-2xl rounded-tr-sm bg-amber-100 px-3 py-2 text-sm text-amber-900 dark:bg-amber-950 dark:text-amber-200"
+                ? "flex max-w-[80%] flex-col gap-1 rounded-2xl rounded-tl-sm bg-slate-100 px-3 py-2 text-sm text-slate-800 dark:bg-slate-800 dark:text-slate-100"
+                : "ml-auto flex max-w-[80%] flex-col gap-1 rounded-2xl rounded-tr-sm bg-blue-100 px-3 py-2 text-sm text-blue-900 dark:bg-blue-950 dark:text-blue-200"
             }
           >
             {m.image_url && (

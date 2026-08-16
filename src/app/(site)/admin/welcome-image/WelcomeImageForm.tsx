@@ -81,11 +81,11 @@ export default function WelcomeImageForm({
   return (
     <div className="flex flex-col gap-4">
       {preview ? (
-        <div className="relative h-48 w-full max-w-sm overflow-hidden rounded-xl border border-stone-200 dark:border-stone-800">
+        <div className="relative h-48 w-full max-w-sm overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800">
           <Image src={preview} alt="รูปหน้า Welcome" fill className="object-cover" unoptimized />
         </div>
       ) : (
-        <p className="rounded-xl border border-dashed border-stone-300 p-8 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
+        <p className="rounded-xl border border-dashed border-slate-300 p-8 text-center text-sm text-slate-500 dark:border-slate-700 dark:text-slate-400">
           ยังไม่ได้ตั้งรูป — หน้า Welcome จะแสดงอิโมจิ 🎉 แทน
         </p>
       )}

@@ -7,13 +7,13 @@ html {
 }
 
 :root {
-  --background: #fdfaf5;
-  --foreground: #2b2420;
+  --background: #f8fafc;
+  --foreground: #0f172a;
 }
 
 .dark {
-  --background: #1c1712;
-  --foreground: #f1e9dd;
+  --background: #0b1220;
+  --foreground: #f1f5f9;
 }
 
 @theme inline {

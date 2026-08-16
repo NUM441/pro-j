@@ -25,11 +25,11 @@ export default async function WelcomePage({
   const welcomeImageUrl = setting?.value ?? null;
   const continueHref = next === "signup" ? "/signup" : "/login";
 
-  const heading = welcomeImageUrl ? "text-white" : "text-stone-900 dark:text-stone-50";
-  const body = welcomeImageUrl ? "text-white/80" : "text-stone-600 dark:text-stone-400";
+  const heading = welcomeImageUrl ? "text-white" : "text-slate-900 dark:text-slate-50";
+  const body = welcomeImageUrl ? "text-white/80" : "text-slate-600 dark:text-slate-400";
   const listItem = welcomeImageUrl
     ? "border-white/30 bg-white/10 text-white backdrop-blur-sm"
-    : "border-stone-200 text-stone-700 dark:border-stone-800 dark:text-stone-300";
+    : "border-slate-200 text-slate-700 dark:border-slate-800 dark:text-slate-300";
 
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-16 text-center">

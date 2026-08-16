@@ -54,17 +54,17 @@ function LoginForm() {
   return (
     <main className="mx-auto flex min-h-[70vh] max-w-sm flex-col items-center justify-center gap-6 px-4">
       <div className="space-y-2 text-center">
-        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50">
           เข้าสู่ระบบ
         </h1>
-        <p className="text-sm text-stone-500 dark:text-stone-400">
+        <p className="text-sm text-slate-500 dark:text-slate-400">
           เข้าสู่ระบบเพื่อบันทึกร้านโปรดและรีวิวร้านอาหารในนครสวรรค์
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="flex w-full flex-col gap-4">
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="email" className="text-sm font-medium text-stone-700 dark:text-stone-300">
+          <label htmlFor="email" className="text-sm font-medium text-slate-700 dark:text-slate-300">
             อีเมล
           </label>
           <input
@@ -74,16 +74,16 @@ function LoginForm() {
             autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+            className="rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
           />
         </div>
 
         <div className="flex flex-col gap-1.5">
           <div className="flex items-center justify-between">
-            <label htmlFor="password" className="text-sm font-medium text-stone-700 dark:text-stone-300">
+            <label htmlFor="password" className="text-sm font-medium text-slate-700 dark:text-slate-300">
               รหัสผ่าน
             </label>
-            <Link href="/forgot-password" className="text-xs text-stone-500 hover:underline dark:text-stone-400">
+            <Link href="/forgot-password" className="text-xs text-slate-500 hover:underline dark:text-slate-400">
               ลืมรหัสผ่าน?
             </Link>
           </div>
@@ -94,7 +94,7 @@ function LoginForm() {
             autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+            className="rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
           />
         </div>
 
@@ -109,9 +109,9 @@ function LoginForm() {
         </button>
       </form>
 
-      <p className="text-sm text-stone-500 dark:text-stone-400">
+      <p className="text-sm text-slate-500 dark:text-slate-400">
         ยังไม่มีบัญชี?{" "}
-        <Link href="/signup" className="font-medium text-stone-900 hover:underline dark:text-stone-100">
+        <Link href="/signup" className="font-medium text-slate-900 hover:underline dark:text-slate-100">
           สมัครสมาชิก
         </Link>
       </p>
