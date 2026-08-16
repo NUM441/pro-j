@@ -18,7 +18,7 @@ export default async function WelcomeImagePage() {
       <div>
         <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">รูปหน้า Welcome</h1>
         <p className="text-sm text-stone-500 dark:text-stone-400">
-          รูปนี้จะแสดงบนหน้าต้อนรับที่ผู้ใช้ใหม่เห็นหลังยืนยันอีเมลสำเร็จ
+          รูปนี้จะใช้เป็นพื้นหลังของหน้าต้อนรับ (Welcome) ที่ผู้ใช้เห็นตอนเข้าสู่ระบบหรือสมัครสมาชิก
         </p>
       </div>
 
