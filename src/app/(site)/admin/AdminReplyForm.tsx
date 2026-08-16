@@ -74,13 +74,13 @@ export default function AdminReplyForm({ userId }: { userId: string }) {
     <form onSubmit={handleSubmit} className="flex flex-col gap-2">
       {imagePreview && (
         <div className="relative h-20 w-20">
-          <div className="relative h-full w-full overflow-hidden rounded-lg border border-stone-200 dark:border-stone-800">
+          <div className="relative h-full w-full overflow-hidden rounded-lg border border-slate-200 dark:border-slate-800">
             <Image src={imagePreview} alt="" fill className="object-cover" unoptimized />
           </div>
           <button
             type="button"
             onClick={handleRemoveImage}
-            className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-stone-900 text-xs text-white"
+            className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-slate-900 text-xs text-white"
             aria-label="ลบรูป"
           >
             ×
@@ -92,11 +92,11 @@ export default function AdminReplyForm({ userId }: { userId: string }) {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         placeholder="พิมพ์ข้อความตอบกลับ..."
-        className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-amber-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+        className="rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none focus:border-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
       />
       {error && <p className="text-sm text-red-500">{error}</p>}
       <div className="flex items-center gap-3">
-        <label className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-stone-300 text-sm dark:border-stone-700">
+        <label className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-slate-300 text-sm dark:border-slate-700">
           📎
           <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
         </label>
