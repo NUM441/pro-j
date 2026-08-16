@@ -15,6 +15,7 @@ export default function AdminSidebar({
   const items = [
     { href: "/admin", label: "กล่องข้อความ", icon: "💬", badge: unreadConversations },
     { href: "/admin/owner-applications", label: "คำขอเป็นเจ้าของร้าน", icon: "🏪", badge: pendingApplications },
+    { href: "/admin/restaurants", label: "ร้านอาหารทั้งหมด", icon: "🍜", badge: 0 },
     { href: "/admin/welcome-image", label: "รูปหน้า Welcome", icon: "🖼️", badge: 0 },
   ];
 
