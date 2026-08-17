@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { buttonClass } from "@/lib/buttonStyles";
 import { RESTAURANT_PHOTOS_BUCKET } from "@/lib/supabase/restaurants";
@@ -14,6 +14,14 @@ export default function AdminReplyForm({ userId }: { userId: string }) {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    // The parent layout's unread-message badge is computed server-side and
+    // isn't refetched on a plain client navigation into this conversation
+    // (only this page segment is), so force a refresh once messages here
+    // have been marked as read on the server.
+    router.refresh();
+  }, [router]);
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
