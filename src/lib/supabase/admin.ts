@@ -8,5 +8,10 @@ export function createAdminClient() {
 }
 
 export function isAdmin(email: string | null | undefined) {
-  return !!email && email === process.env.ADMIN_EMAIL;
+  if (!email) return false;
+  const adminEmails = (process.env.ADMIN_EMAIL ?? "")
+    .split(",")
+    .map((e) => e.trim())
+    .filter(Boolean);
+  return adminEmails.includes(email);
 }
