@@ -41,7 +41,7 @@ export default async function Home() {
         <SearchForm className="mt-2 flex w-full max-w-sm items-center justify-center gap-2" />
       </section>
 
-      <section className="mx-auto w-full max-w-5xl px-4 pb-24">
+      <section className="mx-auto w-full max-w-7xl px-4 pb-24">
         {!restaurants || restaurants.length === 0 ? (
           <div className="flex flex-col items-center gap-2 rounded-2xl border border-dashed border-stone-300 p-10 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
             <UtensilsCrossed className="h-6 w-6" />
@@ -60,7 +60,7 @@ export default async function Home() {
                 ดูร้านทั้งหมด <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {restaurants.map((restaurant) => (
                 <RestaurantCard
                   key={restaurant.id}

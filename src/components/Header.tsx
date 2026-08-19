@@ -16,7 +16,7 @@ export default async function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b-2 border-emerald-600 bg-background">
-      <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3 sm:py-4">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3 sm:py-4">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
           <BackButton />
           <Link href="/home" aria-label="กลับหน้าหลัก" className="flex items-center gap-2">
