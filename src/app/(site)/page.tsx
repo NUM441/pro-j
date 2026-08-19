@@ -11,7 +11,7 @@ export default async function Home() {
       .from("restaurants")
       .select("*, reviews(rating)")
       .order("created_at", { ascending: false })
-      .limit(6)
+      .limit(18)
       .returns<RestaurantWithReviews[]>(),
     supabase.auth.getUser(),
   ]);
