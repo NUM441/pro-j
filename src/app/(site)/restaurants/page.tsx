@@ -44,16 +44,20 @@ export default async function RestaurantsPage({
 
   return (
     <main className="flex w-full flex-col gap-6 px-4 py-12 sm:px-6">
-      <div>
+      <div className="text-center">
         <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">ร้านอาหารในนครสวรรค์</h1>
         <p className="text-sm text-stone-500 dark:text-stone-400">
           รวมร้านอาหารที่สมาชิกในชุมชนแนะนำ
         </p>
       </div>
 
-      <SearchForm defaultValue={q} category={category} />
+      <SearchForm
+        defaultValue={q}
+        category={category}
+        className="mx-auto flex w-full max-w-sm items-center justify-center gap-2"
+      />
 
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap justify-center gap-2">
         <Link href={q ? `/restaurants?q=${encodeURIComponent(q)}` : "/restaurants"} className={chipClass(!category)}>
           ทั้งหมด
         </Link>
