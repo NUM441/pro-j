@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Calendar, Heart, PartyPopper, Search, Store } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { buttonClass } from "@/lib/buttonStyles";
 import { WELCOME_IMAGE_KEY, type SiteSetting } from "@/lib/supabase/settings";
@@ -47,7 +48,9 @@ export default async function WelcomePage({
         </>
       )}
 
-      {!welcomeImageUrl && <span className="relative z-10 mb-6 text-5xl">🎉</span>}
+      {!welcomeImageUrl && (
+        <PartyPopper className="relative z-10 mb-6 h-12 w-12 text-emerald-600 dark:text-emerald-400" />
+      )}
 
       <div className="relative z-10 flex w-full max-w-lg flex-col items-center gap-6">
         {user ? (
@@ -61,16 +64,16 @@ export default async function WelcomePage({
 
             <ul className="flex w-full flex-col gap-2 text-left text-sm">
               <li className={`flex items-center gap-2 rounded-xl border p-3 ${listItem}`}>
-                🔍 ค้นหาและดูร้านอาหารในนครสวรรค์
+                <Search className="h-4 w-4 shrink-0" /> ค้นหาและดูร้านอาหารในนครสวรรค์
               </li>
               <li className={`flex items-center gap-2 rounded-xl border p-3 ${listItem}`}>
-                ❤️ บันทึกร้านโปรด และเขียนรีวิวพร้อมแนบรูป
+                <Heart className="h-4 w-4 shrink-0" /> บันทึกร้านโปรด และเขียนรีวิวพร้อมแนบรูป
               </li>
               <li className={`flex items-center gap-2 rounded-xl border p-3 ${listItem}`}>
-                📅 จองโต๊ะร้านที่สนใจได้โดยตรง
+                <Calendar className="h-4 w-4 shrink-0" /> จองโต๊ะร้านที่สนใจได้โดยตรง
               </li>
               <li className={`flex items-center gap-2 rounded-xl border p-3 ${listItem}`}>
-                🏪 สมัครลงร้านของคุณเองได้ที่หน้าโปรไฟล์
+                <Store className="h-4 w-4 shrink-0" /> สมัครลงร้านของคุณเองได้ที่หน้าโปรไฟล์
               </li>
             </ul>
 
@@ -96,13 +99,13 @@ export default async function WelcomePage({
 
             <ul className="flex w-full flex-col gap-2 text-left text-sm">
               <li className={`flex items-center gap-2 rounded-xl border p-3 ${listItem}`}>
-                🔍 ค้นหาและดูร้านอาหารในนครสวรรค์
+                <Search className="h-4 w-4 shrink-0" /> ค้นหาและดูร้านอาหารในนครสวรรค์
               </li>
               <li className={`flex items-center gap-2 rounded-xl border p-3 ${listItem}`}>
-                ❤️ บันทึกร้านโปรด และเขียนรีวิวพร้อมแนบรูป
+                <Heart className="h-4 w-4 shrink-0" /> บันทึกร้านโปรด และเขียนรีวิวพร้อมแนบรูป
               </li>
               <li className={`flex items-center gap-2 rounded-xl border p-3 ${listItem}`}>
-                📅 จองโต๊ะร้านที่สนใจได้โดยตรง
+                <Calendar className="h-4 w-4 shrink-0" /> จองโต๊ะร้านที่สนใจได้โดยตรง
               </li>
             </ul>
 

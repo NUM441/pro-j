@@ -86,7 +86,7 @@ export default function WelcomeImageForm({
         </div>
       ) : (
         <p className="rounded-xl border border-dashed border-stone-300 p-8 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
-          ยังไม่ได้ตั้งรูป — หน้า Welcome จะแสดงอิโมจิ 🎉 แทน
+          ยังไม่ได้ตั้งรูป — หน้า Welcome จะแสดงไอคอนแทน
         </p>
       )}
 

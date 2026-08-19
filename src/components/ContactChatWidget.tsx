@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { MessageCircle, Paperclip, X } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { buttonClass } from "@/lib/buttonStyles";
 import { RESTAURANT_PHOTOS_BUCKET } from "@/lib/supabase/restaurants";
@@ -129,10 +130,10 @@ export default function ContactChatWidget() {
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="flex h-8 w-8 items-center justify-center rounded-full border border-white/40 text-xl text-white/80 hover:text-white"
+              className="flex h-8 w-8 items-center justify-center rounded-full border border-white/40 text-white/80 hover:text-white"
               aria-label="ปิด"
             >
-              ×
+              <X className="h-4 w-4" />
             </button>
           </div>
 
@@ -186,16 +187,16 @@ export default function ContactChatWidget() {
                     <button
                       type="button"
                       onClick={handleRemoveImage}
-                      className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-stone-900 text-xs text-white"
+                      className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-stone-900 text-white"
                       aria-label="ลบรูป"
                     >
-                      ×
+                      <X className="h-3.5 w-3.5" />
                     </button>
                   </div>
                 )}
                 <div className="flex items-center gap-2">
-                  <label className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-stone-300 text-sm dark:border-stone-700">
-                    📎
+                  <label className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-stone-300 dark:border-stone-700">
+                    <Paperclip className="h-4 w-4" />
                     <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
                   </label>
                   <input
@@ -219,10 +220,10 @@ export default function ContactChatWidget() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex h-14 w-14 items-center justify-center rounded-full border border-emerald-800 bg-emerald-700 text-2xl text-white shadow-lg transition hover:bg-emerald-600"
+        className="flex h-14 w-14 items-center justify-center rounded-full border border-emerald-800 bg-emerald-700 text-white shadow-lg transition hover:bg-emerald-600"
         aria-label="ติดต่อแอดมิน"
       >
-        💬
+        <MessageCircle className="h-6 w-6" />
       </button>
     </div>
   );

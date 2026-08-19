@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Home, Search } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { isAdmin } from "@/lib/supabase/admin";
 import { buttonClass } from "@/lib/buttonStyles";
@@ -18,8 +19,8 @@ export default async function Header() {
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3 sm:py-4">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
           <BackButton />
-          <Link href="/" aria-label="กลับหน้าหลัก" className="flex items-baseline gap-2">
-            <span className="text-lg" aria-hidden="true">🏠</span>
+          <Link href="/" aria-label="กลับหน้าหลัก" className="flex items-center gap-2">
+            <Home className="h-5 w-5 text-emerald-700 dark:text-emerald-400" aria-hidden="true" />
             <span className="text-base font-bold text-stone-900 sm:text-lg dark:text-stone-50">
               Nakhon Sawan Food Guide
             </span>
@@ -31,7 +32,7 @@ export default async function Header() {
             href="/restaurants"
             className="flex items-center gap-1 text-sm font-medium text-stone-600 hover:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50"
           >
-            <span aria-hidden="true">🔍</span> ร้านอาหาร
+            <Search className="h-4 w-4" aria-hidden="true" /> ร้านอาหาร
           </Link>
         </div>
 

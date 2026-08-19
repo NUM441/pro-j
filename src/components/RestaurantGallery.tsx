@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 type Props = {
   restaurantName: string;
@@ -69,20 +70,20 @@ export default function RestaurantGallery({ restaurantName, coverUrl, foodUrls }
           <button
             type="button"
             onClick={close}
-            className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-white/10 text-2xl text-white hover:bg-white/20"
+            className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white hover:bg-white/20"
             aria-label="ปิด"
           >
-            ×
+            <X className="h-5 w-5" />
           </button>
 
           {images.length > 1 && (
             <button
               type="button"
               onClick={showPrev}
-              className="absolute left-2 flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-white/10 text-2xl text-white hover:bg-white/20 sm:left-4"
+              className="absolute left-2 flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white hover:bg-white/20 sm:left-4"
               aria-label="รูปก่อนหน้า"
             >
-              ‹
+              <ChevronLeft className="h-6 w-6" />
             </button>
           )}
 
@@ -100,10 +101,10 @@ export default function RestaurantGallery({ restaurantName, coverUrl, foodUrls }
             <button
               type="button"
               onClick={showNext}
-              className="absolute right-2 flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-white/10 text-2xl text-white hover:bg-white/20 sm:right-4"
+              className="absolute right-2 flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white hover:bg-white/20 sm:right-4"
               aria-label="รูปถัดไป"
             >
-              ›
+              <ChevronRight className="h-6 w-6" />
             </button>
           )}
         </div>

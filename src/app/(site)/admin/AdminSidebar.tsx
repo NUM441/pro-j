@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Image as ImageIcon, MessageCircle, Store, UtensilsCrossed } from "lucide-react";
 
 export default function AdminSidebar({
   pendingApplications,
@@ -13,10 +14,10 @@ export default function AdminSidebar({
   const pathname = usePathname();
 
   const items = [
-    { href: "/admin", label: "กล่องข้อความ", icon: "💬", badge: unreadConversations },
-    { href: "/admin/owner-applications", label: "คำขอเป็นเจ้าของร้าน", icon: "🏪", badge: pendingApplications },
-    { href: "/admin/restaurants", label: "ร้านอาหารทั้งหมด", icon: "🍜", badge: 0 },
-    { href: "/admin/welcome-image", label: "รูปหน้า Welcome", icon: "🖼️", badge: 0 },
+    { href: "/admin", label: "กล่องข้อความ", icon: MessageCircle, badge: unreadConversations },
+    { href: "/admin/owner-applications", label: "คำขอเป็นเจ้าของร้าน", icon: Store, badge: pendingApplications },
+    { href: "/admin/restaurants", label: "ร้านอาหารทั้งหมด", icon: UtensilsCrossed, badge: 0 },
+    { href: "/admin/welcome-image", label: "รูปหน้า Welcome", icon: ImageIcon, badge: 0 },
   ];
 
   return (
@@ -33,7 +34,7 @@ export default function AdminSidebar({
                 : "flex shrink-0 snap-start items-center gap-2 rounded-xl border border-stone-200 px-3 py-2.5 text-sm text-stone-600 transition hover:bg-emerald-50 dark:border-stone-800 dark:text-stone-300 dark:hover:bg-emerald-950"
             }
           >
-            <span aria-hidden="true">{item.icon}</span>
+            <item.icon aria-hidden="true" className="h-5 w-5 shrink-0" />
             <span className="flex-1">{item.label}</span>
             {item.badge > 0 && (
               <span className="rounded-full bg-red-600 px-1.5 py-0.5 text-xs font-bold text-white">

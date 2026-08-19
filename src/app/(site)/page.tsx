@@ -1,12 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight, UtensilsCrossed } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
-import type { Restaurant } from "@/lib/supabase/restaurants";
-import { averageRating } from "@/lib/supabase/reviews";
-import StarRating from "@/components/StarRating";
-import FavoriteButton from "@/components/FavoriteButton";
-
-type RestaurantWithReviews = Restaurant & { reviews: { rating: number }[] };
+import RestaurantCard, { type RestaurantWithReviews } from "@/components/RestaurantCard";
+import SearchForm from "@/components/SearchForm";
 
 export default async function Home() {
   const supabase = await createClient();
@@ -42,12 +38,14 @@ export default async function Home() {
           คู่มือร้านอาหารนครสวรรค์ รวมร้านเด็ด ของกิน และของฝาก
           สำหรับนักท่องเที่ยว คนในพื้นที่ และนักเดินทางที่แวะผ่านเมืองปากน้ำโพ
         </p>
+        <SearchForm className="mt-2 flex w-full max-w-sm items-center justify-center gap-2" />
       </section>
 
       <section className="mx-auto w-full max-w-5xl px-4 pb-24">
         {!restaurants || restaurants.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-stone-300 p-10 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
-            รายชื่อร้านอาหารกำลังจะมาเร็ว ๆ นี้ 🍜
+          <div className="flex flex-col items-center gap-2 rounded-2xl border border-dashed border-stone-300 p-10 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
+            <UtensilsCrossed className="h-6 w-6" />
+            รายชื่อร้านอาหารกำลังจะมาเร็ว ๆ นี้
           </div>
         ) : (
           <div className="flex flex-col gap-5">
@@ -57,67 +55,20 @@ export default async function Home() {
               </h2>
               <Link
                 href="/restaurants"
-                className="text-sm font-medium text-emerald-700 hover:underline dark:text-emerald-400"
+                className="flex items-center gap-1 text-sm font-medium text-emerald-700 hover:underline dark:text-emerald-400"
               >
-                ดูร้านทั้งหมด →
+                ดูร้านทั้งหมด <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
               {restaurants.map((restaurant) => (
-                <Link
+                <RestaurantCard
                   key={restaurant.id}
-                  href={`/restaurants/${restaurant.id}`}
-                  className="flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition hover:shadow-md dark:border-stone-800 dark:bg-stone-900"
-                >
-                  <div className="relative h-40 w-full">
-                    <Image
-                      src={restaurant.cover_photo_url}
-                      alt={restaurant.name}
-                      fill
-                      className="object-cover"
-                      unoptimized
-                    />
-                    {userData.user && (
-                      <FavoriteButton
-                        restaurantId={restaurant.id}
-                        userId={userData.user.id}
-                        initialFavorited={favoritedIds.has(restaurant.id)}
-                        className="absolute top-2 right-2 bg-black/40 hover:bg-black/60"
-                      />
-                    )}
-                  </div>
-                  <div className="flex flex-col gap-1 p-4">
-                    <h3 className="truncate font-semibold text-stone-900 dark:text-stone-50">
-                      {restaurant.name}
-                    </h3>
-                    <div className="flex items-center gap-1.5">
-                      <StarRating rating={averageRating(restaurant.reviews)} />
-                      <span className="text-xs text-stone-500 dark:text-stone-400">
-                        ({restaurant.reviews.length})
-                      </span>
-                    </div>
-                    {restaurant.categories.length > 0 && (
-                      <div className="flex flex-wrap gap-1">
-                        {restaurant.categories.slice(0, 3).map((c) => (
-                          <span
-                            key={c}
-                            className="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300"
-                          >
-                            {c}
-                          </span>
-                        ))}
-                        {restaurant.categories.length > 3 && (
-                          <span className="rounded-full bg-stone-100 px-2 py-0.5 text-xs font-medium text-stone-500 dark:bg-stone-800 dark:text-stone-400">
-                            +{restaurant.categories.length - 3}
-                          </span>
-                        )}
-                      </div>
-                    )}
-                    <p className="line-clamp-2 text-sm text-stone-500 dark:text-stone-400">
-                      {restaurant.description}
-                    </p>
-                  </div>
-                </Link>
+                  restaurant={restaurant}
+                  currentUserId={userData.user?.id ?? null}
+                  isFavorited={favoritedIds.has(restaurant.id)}
+                  headingLevel="h3"
+                />
               ))}
             </div>
           </div>

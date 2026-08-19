@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ExternalLink } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import type { Restaurant } from "@/lib/supabase/restaurants";
 import { averageRating, type Review } from "@/lib/supabase/reviews";
@@ -101,9 +102,9 @@ export default async function RestaurantDetailPage({
             href={restaurant.google_maps_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium text-emerald-700 hover:underline dark:text-emerald-400"
+            className="flex items-center gap-1 text-sm font-medium text-emerald-700 hover:underline dark:text-emerald-400"
           >
-            เปิดใน Google Maps ↗
+            เปิดใน Google Maps <ExternalLink className="h-3.5 w-3.5" />
           </a>
         </div>
         {isOwner && (

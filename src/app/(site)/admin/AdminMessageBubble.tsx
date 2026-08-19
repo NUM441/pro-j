@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { X } from "lucide-react";
 import type { ContactMessage } from "@/lib/supabase/messages";
 
 export default function AdminMessageBubble({
@@ -49,7 +50,7 @@ export default function AdminMessageBubble({
         aria-label="ลบข้อความ"
         className="absolute top-1 right-1 flex h-6 w-6 items-center justify-center rounded-full text-stone-400 hover:bg-black/10 hover:text-red-600 dark:hover:bg-white/10"
       >
-        ×
+        <X className="h-3.5 w-3.5" />
       </button>
     </div>
   );

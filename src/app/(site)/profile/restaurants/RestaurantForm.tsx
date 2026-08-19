@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { X } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import {
   CATEGORIES,
@@ -278,10 +279,10 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
                 <button
                   type="button"
                   onClick={() => removeFoodPhoto(i)}
-                  className="absolute top-1 right-1 flex h-6 w-6 items-center justify-center rounded-full border border-white/40 bg-black/70 text-xs text-white"
+                  className="absolute top-1 right-1 flex h-6 w-6 items-center justify-center rounded-full border border-white/40 bg-black/70 text-white"
                   aria-label="ลบรูปนี้"
                 >
-                  ×
+                  <X className="h-3.5 w-3.5" />
                 </button>
               </div>
             ))}

@@ -1,5 +1,7 @@
 "use client";
 
+import { Star } from "lucide-react";
+
 const STARS = [1, 2, 3, 4, 5];
 
 type Props = {
@@ -9,29 +11,27 @@ type Props = {
 };
 
 export default function StarRating({ rating, size = "sm", onRate }: Props) {
-  const textSize = size === "md" ? "text-2xl" : "text-sm";
+  const iconSize = size === "md" ? "h-6 w-6" : "h-4 w-4";
   const gap = size === "md" ? "gap-1" : "gap-0.5";
 
   return (
-    <span className={`inline-flex ${textSize} ${gap} leading-none`}>
+    <span className={`inline-flex ${gap} leading-none`}>
       {STARS.map((star) => {
         const filled = star <= Math.round(rating);
-        const color = filled ? "text-orange-500" : "text-stone-300 dark:text-stone-600";
+        const color = filled ? "fill-orange-500 text-orange-500" : "fill-none text-stone-300 dark:text-stone-600";
 
         return onRate ? (
           <button
             key={star}
             type="button"
             onClick={() => onRate(star)}
-            className={`${color} p-0.5`}
+            className="p-0.5"
             aria-label={`ให้ ${star} ดาว`}
           >
-            ★
+            <Star className={`${iconSize} ${color}`} />
           </button>
         ) : (
-          <span key={star} className={color}>
-            ★
-          </span>
+          <Star key={star} className={`${iconSize} ${color}`} />
         );
       })}
     </span>

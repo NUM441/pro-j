@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Moon, Sun } from "lucide-react";
 
 export default function ThemeToggle() {
   const [isDark, setIsDark] = useState(
@@ -20,9 +21,9 @@ export default function ThemeToggle() {
       onClick={toggle}
       aria-label="สลับโหมดมืด/สว่าง"
       suppressHydrationWarning
-      className="flex h-10 w-10 items-center justify-center rounded-full border border-stone-300 text-lg transition hover:bg-emerald-50 dark:border-stone-700 dark:hover:bg-emerald-950"
+      className="flex h-10 w-10 items-center justify-center rounded-full border border-stone-300 transition hover:bg-emerald-50 dark:border-stone-700 dark:hover:bg-emerald-950"
     >
-      {isDark ? "☀️" : "🌙"}
+      {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
     </button>
   );
 }

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Paperclip, X } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { buttonClass } from "@/lib/buttonStyles";
 import { RESTAURANT_PHOTOS_BUCKET } from "@/lib/supabase/restaurants";
@@ -88,10 +89,10 @@ export default function AdminReplyForm({ userId }: { userId: string }) {
           <button
             type="button"
             onClick={handleRemoveImage}
-            className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-stone-900 text-xs text-white"
+            className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-stone-900 text-white"
             aria-label="ลบรูป"
           >
-            ×
+            <X className="h-3.5 w-3.5" />
           </button>
         </div>
       )}
@@ -104,8 +105,8 @@ export default function AdminReplyForm({ userId }: { userId: string }) {
       />
       {error && <p className="text-sm text-red-500">{error}</p>}
       <div className="flex items-center gap-3">
-        <label className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-stone-300 text-sm dark:border-stone-700">
-          📎
+        <label className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-stone-300 dark:border-stone-700">
+          <Paperclip className="h-4 w-4" />
           <input type="file" accept="image/*" onChange={handleFileChange} className="hidden" />
         </label>
         <button

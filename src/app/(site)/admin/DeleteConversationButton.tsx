@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Trash2 } from "lucide-react";
 import { buttonClass } from "@/lib/buttonStyles";
 
 export default function DeleteConversationButton({
@@ -73,7 +74,7 @@ export default function DeleteConversationButton({
         aria-label="ลบแชท"
         className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-stone-200 text-stone-400 transition hover:border-red-300 hover:text-red-600 disabled:opacity-50 dark:border-stone-700"
       >
-        🗑️
+        <Trash2 className="h-4 w-4" />
       </button>
     );
   }
