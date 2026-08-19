@@ -60,7 +60,7 @@ export default function DeleteConversationButton({
         onClick={handleDelete}
         disabled={deleting}
         aria-label="ลบแชท"
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-400 transition hover:border-red-300 hover:text-red-600 disabled:opacity-50 dark:border-slate-700"
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-stone-200 text-stone-400 transition hover:border-red-300 hover:text-red-600 disabled:opacity-50 dark:border-stone-700"
       >
         🗑️
       </button>

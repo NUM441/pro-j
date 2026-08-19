@@ -20,7 +20,7 @@ export default function AdminSidebar({
   ];
 
   return (
-    <nav className="flex w-full shrink-0 snap-x scroll-px-4 flex-row gap-2 overflow-x-auto border-b border-slate-200 pb-3 sm:w-56 sm:flex-col sm:gap-1 sm:overflow-visible sm:border-b-0 sm:border-r sm:pr-4 sm:pb-0 sm:snap-none dark:border-slate-800">
+    <nav className="flex w-full shrink-0 snap-x scroll-px-4 flex-row gap-2 overflow-x-auto border-b border-stone-200 pb-3 sm:w-56 sm:flex-col sm:gap-1 sm:overflow-visible sm:border-b-0 sm:border-r sm:pr-4 sm:pb-0 sm:snap-none dark:border-stone-800">
       {items.map((item) => {
         const active = item.href === "/admin" ? pathname === "/admin" : pathname.startsWith(item.href);
         return (
@@ -29,8 +29,8 @@ export default function AdminSidebar({
             href={item.href}
             className={
               active
-                ? "flex shrink-0 snap-start items-center gap-2 rounded-xl border border-blue-700 bg-blue-700 px-3 py-2.5 text-sm font-medium text-white"
-                : "flex shrink-0 snap-start items-center gap-2 rounded-xl border border-slate-200 px-3 py-2.5 text-sm text-slate-600 transition hover:bg-blue-50 dark:border-slate-800 dark:text-slate-300 dark:hover:bg-blue-950"
+                ? "flex shrink-0 snap-start items-center gap-2 rounded-xl border border-emerald-700 bg-emerald-700 px-3 py-2.5 text-sm font-medium text-white"
+                : "flex shrink-0 snap-start items-center gap-2 rounded-xl border border-stone-200 px-3 py-2.5 text-sm text-stone-600 transition hover:bg-emerald-50 dark:border-stone-800 dark:text-stone-300 dark:hover:bg-emerald-950"
             }
           >
             <span aria-hidden="true">{item.icon}</span>

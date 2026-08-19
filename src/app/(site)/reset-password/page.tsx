@@ -31,17 +31,17 @@ export default function ResetPasswordPage() {
   return (
     <main className="mx-auto flex min-h-[70vh] max-w-sm flex-col items-center justify-center gap-6 px-4">
       <div className="space-y-2 text-center">
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50">
+        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">
           ตั้งรหัสผ่านใหม่
         </h1>
-        <p className="text-sm text-slate-500 dark:text-slate-400">
+        <p className="text-sm text-stone-500 dark:text-stone-400">
           กรอกรหัสผ่านใหม่สำหรับบัญชีของคุณ
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="flex w-full flex-col gap-4">
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="password" className="text-sm font-medium text-slate-700 dark:text-slate-300">
+          <label htmlFor="password" className="text-sm font-medium text-stone-700 dark:text-stone-300">
             รหัสผ่านใหม่
           </label>
           <input
@@ -52,7 +52,7 @@ export default function ResetPasswordPage() {
             autoComplete="new-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
           />
         </div>
 

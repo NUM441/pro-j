@@ -26,10 +26,10 @@ export default async function AdminRestaurantsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50">ร้านอาหารทั้งหมด</h1>
+      <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">ร้านอาหารทั้งหมด</h1>
 
       {!restaurants || restaurants.length === 0 ? (
-        <p className="rounded-xl border border-dashed border-slate-300 p-8 text-center text-sm text-slate-500 dark:border-slate-700 dark:text-slate-400">
+        <p className="rounded-xl border border-dashed border-stone-300 p-8 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
           ยังไม่มีร้านอาหารในระบบ
         </p>
       ) : (
@@ -39,14 +39,14 @@ export default async function AdminRestaurantsPage() {
             return (
               <div
                 key={r.id}
-                className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900"
+                className="flex items-center gap-3 rounded-xl border border-stone-200 bg-white p-4 shadow-sm dark:border-stone-800 dark:bg-stone-900"
               >
                 <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
                   <Image src={r.cover_photo_url} alt={r.name} fill className="object-cover" unoptimized />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="truncate font-semibold text-slate-900 dark:text-slate-50">{r.name}</p>
-                  <p className="truncate text-sm text-slate-500 dark:text-slate-400">
+                  <p className="truncate font-semibold text-stone-900 dark:text-stone-50">{r.name}</p>
+                  <p className="truncate text-sm text-stone-500 dark:text-stone-400">
                     เจ้าของ: {owner?.name ?? "ไม่พบบัญชี"}
                     {owner?.email ? ` · ${owner.email}` : ""}
                   </p>

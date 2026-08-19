@@ -36,8 +36,8 @@ export default function ReviewForm({
 
   if (!currentUserId) {
     return (
-      <p className="rounded-xl border border-dashed border-slate-300 p-6 text-center text-sm text-slate-500 dark:border-slate-700 dark:text-slate-400">
-        <Link href="/welcome" className="font-medium text-blue-700 hover:underline dark:text-blue-400">
+      <p className="rounded-xl border border-dashed border-stone-300 p-6 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
+        <Link href="/welcome" className="font-medium text-emerald-700 hover:underline dark:text-emerald-400">
           เข้าสู่ระบบ
         </Link>{" "}
         เพื่อเขียนรีวิว
@@ -135,9 +135,9 @@ export default function ReviewForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-xl border border-stone-200 bg-white p-4 shadow-sm dark:border-stone-800 dark:bg-stone-900">
       <div className="flex items-center gap-2">
-        <span className="text-sm font-medium text-slate-700 dark:text-slate-300">ให้คะแนน</span>
+        <span className="text-sm font-medium text-stone-700 dark:text-stone-300">ให้คะแนน</span>
         <StarRating rating={rating} size="md" onRate={setRating} />
       </div>
 
@@ -147,13 +147,13 @@ export default function ReviewForm({
         placeholder="เล่าประสบการณ์ของคุณที่ร้านนี้..."
         value={comment}
         onChange={(e) => setComment(e.target.value)}
-        className="rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+        className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
       />
 
       <div className="flex flex-col gap-1.5">
-        <span className="text-sm font-medium text-slate-700 dark:text-slate-300">แนบรูป (ถ้ามี)</span>
+        <span className="text-sm font-medium text-stone-700 dark:text-stone-300">แนบรูป (ถ้ามี)</span>
         {photoPreview ? (
-          <div className="relative h-32 w-32 overflow-hidden rounded-lg border border-slate-200 dark:border-slate-800">
+          <div className="relative h-32 w-32 overflow-hidden rounded-lg border border-stone-200 dark:border-stone-800">
             <Image src={photoPreview} alt="รูปรีวิว" fill className="object-cover" unoptimized />
             <button
               type="button"

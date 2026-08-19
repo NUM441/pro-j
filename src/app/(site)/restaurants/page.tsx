@@ -48,8 +48,8 @@ export default async function RestaurantsPage({
   return (
     <main className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-12">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50">ร้านอาหารในนครสวรรค์</h1>
-        <p className="text-sm text-slate-500 dark:text-slate-400">
+        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">ร้านอาหารในนครสวรรค์</h1>
+        <p className="text-sm text-stone-500 dark:text-stone-400">
           รวมร้านอาหารที่สมาชิกในชุมชนแนะนำ
         </p>
       </div>
@@ -61,7 +61,7 @@ export default async function RestaurantsPage({
           name="q"
           defaultValue={q ?? ""}
           placeholder="🔍 ค้นหาชื่อร้าน..."
-          className="w-full max-w-sm rounded-full border border-slate-300 px-4 py-2 text-sm outline-none focus:border-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+          className="w-full max-w-sm rounded-full border border-stone-300 px-4 py-2 text-sm outline-none focus:border-emerald-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
         />
         <button type="submit" className={chipClass(false)}>
           ค้นหา
@@ -84,7 +84,7 @@ export default async function RestaurantsPage({
       </div>
 
       {!restaurants || restaurants.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-slate-300 p-10 text-center text-sm text-slate-500 dark:border-slate-700 dark:text-slate-400">
+        <div className="rounded-2xl border border-dashed border-stone-300 p-10 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
           {q
             ? `ไม่พบร้านที่ชื่อตรงกับ "${q}"`
             : category
@@ -97,7 +97,7 @@ export default async function RestaurantsPage({
             <Link
               key={restaurant.id}
               href={`/restaurants/${restaurant.id}`}
-              className="flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md dark:border-slate-800 dark:bg-slate-900"
+              className="flex flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm transition hover:shadow-md dark:border-stone-800 dark:bg-stone-900"
             >
               <div className="relative h-40 w-full">
                 <Image
@@ -117,12 +117,12 @@ export default async function RestaurantsPage({
                 )}
               </div>
               <div className="flex flex-col gap-1 p-4">
-                <h2 className="truncate font-semibold text-slate-900 dark:text-slate-50">
+                <h2 className="truncate font-semibold text-stone-900 dark:text-stone-50">
                   {restaurant.name}
                 </h2>
                 <div className="flex items-center gap-1.5">
                   <StarRating rating={averageRating(restaurant.reviews)} />
-                  <span className="text-xs text-slate-500 dark:text-slate-400">
+                  <span className="text-xs text-stone-500 dark:text-stone-400">
                     ({restaurant.reviews.length})
                   </span>
                 </div>
@@ -131,19 +131,19 @@ export default async function RestaurantsPage({
                     {restaurant.categories.slice(0, 3).map((c) => (
                       <span
                         key={c}
-                        className="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-950 dark:text-blue-300"
+                        className="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300"
                       >
                         {c}
                       </span>
                     ))}
                     {restaurant.categories.length > 3 && (
-                      <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+                      <span className="rounded-full bg-stone-100 px-2 py-0.5 text-xs font-medium text-stone-500 dark:bg-stone-800 dark:text-stone-400">
                         +{restaurant.categories.length - 3}
                       </span>
                     )}
                   </div>
                 )}
-                <p className="line-clamp-2 text-sm text-slate-500 dark:text-slate-400">
+                <p className="line-clamp-2 text-sm text-stone-500 dark:text-stone-400">
                   {restaurant.description}
                 </p>
               </div>

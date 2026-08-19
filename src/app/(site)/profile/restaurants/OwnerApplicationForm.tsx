@@ -43,8 +43,8 @@ export default function OwnerApplicationForm({ rejected }: { rejected?: boolean 
   return (
     <div className="flex flex-col gap-4">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50">สมัครเป็นเจ้าของร้าน</h1>
-        <p className="text-sm text-slate-500 dark:text-slate-400">
+        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">สมัครเป็นเจ้าของร้าน</h1>
+        <p className="text-sm text-stone-500 dark:text-stone-400">
           {rejected
             ? "คำขอก่อนหน้าของคุณถูกปฏิเสธ กรอกข้อมูลแล้วส่งคำขอใหม่ได้อีกครั้ง"
             : "ก่อนลงร้านอาหารได้ ต้องกรอกข้อมูลเพื่อให้แอดมินตรวจสอบและอนุมัติก่อน"}
@@ -53,7 +53,7 @@ export default function OwnerApplicationForm({ rejected }: { rejected?: boolean 
 
       <form onSubmit={handleSubmit} className="flex w-full max-w-lg flex-col gap-4">
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="restaurantName" className="text-sm font-medium text-slate-700 dark:text-slate-300">
+          <label htmlFor="restaurantName" className="text-sm font-medium text-stone-700 dark:text-stone-300">
             ชื่อร้าน
           </label>
           <input
@@ -62,12 +62,12 @@ export default function OwnerApplicationForm({ rejected }: { rejected?: boolean 
             required
             value={restaurantName}
             onChange={(e) => setRestaurantName(e.target.value)}
-            className="rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none focus:border-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-emerald-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
           />
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="phone" className="text-sm font-medium text-slate-700 dark:text-slate-300">
+          <label htmlFor="phone" className="text-sm font-medium text-stone-700 dark:text-stone-300">
             เบอร์โทรติดต่อ
           </label>
           <input
@@ -76,12 +76,12 @@ export default function OwnerApplicationForm({ rejected }: { rejected?: boolean 
             required
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            className="rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none focus:border-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-emerald-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
           />
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label htmlFor="message" className="text-sm font-medium text-slate-700 dark:text-slate-300">
+          <label htmlFor="message" className="text-sm font-medium text-stone-700 dark:text-stone-300">
             ข้อความยืนยันสั้นๆ
           </label>
           <textarea
@@ -91,7 +91,7 @@ export default function OwnerApplicationForm({ rejected }: { rejected?: boolean 
             placeholder="เช่น ยืนยันว่าเป็นเจ้าของ/ผู้ดูแลร้านนี้จริง"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none focus:border-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-emerald-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
           />
         </div>
 

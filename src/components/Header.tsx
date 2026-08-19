@@ -14,22 +14,22 @@ export default async function Header() {
   } = await supabase.auth.getUser();
 
   return (
-    <header className="sticky top-0 z-50 border-b-2 border-blue-600 bg-background">
+    <header className="sticky top-0 z-50 border-b-2 border-emerald-600 bg-background">
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3 sm:py-4">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
           <BackButton />
           <Link href="/" aria-label="กลับหน้าหลัก" className="flex items-baseline gap-2">
             <span className="text-lg" aria-hidden="true">🏠</span>
-            <span className="text-base font-bold text-slate-900 sm:text-lg dark:text-slate-50">
+            <span className="text-base font-bold text-stone-900 sm:text-lg dark:text-stone-50">
               Nakhon Sawan Food Guide
             </span>
-            <span className="hidden text-sm text-slate-400 sm:inline">
+            <span className="hidden text-sm text-stone-400 sm:inline">
               คู่มือร้านอาหารนครสวรรค์
             </span>
           </Link>
           <Link
             href="/restaurants"
-            className="flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-50"
+            className="flex items-center gap-1 text-sm font-medium text-stone-600 hover:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50"
           >
             <span aria-hidden="true">🔍</span> ร้านอาหาร
           </Link>
@@ -41,17 +41,17 @@ export default async function Header() {
               {isAdmin(user.email) && (
                 <Link
                   href="/admin"
-                  className="text-sm font-medium text-blue-700 hover:underline dark:text-blue-400"
+                  className="text-sm font-medium text-emerald-700 hover:underline dark:text-emerald-400"
                 >
                   Admin
                 </Link>
               )}
               <Link
                 href="/profile"
-                className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:underline dark:text-slate-300"
+                className="flex items-center gap-2 text-sm font-medium text-stone-600 hover:underline dark:text-stone-300"
               >
                 {user.user_metadata?.avatar_url ? (
-                  <span className="relative h-7 w-7 flex-shrink-0 overflow-hidden rounded-full border border-slate-300 dark:border-slate-700">
+                  <span className="relative h-7 w-7 flex-shrink-0 overflow-hidden rounded-full border border-stone-300 dark:border-stone-700">
                     <Image
                       src={user.user_metadata.avatar_url}
                       alt=""
@@ -61,7 +61,7 @@ export default async function Header() {
                     />
                   </span>
                 ) : (
-                  <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-blue-200 bg-blue-100 text-xs font-semibold text-blue-700 dark:border-blue-800 dark:bg-blue-950 dark:text-blue-300">
+                  <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-emerald-200 bg-emerald-100 text-xs font-semibold text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
                     {(user.user_metadata?.full_name ?? user.email ?? "?").charAt(0).toUpperCase()}
                   </span>
                 )}

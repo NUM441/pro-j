@@ -46,7 +46,7 @@ export default function FavoriteButton({ restaurantId, userId, initialFavorited,
       onClick={toggle}
       disabled={loading}
       aria-label={favorited ? "เอาออกจากรายการโปรด" : "เพิ่มในรายการโปรด"}
-      className={`flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-lg transition disabled:opacity-60 dark:border-slate-700 ${className ?? ""}`}
+      className={`flex h-9 w-9 items-center justify-center rounded-full border border-stone-300 text-lg transition disabled:opacity-60 dark:border-stone-700 ${className ?? ""}`}
     >
       {favorited ? "❤️" : "🤍"}
     </button>

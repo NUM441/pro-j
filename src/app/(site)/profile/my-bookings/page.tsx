@@ -35,10 +35,10 @@ export default async function MyBookingsPage() {
 
   return (
     <main className="mx-auto flex max-w-2xl flex-col gap-6 px-4 py-12">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50">การจองของฉัน</h1>
+      <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">การจองของฉัน</h1>
 
       {!myReservations || myReservations.length === 0 ? (
-        <p className="rounded-xl border border-dashed border-slate-300 p-8 text-center text-sm text-slate-500 dark:border-slate-700 dark:text-slate-400">
+        <p className="rounded-xl border border-dashed border-stone-300 p-8 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
           คุณยังไม่เคยจองร้านอาหาร
         </p>
       ) : (
@@ -46,13 +46,13 @@ export default async function MyBookingsPage() {
           {myReservations.map((r) => (
             <div
               key={r.id}
-              className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white p-3 shadow-sm dark:border-slate-800 dark:bg-slate-900"
+              className="flex items-center justify-between gap-3 rounded-xl border border-stone-200 bg-white p-3 shadow-sm dark:border-stone-800 dark:bg-stone-900"
             >
               <div>
-                <p className="font-medium text-slate-900 dark:text-slate-50">
+                <p className="font-medium text-stone-900 dark:text-stone-50">
                   {r.restaurants?.name ?? "ร้าน"}
                 </p>
-                <p className="text-sm text-slate-500 dark:text-slate-400">
+                <p className="text-sm text-stone-500 dark:text-stone-400">
                   {r.reservation_date} เวลา {r.reservation_time} · {r.party_size} ที่นั่ง
                 </p>
               </div>

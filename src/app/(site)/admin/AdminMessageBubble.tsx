@@ -30,8 +30,8 @@ export default function AdminMessageBubble({ message }: { message: ContactMessag
     <div
       className={
         message.is_admin
-          ? "relative flex max-w-[80%] flex-col gap-1 rounded-2xl rounded-tl-sm bg-slate-100 py-2 pr-8 pl-3 text-sm text-slate-800 dark:bg-slate-800 dark:text-slate-100"
-          : "relative ml-auto flex max-w-[80%] flex-col gap-1 rounded-2xl rounded-tr-sm bg-blue-100 py-2 pr-8 pl-3 text-sm text-blue-900 dark:bg-blue-950 dark:text-blue-200"
+          ? "relative flex max-w-[80%] flex-col gap-1 rounded-2xl rounded-tl-sm bg-stone-100 py-2 pr-8 pl-3 text-sm text-stone-800 dark:bg-stone-800 dark:text-stone-100"
+          : "relative ml-auto flex max-w-[80%] flex-col gap-1 rounded-2xl rounded-tr-sm bg-emerald-100 py-2 pr-8 pl-3 text-sm text-emerald-900 dark:bg-emerald-950 dark:text-emerald-200"
       }
     >
       {message.image_url && (
@@ -45,7 +45,7 @@ export default function AdminMessageBubble({ message }: { message: ContactMessag
         onClick={handleDelete}
         disabled={deleting}
         aria-label="ลบข้อความ"
-        className="absolute top-1 right-1 flex h-6 w-6 items-center justify-center rounded-full text-slate-400 hover:bg-black/10 hover:text-red-600 disabled:opacity-50 dark:hover:bg-white/10"
+        className="absolute top-1 right-1 flex h-6 w-6 items-center justify-center rounded-full text-stone-400 hover:bg-black/10 hover:text-red-600 disabled:opacity-50 dark:hover:bg-white/10"
       >
         ×
       </button>

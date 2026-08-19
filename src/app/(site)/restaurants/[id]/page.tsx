@@ -66,7 +66,7 @@ export default async function RestaurantDetailPage({
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <div className="flex min-w-0 items-center gap-2">
-            <h1 className="truncate text-2xl font-bold text-slate-900 dark:text-slate-50">
+            <h1 className="truncate text-2xl font-bold text-stone-900 dark:text-stone-50">
               {restaurant.name}
             </h1>
             {userData.user && (
@@ -79,7 +79,7 @@ export default async function RestaurantDetailPage({
           </div>
           <div className="flex items-center gap-2">
             <StarRating rating={avgRating} />
-            <span className="text-sm text-slate-500 dark:text-slate-400">
+            <span className="text-sm text-stone-500 dark:text-stone-400">
               {reviewCount > 0
                 ? `${avgRating.toFixed(1)} (${reviewCount} รีวิว)`
                 : "ยังไม่มีรีวิว"}
@@ -90,7 +90,7 @@ export default async function RestaurantDetailPage({
               {restaurant.categories.map((c) => (
                 <span
                   key={c}
-                  className="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-950 dark:text-blue-300"
+                  className="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300"
                 >
                   {c}
                 </span>
@@ -101,7 +101,7 @@ export default async function RestaurantDetailPage({
             href={restaurant.google_maps_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium text-blue-700 hover:underline dark:text-blue-400"
+            className="text-sm font-medium text-emerald-700 hover:underline dark:text-emerald-400"
           >
             เปิดใน Google Maps ↗
           </a>
@@ -122,10 +122,10 @@ export default async function RestaurantDetailPage({
         currentUserName={currentUserName}
       />
 
-      <p className="whitespace-pre-wrap text-slate-700 dark:text-slate-300">{restaurant.description}</p>
+      <p className="whitespace-pre-wrap text-stone-700 dark:text-stone-300">{restaurant.description}</p>
 
-      <div className="flex flex-col gap-4 border-t border-slate-200 pt-6 dark:border-slate-800">
-        <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-50">รีวิว</h2>
+      <div className="flex flex-col gap-4 border-t border-stone-200 pt-6 dark:border-stone-800">
+        <h2 className="text-lg font-semibold text-stone-900 dark:text-stone-50">รีวิว</h2>
 
         <ReviewForm
           restaurantId={restaurant.id}
@@ -138,11 +138,11 @@ export default async function RestaurantDetailPage({
         {allReviews.length > 0 && (
           <div className="flex flex-col gap-4">
             {allReviews.map((review) => (
-              <div key={review.id} className="border-b border-slate-200 pb-4 last:border-0 dark:border-slate-800">
+              <div key={review.id} className="border-b border-stone-200 pb-4 last:border-0 dark:border-stone-800">
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex min-w-0 items-center gap-2">
                     {review.reviewer_avatar_url ? (
-                      <span className="relative h-7 w-7 flex-shrink-0 overflow-hidden rounded-full border border-slate-300 dark:border-slate-700">
+                      <span className="relative h-7 w-7 flex-shrink-0 overflow-hidden rounded-full border border-stone-300 dark:border-stone-700">
                         <Image
                           src={review.reviewer_avatar_url}
                           alt=""
@@ -152,17 +152,17 @@ export default async function RestaurantDetailPage({
                         />
                       </span>
                     ) : (
-                      <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-blue-200 bg-blue-100 text-xs font-semibold text-blue-700 dark:border-blue-800 dark:bg-blue-950 dark:text-blue-300">
+                      <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-emerald-200 bg-emerald-100 text-xs font-semibold text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
                         {review.reviewer_name.charAt(0).toUpperCase()}
                       </span>
                     )}
-                    <span className="truncate font-medium text-slate-900 dark:text-slate-50">
+                    <span className="truncate font-medium text-stone-900 dark:text-stone-50">
                       {review.reviewer_name}
                     </span>
                   </div>
                   <StarRating rating={review.rating} />
                 </div>
-                <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{review.comment}</p>
+                <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">{review.comment}</p>
                 {review.photo_url && (
                   <div className="relative mt-2 h-32 w-32 overflow-hidden rounded-lg">
                     <Image

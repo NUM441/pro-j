@@ -32,21 +32,21 @@ export default function RestaurantGallery({ restaurantName, coverUrl, foodUrls }
       <button
         type="button"
         onClick={() => setOpenIndex(0)}
-        className="relative h-64 w-full cursor-zoom-in overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800"
+        className="relative h-64 w-full cursor-zoom-in overflow-hidden rounded-2xl border border-stone-200 dark:border-stone-800"
       >
         <Image src={coverUrl} alt={restaurantName} fill className="object-cover" unoptimized />
       </button>
 
       {foodUrls.length > 0 && (
         <div>
-          <h2 className="mb-3 text-lg font-semibold text-slate-900 dark:text-slate-50">รูปอาหาร</h2>
+          <h2 className="mb-3 text-lg font-semibold text-stone-900 dark:text-stone-50">รูปอาหาร</h2>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
             {foodUrls.map((url, i) => (
               <button
                 key={i}
                 type="button"
                 onClick={() => setOpenIndex(i + 1)}
-                className="relative aspect-square cursor-zoom-in overflow-hidden rounded-lg border border-slate-200 dark:border-slate-800"
+                className="relative aspect-square cursor-zoom-in overflow-hidden rounded-lg border border-stone-200 dark:border-stone-800"
               >
                 <Image
                   src={url}

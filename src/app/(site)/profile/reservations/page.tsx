@@ -57,22 +57,22 @@ export default async function OwnerReservationsPage() {
 
   return (
     <main className="mx-auto flex max-w-2xl flex-col gap-6 px-4 py-12">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50">การจองที่เข้ามา</h1>
+      <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">การจองที่เข้ามา</h1>
 
       {!reservations || reservations.length === 0 ? (
-        <p className="rounded-xl border border-dashed border-slate-300 p-8 text-center text-sm text-slate-500 dark:border-slate-700 dark:text-slate-400">
+        <p className="rounded-xl border border-dashed border-stone-300 p-8 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
           ยังไม่มีการจองเข้ามา
         </p>
       ) : (
         <div className="flex flex-col gap-4">
           {reservations.map((r) => (
-            <div key={r.id} className="flex flex-col gap-2 rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+            <div key={r.id} className="flex flex-col gap-2 rounded-xl border border-stone-200 bg-white p-4 shadow-sm dark:border-stone-800 dark:bg-stone-900">
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <p className="font-semibold text-slate-900 dark:text-slate-50">
+                  <p className="font-semibold text-stone-900 dark:text-stone-50">
                     {r.restaurants?.name ?? "ร้าน"}
                   </p>
-                  <p className="text-sm text-slate-600 dark:text-slate-300">
+                  <p className="text-sm text-stone-600 dark:text-stone-300">
                     {currentNames.get(r.customer_id) ?? r.customer_name} · {r.customer_phone}
                   </p>
                 </div>
@@ -81,11 +81,11 @@ export default async function OwnerReservationsPage() {
                 </span>
               </div>
 
-              <p className="text-sm text-slate-700 dark:text-slate-300">
+              <p className="text-sm text-stone-700 dark:text-stone-300">
                 {r.reservation_date} เวลา {r.reservation_time} · {r.party_size} ที่นั่ง
               </p>
 
-              {r.note && <p className="text-sm text-slate-500 dark:text-slate-400">หมายเหตุ: {r.note}</p>}
+              {r.note && <p className="text-sm text-stone-500 dark:text-stone-400">หมายเหตุ: {r.note}</p>}
 
               <ReservationStatusButtons reservationId={r.id} status={r.status} />
             </div>

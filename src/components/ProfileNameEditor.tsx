@@ -63,7 +63,7 @@ export default function ProfileNameEditor({
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
     return (
-      <p className="text-xs text-slate-400">
+      <p className="text-xs text-stone-400">
         เปลี่ยนชื่อได้อีกครั้งใน {minutes} นาที {seconds} วินาที
       </p>
     );
@@ -74,7 +74,7 @@ export default function ProfileNameEditor({
       <button
         type="button"
         onClick={() => setEditing(true)}
-        className="text-xs font-medium text-blue-700 hover:underline dark:text-blue-400"
+        className="text-xs font-medium text-emerald-700 hover:underline dark:text-emerald-400"
       >
         แก้ไขชื่อ
       </button>
@@ -88,7 +88,7 @@ export default function ProfileNameEditor({
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="rounded-lg border border-slate-300 px-3 py-1.5 text-sm outline-none focus:border-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+          className="rounded-lg border border-stone-300 px-3 py-1.5 text-sm outline-none focus:border-emerald-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
         />
         <button type="button" onClick={handleSave} disabled={saving} className={buttonClass("primary", "sm")}>
           {saving ? "กำลังบันทึก..." : "บันทึก"}

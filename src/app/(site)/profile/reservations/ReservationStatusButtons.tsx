@@ -30,7 +30,7 @@ export default function ReservationStatusButtons({
         type="button"
         onClick={() => updateStatus("pending")}
         disabled={loading}
-        className="text-xs text-slate-500 hover:underline disabled:opacity-60 dark:text-slate-400"
+        className="text-xs text-stone-500 hover:underline disabled:opacity-60 dark:text-stone-400"
       >
         เปลี่ยนกลับเป็นรอดำเนินการ
       </button>
