@@ -46,7 +46,7 @@ export default async function AdminConversationPage({
         <DeleteConversationButton userId={userId} userName={currentName} redirectAfter />
       </div>
 
-      <AdminMessageList initialMessages={messages ?? []} />
+      <AdminMessageList userId={userId} initialMessages={messages ?? []} />
 
       <AdminReplyForm userId={userId} />
     </div>

@@ -2,6 +2,40 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient, isAdmin } from "@/lib/supabase/admin";
 import { RESTAURANT_PHOTOS_BUCKET } from "@/lib/supabase/restaurants";
+import type { ContactMessage } from "@/lib/supabase/messages";
+
+export async function GET(request: Request) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user || !isAdmin(user.email)) {
+    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  }
+
+  const userId = new URL(request.url).searchParams.get("userId");
+  if (!userId) {
+    return NextResponse.json({ error: "invalid_request" }, { status: 400 });
+  }
+
+  const adminClient = createAdminClient();
+  const { data: messages } = await adminClient
+    .from("contact_messages")
+    .select("*")
+    .eq("user_id", userId)
+    .order("created_at", { ascending: true })
+    .returns<ContactMessage[]>();
+
+  await adminClient
+    .from("contact_messages")
+    .update({ is_read: true })
+    .eq("user_id", userId)
+    .eq("is_admin", false)
+    .eq("is_read", false);
+
+  return NextResponse.json({ messages: messages ?? [] });
+}
 
 async function removeStorageFile(
   adminClient: ReturnType<typeof createAdminClient>,

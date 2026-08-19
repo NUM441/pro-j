@@ -1,15 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import type { ContactMessage } from "@/lib/supabase/messages";
+import { useEffect, useState } from "react";
+import type { Conversation } from "@/lib/supabase/messages";
 import DeleteConversationButton from "./DeleteConversationButton";
-
-export type Conversation = {
-  userId: string;
-  userName: string;
-  latestMessage: ContactMessage;
-};
 
 export default function AdminInboxList({ initialConversations }: { initialConversations: Conversation[] }) {
   const [prevInitialConversations, setPrevInitialConversations] = useState(initialConversations);
@@ -19,6 +13,16 @@ export default function AdminInboxList({ initialConversations }: { initialConver
     setPrevInitialConversations(initialConversations);
     setConversations(initialConversations);
   }
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      const res = await fetch("/api/admin/conversations");
+      if (!res.ok) return;
+      const data = await res.json();
+      setConversations(data.conversations);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   if (conversations.length === 0) {
     return (
