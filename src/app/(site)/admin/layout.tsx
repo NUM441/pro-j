@@ -13,7 +13,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     redirect("/welcome");
   }
   if (!isAdmin(user.email)) {
-    redirect("/");
+    redirect("/home");
   }
 
   const adminClient = createAdminClient();

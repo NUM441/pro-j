@@ -19,7 +19,7 @@ export default async function Header() {
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3 sm:py-4">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
           <BackButton />
-          <Link href="/" aria-label="กลับหน้าหลัก" className="flex items-center gap-2">
+          <Link href="/home" aria-label="กลับหน้าหลัก" className="flex items-center gap-2">
             <Home className="h-5 w-5 text-emerald-700 dark:text-emerald-400" aria-hidden="true" />
             <span className="text-base font-bold text-stone-900 sm:text-lg dark:text-stone-50">
               Nakhon Sawan Food Guide

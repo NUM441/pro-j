@@ -7,7 +7,7 @@ export default function BackButton() {
   const router = useRouter();
   const pathname = usePathname();
 
-  if (pathname === "/") return null;
+  if (pathname === "/home") return null;
 
   return (
     <button
