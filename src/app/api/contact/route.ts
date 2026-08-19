@@ -1,6 +1,10 @@
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient, getPrimaryAdmin } from "@/lib/supabase/admin";
+
+const AUTO_REPLY_SENDER_NAME = "ระบบ (ตอบรับอัตโนมัติ)";
+const AUTO_REPLY_MESSAGE = "รอแอดมินติดต่อกลับสักครู่นะครับ";
 
 export async function POST(request: Request) {
   const supabase = await createClient();
@@ -36,6 +40,34 @@ export async function POST(request: Request) {
 
   if (dbError) {
     return NextResponse.json({ error: "db_error" }, { status: 500 });
+  }
+
+  const { data: prevMessage } = await supabase
+    .from("contact_messages")
+    .select("is_admin, sender_name")
+    .eq("user_id", user.id)
+    .neq("id", saved.id)
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  const alreadyWaitingOnAutoReply =
+    prevMessage?.is_admin === true && prevMessage?.sender_name === AUTO_REPLY_SENDER_NAME;
+
+  if (!alreadyWaitingOnAutoReply) {
+    const admin = await getPrimaryAdmin();
+    if (admin) {
+      await createAdminClient()
+        .from("contact_messages")
+        .insert({
+          user_id: user.id,
+          sender_id: admin.id,
+          sender_name: AUTO_REPLY_SENDER_NAME,
+          sender_email: admin.email,
+          is_admin: true,
+          message: AUTO_REPLY_MESSAGE,
+        });
+    }
   }
 
   try {
