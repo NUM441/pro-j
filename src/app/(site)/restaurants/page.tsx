@@ -43,7 +43,7 @@ export default async function RestaurantsPage({
   const qSuffix = q ? `&q=${encodeURIComponent(q)}` : "";
 
   return (
-    <main className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-12">
+    <main className="flex w-full flex-col gap-6 px-4 py-12 sm:px-6">
       <div>
         <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">ร้านอาหารในนครสวรรค์</h1>
         <p className="text-sm text-stone-500 dark:text-stone-400">
@@ -82,7 +82,7 @@ export default async function RestaurantsPage({
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
           {restaurants.map((restaurant) => (
             <RestaurantCard
               key={restaurant.id}

@@ -30,7 +30,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   const unreadConversations = new Set((unreadRows ?? []).map((r) => r.user_id)).size;
 
   return (
-    <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8 sm:flex-row sm:py-12">
+    <div className="flex w-full flex-col gap-6 px-4 py-8 sm:flex-row sm:px-6 sm:py-12">
       <AdminSidebar pendingApplications={pendingApplications ?? 0} unreadConversations={unreadConversations} />
       <div className="min-w-0 flex-1">{children}</div>
     </div>
