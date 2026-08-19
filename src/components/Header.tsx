@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Home, Search } from "lucide-react";
+import { Home } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { isAdmin } from "@/lib/supabase/admin";
 import { buttonClass } from "@/lib/buttonStyles";
@@ -24,15 +24,6 @@ export default async function Header() {
             <span className="text-base font-bold text-stone-900 sm:text-lg dark:text-stone-50">
               Nakhon Sawan Food Guide
             </span>
-            <span className="hidden text-sm text-stone-400 sm:inline">
-              คู่มือร้านอาหารนครสวรรค์
-            </span>
-          </Link>
-          <Link
-            href="/restaurants"
-            className="flex items-center gap-1 text-sm font-medium text-stone-600 hover:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50"
-          >
-            <Search className="h-4 w-4" aria-hidden="true" /> ร้านอาหาร
           </Link>
         </div>
 
