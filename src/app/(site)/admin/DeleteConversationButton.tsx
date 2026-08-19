@@ -9,11 +9,13 @@ export default function DeleteConversationButton({
   userName,
   compact = false,
   redirectAfter = false,
+  onDeleted,
 }: {
   userId: string;
   userName: string;
   compact?: boolean;
   redirectAfter?: boolean;
+  onDeleted?: () => void;
 }) {
   const router = useRouter();
   const [deleting, setDeleting] = useState(false);
@@ -31,8 +33,13 @@ export default function DeleteConversationButton({
       return;
     }
 
-    setDeleting(true);
     setError(null);
+
+    if (onDeleted) {
+      onDeleted();
+    } else {
+      setDeleting(true);
+    }
 
     const res = await fetch("/api/admin/messages", {
       method: "POST",
@@ -41,14 +48,18 @@ export default function DeleteConversationButton({
     });
 
     if (!res.ok) {
-      setError("ลบไม่สำเร็จ กรุณาลองใหม่อีกครั้ง");
-      setDeleting(false);
+      if (onDeleted) {
+        router.refresh();
+      } else {
+        setError("ลบไม่สำเร็จ กรุณาลองใหม่อีกครั้ง");
+        setDeleting(false);
+      }
       return;
     }
 
     if (redirectAfter) {
       router.push("/admin");
-    } else {
+    } else if (!onDeleted) {
       router.refresh();
     }
   }

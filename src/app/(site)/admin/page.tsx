@@ -1,13 +1,6 @@
-import Link from "next/link";
 import { createAdminClient } from "@/lib/supabase/admin";
 import type { ContactMessage } from "@/lib/supabase/messages";
-import DeleteConversationButton from "./DeleteConversationButton";
-
-type Conversation = {
-  userId: string;
-  userName: string;
-  latestMessage: ContactMessage;
-};
+import AdminInboxList, { type Conversation } from "./AdminInboxList";
 
 export default async function AdminInboxPage() {
   const adminClient = createAdminClient();
@@ -48,35 +41,7 @@ export default async function AdminInboxPage() {
         กล่องข้อความ (แอดมิน)
       </h1>
 
-      {conversations.size === 0 ? (
-        <p className="rounded-xl border border-dashed border-stone-300 p-8 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
-          ยังไม่มีข้อความเข้ามา
-        </p>
-      ) : (
-        <div className="flex flex-col divide-y divide-stone-200 rounded-xl border border-stone-200 bg-white shadow-sm dark:divide-stone-800 dark:border-stone-800 dark:bg-stone-900">
-          {[...conversations.values()].map((c) => (
-            <div key={c.userId} className="flex items-center gap-2 p-2 transition hover:bg-emerald-50 dark:hover:bg-emerald-950">
-              <Link href={`/admin/${c.userId}`} className="flex min-w-0 flex-1 flex-col gap-1 p-2">
-                <div className="flex items-center justify-between gap-2">
-                  <span className="truncate font-medium text-stone-900 dark:text-stone-50">
-                    {c.userName}
-                  </span>
-                  <span className="shrink-0 text-xs text-stone-400">
-                    {new Date(c.latestMessage.created_at).toLocaleString("th-TH", {
-                      timeZone: "Asia/Bangkok",
-                    })}
-                  </span>
-                </div>
-                <p className="line-clamp-1 text-sm text-stone-500 dark:text-stone-400">
-                  {c.latestMessage.is_admin ? "คุณ: " : ""}
-                  {c.latestMessage.message}
-                </p>
-              </Link>
-              <DeleteConversationButton userId={c.userId} userName={c.userName} compact />
-            </div>
-          ))}
-        </div>
-      )}
+      <AdminInboxList initialConversations={[...conversations.values()]} />
     </div>
   );
 }

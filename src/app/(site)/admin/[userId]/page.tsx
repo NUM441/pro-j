@@ -2,7 +2,7 @@ import Link from "next/link";
 import { createAdminClient } from "@/lib/supabase/admin";
 import type { ContactMessage } from "@/lib/supabase/messages";
 import AdminReplyForm from "../AdminReplyForm";
-import AdminMessageBubble from "../AdminMessageBubble";
+import AdminMessageList from "../AdminMessageList";
 import DeleteConversationButton from "../DeleteConversationButton";
 
 export default async function AdminConversationPage({
@@ -46,11 +46,7 @@ export default async function AdminConversationPage({
         <DeleteConversationButton userId={userId} userName={currentName} redirectAfter />
       </div>
 
-      <div className="flex flex-col gap-2 rounded-xl border border-stone-200 bg-white p-4 shadow-sm dark:border-stone-800 dark:bg-stone-900">
-        {(messages ?? []).map((m) => (
-          <AdminMessageBubble key={m.id} message={m} />
-        ))}
-      </div>
+      <AdminMessageList initialMessages={messages ?? []} />
 
       <AdminReplyForm userId={userId} />
     </div>

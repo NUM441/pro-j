@@ -8,10 +8,12 @@ export default function DeleteRestaurantButton({
   restaurantId,
   ownerId,
   restaurantName,
+  onDeleted,
 }: {
   restaurantId: string;
   ownerId: string;
   restaurantName: string;
+  onDeleted?: () => void;
 }) {
   const router = useRouter();
   const [deleting, setDeleting] = useState(false);
@@ -22,8 +24,13 @@ export default function DeleteRestaurantButton({
       return;
     }
 
-    setDeleting(true);
     setError(null);
+
+    if (onDeleted) {
+      onDeleted();
+    } else {
+      setDeleting(true);
+    }
 
     const res = await fetch("/api/admin/restaurants", {
       method: "POST",
@@ -32,12 +39,18 @@ export default function DeleteRestaurantButton({
     });
 
     if (!res.ok) {
-      setError("ลบร้านไม่สำเร็จ กรุณาลองใหม่อีกครั้ง");
-      setDeleting(false);
+      if (onDeleted) {
+        router.refresh();
+      } else {
+        setError("ลบร้านไม่สำเร็จ กรุณาลองใหม่อีกครั้ง");
+        setDeleting(false);
+      }
       return;
     }
 
-    router.refresh();
+    if (!onDeleted) {
+      router.refresh();
+    }
   }
 
   return (

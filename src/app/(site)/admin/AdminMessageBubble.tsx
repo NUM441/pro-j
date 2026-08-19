@@ -2,27 +2,30 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import type { ContactMessage } from "@/lib/supabase/messages";
 
-export default function AdminMessageBubble({ message }: { message: ContactMessage }) {
+export default function AdminMessageBubble({
+  message,
+  onDeleted,
+}: {
+  message: ContactMessage;
+  onDeleted: () => void;
+}) {
   const router = useRouter();
-  const [deleting, setDeleting] = useState(false);
 
   async function handleDelete() {
     if (!confirm("ลบข้อความนี้ใช่ไหม? จะหายไปทั้งฝั่งแอดมินและลูกค้า")) return;
 
-    setDeleting(true);
+    onDeleted();
+
     const res = await fetch("/api/admin/messages", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ messageId: message.id }),
     });
 
-    if (res.ok) {
+    if (!res.ok) {
       router.refresh();
-    } else {
-      setDeleting(false);
     }
   }
 
@@ -43,9 +46,8 @@ export default function AdminMessageBubble({ message }: { message: ContactMessag
       <button
         type="button"
         onClick={handleDelete}
-        disabled={deleting}
         aria-label="ลบข้อความ"
-        className="absolute top-1 right-1 flex h-6 w-6 items-center justify-center rounded-full text-stone-400 hover:bg-black/10 hover:text-red-600 disabled:opacity-50 dark:hover:bg-white/10"
+        className="absolute top-1 right-1 flex h-6 w-6 items-center justify-center rounded-full text-stone-400 hover:bg-black/10 hover:text-red-600 dark:hover:bg-white/10"
       >
         ×
       </button>
