@@ -64,7 +64,9 @@ export default async function AdminInboxPage() {
                   {c.userName}
                 </span>
                 <span className="text-xs text-slate-400">
-                  {new Date(c.latestMessage.created_at).toLocaleString("th-TH")}
+                  {new Date(c.latestMessage.created_at).toLocaleString("th-TH", {
+                    timeZone: "Asia/Bangkok",
+                  })}
                 </span>
               </div>
               <p className="line-clamp-1 text-sm text-slate-500 dark:text-slate-400">

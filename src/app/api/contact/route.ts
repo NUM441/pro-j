@@ -42,19 +42,20 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "db_error" }, { status: 500 });
   }
 
-  const { data: prevMessage } = await supabase
+  const { data: history } = await supabase
     .from("contact_messages")
     .select("is_admin, sender_name")
     .eq("user_id", user.id)
     .neq("id", saved.id)
-    .order("created_at", { ascending: false })
-    .limit(1)
-    .maybeSingle();
+    .order("created_at", { ascending: false });
 
+  const hasRealAdminReply = (history ?? []).some(
+    (m) => m.is_admin && m.sender_name !== AUTO_REPLY_SENDER_NAME,
+  );
   const alreadyWaitingOnAutoReply =
-    prevMessage?.is_admin === true && prevMessage?.sender_name === AUTO_REPLY_SENDER_NAME;
+    history?.[0]?.is_admin === true && history[0].sender_name === AUTO_REPLY_SENDER_NAME;
 
-  if (!alreadyWaitingOnAutoReply) {
+  if (!hasRealAdminReply && !alreadyWaitingOnAutoReply) {
     const admin = await getPrimaryAdmin();
     if (admin) {
       await createAdminClient()

@@ -5,6 +5,7 @@ import { isAdmin } from "@/lib/supabase/admin";
 import { buttonClass } from "@/lib/buttonStyles";
 import ThemeToggle from "./ThemeToggle";
 import BackButton from "./BackButton";
+import LiveClock from "./LiveClock";
 
 export default async function Header() {
   const supabase = await createClient();
@@ -82,6 +83,7 @@ export default async function Header() {
               </Link>
             </>
           )}
+          <LiveClock />
           <ThemeToggle />
         </div>
       </div>
