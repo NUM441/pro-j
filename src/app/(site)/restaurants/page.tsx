@@ -44,15 +44,15 @@ export default async function RestaurantsPage({
 
   return (
     <main className="flex w-full flex-1 flex-col">
-      <section className="bg-stone-900">
-        <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 py-14 text-center sm:px-6">
-          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">ร้านอาหารในนครสวรรค์</h1>
-          <p className="text-sm text-stone-300">รวมร้านอาหารที่สมาชิกในชุมชนแนะนำ</p>
+      <section className="bg-gradient-to-br from-emerald-400 via-emerald-600 to-emerald-950">
+        <div className="mx-auto max-w-3xl space-y-4 px-4 py-14 text-center sm:px-6">
+          <h1 className="break-words text-4xl font-bold tracking-tight text-stone-950 sm:text-5xl">ร้านอาหารในนครสวรรค์</h1>
+          <p className="text-sm text-stone-900/80">รวมร้านอาหารที่สมาชิกในชุมชนแนะนำ</p>
           <SearchForm
             onDark
             defaultValue={q}
             category={category}
-            className="mt-2 flex w-full max-w-sm items-center justify-center gap-2"
+            className="mx-auto mt-2 w-full max-w-sm"
           />
         </div>
       </section>

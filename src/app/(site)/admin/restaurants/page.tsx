@@ -37,7 +37,7 @@ export default async function AdminRestaurantsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-50">ร้านอาหารทั้งหมด</h1>
+      <h1 className="text-3xl font-bold break-words tracking-tight text-stone-900 dark:text-stone-50">ร้านอาหารทั้งหมด</h1>
       <AdminRestaurantsList initialRestaurants={rows} />
     </div>
   );

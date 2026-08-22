@@ -26,7 +26,7 @@ export default async function OwnerApplicationsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-50">คำขอเป็นเจ้าของร้าน</h1>
+      <h1 className="text-3xl font-bold break-words tracking-tight text-stone-900 dark:text-stone-50">คำขอเป็นเจ้าของร้าน</h1>
 
       {!applications || applications.length === 0 ? (
         <div className="flex flex-col items-center gap-3 rounded-2xl bg-stone-50 p-10 text-center text-sm text-stone-500 dark:bg-stone-900 dark:text-stone-400">

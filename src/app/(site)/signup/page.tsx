@@ -45,7 +45,7 @@ export default function SignupPage() {
   if (submitted) {
     return (
       <main className="mx-auto flex min-h-[70vh] max-w-sm flex-col items-center justify-center gap-3 px-4 text-center">
-        <h1 className="text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-50">
+        <h1 className="text-3xl font-bold break-words tracking-tight text-stone-900 dark:text-stone-50">
           เช็คอีเมลของคุณ
         </h1>
         <p className="text-sm text-stone-500 dark:text-stone-400">
@@ -58,7 +58,7 @@ export default function SignupPage() {
   return (
     <main className="mx-auto flex min-h-[70vh] max-w-sm flex-col items-center justify-center gap-6 px-4">
       <div className="space-y-2 text-center">
-        <h1 className="text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-50">
+        <h1 className="text-3xl font-bold break-words tracking-tight text-stone-900 dark:text-stone-50">
           สมัครสมาชิก
         </h1>
         <p className="text-sm text-stone-500 dark:text-stone-400">

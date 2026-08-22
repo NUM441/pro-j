@@ -34,7 +34,7 @@ export default async function EditRestaurantPage({
 
   return (
     <main className="mx-auto flex max-w-lg flex-col gap-6 px-4 py-12">
-      <h1 className="text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-50">แก้ไขร้าน</h1>
+      <h1 className="text-3xl font-bold break-words tracking-tight text-stone-900 dark:text-stone-50">แก้ไขร้าน</h1>
       <RestaurantForm mode="edit" ownerId={user.id} restaurant={restaurant} />
     </main>
   );

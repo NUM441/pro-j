@@ -43,7 +43,7 @@ export default function OwnerApplicationForm({ rejected }: { rejected?: boolean 
   return (
     <div className="flex flex-col gap-4">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-50">สมัครเป็นเจ้าของร้าน</h1>
+        <h1 className="text-3xl font-bold break-words tracking-tight text-stone-900 dark:text-stone-50">สมัครเป็นเจ้าของร้าน</h1>
         <p className="text-sm text-stone-500 dark:text-stone-400">
           {rejected
             ? "คำขอก่อนหน้าของคุณถูกปฏิเสธ กรอกข้อมูลแล้วส่งคำขอใหม่ได้อีกครั้ง"

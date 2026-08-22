@@ -57,7 +57,7 @@ export default async function OwnerReservationsPage() {
 
   return (
     <main className="mx-auto flex max-w-2xl flex-col gap-6 px-4 py-12">
-      <h1 className="text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-50">การจองที่เข้ามา</h1>
+      <h1 className="text-3xl font-bold break-words tracking-tight text-stone-900 dark:text-stone-50">การจองที่เข้ามา</h1>
 
       {!reservations || reservations.length === 0 ? (
         <p className="rounded-2xl bg-stone-50 p-8 text-center text-sm text-stone-500 dark:bg-stone-900 dark:text-stone-400">

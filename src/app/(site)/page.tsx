@@ -1,7 +1,9 @@
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import type { RestaurantWithReviews } from "@/components/RestaurantCard";
 import RestaurantRow from "@/components/RestaurantRow";
 import SearchForm from "@/components/SearchForm";
+import HeroGraphic from "@/components/HeroGraphic";
 import { UtensilsCrossed } from "lucide-react";
 
 export default async function Home() {
@@ -12,7 +14,7 @@ export default async function Home() {
       .from("restaurants")
       .select("*, reviews(rating)")
       .order("created_at", { ascending: false })
-      .limit(12)
+      .limit(10)
       .returns<RestaurantWithReviews[]>(),
     supabase.auth.getUser(),
   ]);
@@ -28,19 +30,34 @@ export default async function Home() {
 
   return (
     <main className="flex flex-1 flex-col">
-      <section className="bg-stone-900">
-        <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 py-16 text-center sm:py-20">
-          <span className="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-medium text-stone-100 backdrop-blur-sm">
-            นครสวรรค์ / ปากน้ำโพ
-          </span>
-          <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl">
-            Nakhon Sawan Food Guide
-          </h1>
-          <p className="max-w-xl text-balance text-lg text-stone-300">
-            คู่มือร้านอาหารนครสวรรค์ รวมร้านเด็ด ของกิน และของฝาก
-            สำหรับนักท่องเที่ยว คนในพื้นที่ และนักเดินทางที่แวะผ่านเมืองปากน้ำโพ
-          </p>
-          <SearchForm onDark className="mt-2 flex w-full max-w-sm items-center justify-center gap-2" />
+      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-400 via-emerald-600 to-emerald-950">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24">
+          <div className="flex flex-col items-start gap-4 text-left">
+            <span className="rounded-full bg-black/10 px-3 py-1 text-xs font-medium text-stone-900 backdrop-blur-sm">
+              นครสวรรค์ / ปากน้ำโพ
+            </span>
+            <h1 className="text-4xl font-bold break-words tracking-tight text-stone-950 sm:text-5xl">
+              ร้านอาหารอร่อยทั่วนครสวรรค์
+              <br />
+              ค้นเจอง่าย ในไม่กี่วินาที
+            </h1>
+            <p className="max-w-md text-stone-900/80">
+              รวมร้านเด็ด ของกิน และของฝากในนครสวรรค์ ที่สมาชิกในชุมชนช่วยกันแนะนำ
+              ค้นหา รีวิว และบันทึกร้านโปรดได้ในที่เดียว
+            </p>
+            <div className="mt-2 flex w-full flex-col gap-3 sm:flex-row sm:items-center">
+              <SearchForm onDark className="w-full sm:w-auto" />
+              <Link
+                href="/restaurants"
+                className="rounded-full border border-stone-900/20 px-4 py-2 text-sm font-medium text-stone-900 transition hover:bg-black/10"
+              >
+                ดูร้านทั้งหมด
+              </Link>
+            </div>
+          </div>
+          <div className="relative mx-auto hidden aspect-square w-full max-w-md items-center justify-center lg:flex">
+            <HeroGraphic />
+          </div>
         </div>
       </section>
 

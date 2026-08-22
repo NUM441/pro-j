@@ -41,7 +41,7 @@ export default async function ProfilePage() {
           name={user.user_metadata?.full_name ?? user.email ?? ""}
         />
         <div className="flex flex-col gap-1">
-          <h1 className="text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-50">
+          <h1 className="text-3xl font-bold break-words tracking-tight text-stone-900 dark:text-stone-50">
             {user.user_metadata?.full_name ?? "โปรไฟล์ของฉัน"}
           </h1>
           <p className="text-sm text-stone-500 dark:text-stone-400">{user.email}</p>

@@ -33,7 +33,7 @@ export default function LiveClock() {
   });
 
   return (
-    <span className="hidden text-xs text-stone-400 sm:inline">
+    <span className="hidden text-xs text-stone-500 sm:inline dark:text-stone-400">
       {dateStr} {timeStr}
     </span>
   );
