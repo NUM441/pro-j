@@ -13,7 +13,7 @@ export default function BackButton() {
     <button
       type="button"
       onClick={() => router.back()}
-      className="flex items-center gap-1 text-sm font-medium text-stone-600 hover:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50"
+      className="flex items-center gap-1 text-sm font-medium text-stone-300 hover:text-white"
     >
       <ArrowLeft className="h-4 w-4" aria-hidden="true" /> ย้อนกลับ
     </button>

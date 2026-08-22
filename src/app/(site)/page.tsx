@@ -1,20 +1,32 @@
-import Link from "next/link";
-import { ArrowRight, UtensilsCrossed } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
-import RestaurantCard, { type RestaurantWithReviews } from "@/components/RestaurantCard";
+import { CATEGORIES } from "@/lib/supabase/restaurants";
+import type { RestaurantWithReviews } from "@/components/RestaurantCard";
+import RestaurantRow from "@/components/RestaurantRow";
 import SearchForm from "@/components/SearchForm";
+import { UtensilsCrossed } from "lucide-react";
 
 export default async function Home() {
   const supabase = await createClient();
-  const [{ data: restaurants }, { data: userData }] = await Promise.all([
+
+  const [{ data: latest }, ...categoryResults] = await Promise.all([
     supabase
       .from("restaurants")
       .select("*, reviews(rating)")
       .order("created_at", { ascending: false })
       .limit(12)
       .returns<RestaurantWithReviews[]>(),
-    supabase.auth.getUser(),
+    ...CATEGORIES.map((category) =>
+      supabase
+        .from("restaurants")
+        .select("*, reviews(rating)")
+        .contains("categories", [category])
+        .order("created_at", { ascending: false })
+        .limit(12)
+        .returns<RestaurantWithReviews[]>(),
+    ),
   ]);
+
+  const { data: userData } = await supabase.auth.getUser();
 
   let favoritedIds = new Set<string>();
   if (userData.user) {
@@ -25,57 +37,56 @@ export default async function Home() {
     favoritedIds = new Set((favorites ?? []).map((f) => f.restaurant_id));
   }
 
+  const hasAny = (latest?.length ?? 0) > 0 || categoryResults.some((r) => (r.data?.length ?? 0) > 0);
+
   return (
     <main className="flex flex-1 flex-col">
-      <section className="mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 py-16 text-center sm:py-24">
-        <span className="rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-stone-700 dark:bg-stone-800 dark:text-stone-300">
-          นครสวรรค์ / ปากน้ำโพ
-        </span>
-        <h1 className="text-5xl font-bold tracking-tight text-stone-900 sm:text-6xl dark:text-stone-50">
-          Nakhon Sawan Food Guide
-        </h1>
-        <p className="max-w-xl text-balance text-lg text-stone-500 dark:text-stone-400">
-          คู่มือร้านอาหารนครสวรรค์ รวมร้านเด็ด ของกิน และของฝาก
-          สำหรับนักท่องเที่ยว คนในพื้นที่ และนักเดินทางที่แวะผ่านเมืองปากน้ำโพ
-        </p>
-        <SearchForm className="mt-2 flex w-full max-w-sm items-center justify-center gap-2" />
+      <section className="bg-stone-900">
+        <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 py-16 text-center sm:py-20">
+          <span className="rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-medium text-stone-100 backdrop-blur-sm">
+            นครสวรรค์ / ปากน้ำโพ
+          </span>
+          <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl">
+            Nakhon Sawan Food Guide
+          </h1>
+          <p className="max-w-xl text-balance text-lg text-stone-300">
+            คู่มือร้านอาหารนครสวรรค์ รวมร้านเด็ด ของกิน และของฝาก
+            สำหรับนักท่องเที่ยว คนในพื้นที่ และนักเดินทางที่แวะผ่านเมืองปากน้ำโพ
+          </p>
+          <SearchForm onDark className="mt-2 flex w-full max-w-sm items-center justify-center gap-2" />
+        </div>
       </section>
 
-      <section className="w-full px-4 pb-24 sm:px-6">
-        {!restaurants || restaurants.length === 0 ? (
-          <div className="flex flex-col items-center gap-3 rounded-2xl bg-stone-50 p-10 text-center text-sm text-stone-500 dark:bg-stone-900 dark:text-stone-400">
+      <div className="flex flex-col gap-10 py-10">
+        {!hasAny ? (
+          <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-3 px-4 text-center text-sm text-stone-500 sm:px-6 dark:text-stone-400">
             <span className="flex h-12 w-12 items-center justify-center rounded-full bg-stone-100 dark:bg-stone-800">
               <UtensilsCrossed className="h-5 w-5 text-stone-400 dark:text-stone-500" />
             </span>
             รายชื่อร้านอาหารกำลังจะมาเร็ว ๆ นี้
           </div>
         ) : (
-          <div className="flex flex-col gap-5">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-stone-900 dark:text-stone-50">
-                ร้านล่าสุด
-              </h2>
-              <Link
-                href="/restaurants"
-                className="flex items-center gap-1 text-sm font-medium text-emerald-700 hover:underline dark:text-emerald-400"
-              >
-                ดูร้านทั้งหมด <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {restaurants.map((restaurant) => (
-                <RestaurantCard
-                  key={restaurant.id}
-                  restaurant={restaurant}
-                  currentUserId={userData.user?.id ?? null}
-                  isFavorited={favoritedIds.has(restaurant.id)}
-                  headingLevel="h3"
-                />
-              ))}
-            </div>
-          </div>
+          <>
+            <RestaurantRow
+              title="ร้านล่าสุด"
+              viewAllHref="/restaurants"
+              restaurants={latest ?? []}
+              currentUserId={userData.user?.id ?? null}
+              favoritedIds={favoritedIds}
+            />
+            {CATEGORIES.map((category, i) => (
+              <RestaurantRow
+                key={category}
+                title={category}
+                viewAllHref={`/restaurants?category=${encodeURIComponent(category)}`}
+                restaurants={categoryResults[i].data ?? []}
+                currentUserId={userData.user?.id ?? null}
+                favoritedIds={favoritedIds}
+              />
+            ))}
+          </>
         )}
-      </section>
+      </div>
     </main>
   );
 }

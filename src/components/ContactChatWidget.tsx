@@ -125,12 +125,12 @@ export default function ContactChatWidget() {
     <div className="fixed right-4 bottom-4 z-50 flex flex-col items-end gap-3">
       {open && (
         <div className="flex h-96 max-h-[calc(100vh-6rem)] w-80 max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-xl dark:border-stone-800 dark:bg-stone-900">
-          <div className="flex items-center justify-between border-b border-stone-200 bg-white px-4 py-3 dark:border-stone-800 dark:bg-stone-900">
-            <span className="text-sm font-semibold text-stone-900 dark:text-stone-50">ติดต่อแอดมิน</span>
+          <div className="flex items-center justify-between border-b border-stone-800 bg-stone-900 px-4 py-3">
+            <span className="text-sm font-semibold text-white">ติดต่อแอดมิน</span>
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="flex h-8 w-8 items-center justify-center rounded-full border border-stone-300 text-stone-500 hover:text-stone-900 dark:border-stone-700 dark:text-stone-400 dark:hover:text-stone-50"
+              className="flex h-8 w-8 items-center justify-center rounded-full border border-stone-700 text-stone-300 hover:text-white"
               aria-label="ปิด"
             >
               <X className="h-4 w-4" />

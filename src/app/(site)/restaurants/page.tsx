@@ -43,63 +43,65 @@ export default async function RestaurantsPage({
   const qSuffix = q ? `&q=${encodeURIComponent(q)}` : "";
 
   return (
-    <main className="flex w-full flex-1 flex-col gap-6 px-4 py-12 sm:px-6">
-      <div className="text-center">
-        <h1 className="text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-50">ร้านอาหารในนครสวรรค์</h1>
-        <p className="text-sm text-stone-500 dark:text-stone-400">
-          รวมร้านอาหารที่สมาชิกในชุมชนแนะนำ
-        </p>
-      </div>
-
-      <SearchForm
-        defaultValue={q}
-        category={category}
-        className="mx-auto flex w-full max-w-sm items-center justify-center gap-2"
-      />
-
-      <div className="flex flex-wrap justify-center gap-2">
-        <Link href={q ? `/restaurants?q=${encodeURIComponent(q)}` : "/restaurants"} className={chipClass(!category)}>
-          ทั้งหมด
-        </Link>
-        {CATEGORIES.map((c) => (
-          <Link
-            key={c}
-            href={`/restaurants?category=${encodeURIComponent(c)}${qSuffix}`}
-            className={chipClass(category === c)}
-          >
-            {c}
-          </Link>
-        ))}
-      </div>
-
-      {!restaurants || restaurants.length === 0 ? (
-        <div className="flex flex-col items-center gap-3 rounded-2xl bg-stone-50 p-10 text-center text-sm text-stone-500 dark:bg-stone-900 dark:text-stone-400">
-          {q ? (
-            `ไม่พบร้านที่ชื่อตรงกับ "${q}"`
-          ) : category ? (
-            `ยังไม่มีร้านในหมวด "${category}"`
-          ) : (
-            <>
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-stone-100 dark:bg-stone-800">
-                <UtensilsCrossed className="h-5 w-5 text-stone-400 dark:text-stone-500" />
-              </span>
-              ยังไม่มีร้านอาหารในระบบ
-            </>
-          )}
+    <main className="flex w-full flex-1 flex-col">
+      <section className="bg-stone-900">
+        <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 py-14 text-center sm:px-6">
+          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">ร้านอาหารในนครสวรรค์</h1>
+          <p className="text-sm text-stone-300">รวมร้านอาหารที่สมาชิกในชุมชนแนะนำ</p>
+          <SearchForm
+            onDark
+            defaultValue={q}
+            category={category}
+            className="mt-2 flex w-full max-w-sm items-center justify-center gap-2"
+          />
         </div>
-      ) : (
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {restaurants.map((restaurant) => (
-            <RestaurantCard
-              key={restaurant.id}
-              restaurant={restaurant}
-              currentUserId={userData.user?.id ?? null}
-              isFavorited={favoritedIds.has(restaurant.id)}
-              headingLevel="h2"
-            />
+      </section>
+
+      <div className="flex flex-col gap-6 px-4 py-10 sm:px-6">
+        <div className="flex flex-wrap justify-center gap-2">
+          <Link href={q ? `/restaurants?q=${encodeURIComponent(q)}` : "/restaurants"} className={chipClass(!category)}>
+            ทั้งหมด
+          </Link>
+          {CATEGORIES.map((c) => (
+            <Link
+              key={c}
+              href={`/restaurants?category=${encodeURIComponent(c)}${qSuffix}`}
+              className={chipClass(category === c)}
+            >
+              {c}
+            </Link>
           ))}
         </div>
-      )}
+
+        {!restaurants || restaurants.length === 0 ? (
+          <div className="flex flex-col items-center gap-3 rounded-2xl bg-stone-50 p-10 text-center text-sm text-stone-500 dark:bg-stone-900 dark:text-stone-400">
+            {q ? (
+              `ไม่พบร้านที่ชื่อตรงกับ "${q}"`
+            ) : category ? (
+              `ยังไม่มีร้านในหมวด "${category}"`
+            ) : (
+              <>
+                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-stone-100 dark:bg-stone-800">
+                  <UtensilsCrossed className="h-5 w-5 text-stone-400 dark:text-stone-500" />
+                </span>
+                ยังไม่มีร้านอาหารในระบบ
+              </>
+            )}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {restaurants.map((restaurant) => (
+              <RestaurantCard
+                key={restaurant.id}
+                restaurant={restaurant}
+                currentUserId={userData.user?.id ?? null}
+                isFavorited={favoritedIds.has(restaurant.id)}
+                headingLevel="h2"
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </main>
   );
 }
