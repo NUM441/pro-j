@@ -1,5 +1,4 @@
 import { createClient } from "@/lib/supabase/server";
-import { CATEGORIES } from "@/lib/supabase/restaurants";
 import type { RestaurantWithReviews } from "@/components/RestaurantCard";
 import RestaurantRow from "@/components/RestaurantRow";
 import SearchForm from "@/components/SearchForm";
@@ -8,25 +7,15 @@ import { UtensilsCrossed } from "lucide-react";
 export default async function Home() {
   const supabase = await createClient();
 
-  const [{ data: latest }, ...categoryResults] = await Promise.all([
+  const [{ data: latest }, { data: userData }] = await Promise.all([
     supabase
       .from("restaurants")
       .select("*, reviews(rating)")
       .order("created_at", { ascending: false })
       .limit(12)
       .returns<RestaurantWithReviews[]>(),
-    ...CATEGORIES.map((category) =>
-      supabase
-        .from("restaurants")
-        .select("*, reviews(rating)")
-        .contains("categories", [category])
-        .order("created_at", { ascending: false })
-        .limit(12)
-        .returns<RestaurantWithReviews[]>(),
-    ),
+    supabase.auth.getUser(),
   ]);
-
-  const { data: userData } = await supabase.auth.getUser();
 
   let favoritedIds = new Set<string>();
   if (userData.user) {
@@ -36,8 +25,6 @@ export default async function Home() {
       .eq("user_id", userData.user.id);
     favoritedIds = new Set((favorites ?? []).map((f) => f.restaurant_id));
   }
-
-  const hasAny = (latest?.length ?? 0) > 0 || categoryResults.some((r) => (r.data?.length ?? 0) > 0);
 
   return (
     <main className="flex flex-1 flex-col">
@@ -57,8 +44,8 @@ export default async function Home() {
         </div>
       </section>
 
-      <div className="flex flex-col gap-10 py-10">
-        {!hasAny ? (
+      <div className="py-10">
+        {!latest || latest.length === 0 ? (
           <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-3 px-4 text-center text-sm text-stone-500 sm:px-6 dark:text-stone-400">
             <span className="flex h-12 w-12 items-center justify-center rounded-full bg-stone-100 dark:bg-stone-800">
               <UtensilsCrossed className="h-5 w-5 text-stone-400 dark:text-stone-500" />
@@ -66,25 +53,13 @@ export default async function Home() {
             รายชื่อร้านอาหารกำลังจะมาเร็ว ๆ นี้
           </div>
         ) : (
-          <>
-            <RestaurantRow
-              title="ร้านล่าสุด"
-              viewAllHref="/restaurants"
-              restaurants={latest ?? []}
-              currentUserId={userData.user?.id ?? null}
-              favoritedIds={favoritedIds}
-            />
-            {CATEGORIES.map((category, i) => (
-              <RestaurantRow
-                key={category}
-                title={category}
-                viewAllHref={`/restaurants?category=${encodeURIComponent(category)}`}
-                restaurants={categoryResults[i].data ?? []}
-                currentUserId={userData.user?.id ?? null}
-                favoritedIds={favoritedIds}
-              />
-            ))}
-          </>
+          <RestaurantRow
+            title="ร้านล่าสุด"
+            viewAllHref="/restaurants"
+            restaurants={latest}
+            currentUserId={userData.user?.id ?? null}
+            favoritedIds={favoritedIds}
+          />
         )}
       </div>
     </main>
