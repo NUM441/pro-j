@@ -88,7 +88,7 @@ export default function ProfileNameEditor({
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="rounded-lg border border-stone-300 px-3 py-1.5 text-sm outline-none focus:border-emerald-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+          className="rounded-lg border border-stone-300 px-3 py-1.5 text-sm outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:focus:ring-emerald-500/20"
         />
         <button type="button" onClick={handleSave} disabled={saving} className={buttonClass("primary", "sm")}>
           {saving ? "กำลังบันทึก..." : "บันทึก"}

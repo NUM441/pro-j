@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Inbox } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { Conversation } from "@/lib/supabase/messages";
 import DeleteConversationButton from "./DeleteConversationButton";
@@ -26,18 +27,21 @@ export default function AdminInboxList({ initialConversations }: { initialConver
 
   if (conversations.length === 0) {
     return (
-      <p className="rounded-xl border border-dashed border-stone-300 p-8 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
+      <div className="flex flex-col items-center gap-3 rounded-2xl bg-stone-50 p-10 text-center text-sm text-stone-500 dark:bg-stone-900 dark:text-stone-400">
+        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-stone-100 dark:bg-stone-800">
+          <Inbox className="h-5 w-5 text-stone-400 dark:text-stone-500" />
+        </span>
         ยังไม่มีข้อความเข้ามา
-      </p>
+      </div>
     );
   }
 
   return (
-    <div className="flex flex-col divide-y divide-stone-200 rounded-xl border border-stone-200 bg-white shadow-sm dark:divide-stone-800 dark:border-stone-800 dark:bg-stone-900">
+    <div className="flex flex-col divide-y divide-stone-200 rounded-xl border border-stone-200 bg-white dark:divide-stone-800 dark:border-stone-800 dark:bg-stone-900">
       {conversations.map((c) => (
         <div
           key={c.userId}
-          className="flex items-center gap-2 p-2 transition hover:bg-emerald-50 dark:hover:bg-emerald-950"
+          className="flex items-center gap-2 p-2 transition hover:bg-stone-50 dark:hover:bg-stone-800"
         >
           <Link href={`/admin/${c.userId}`} className="flex min-w-0 flex-1 flex-col gap-1 p-2">
             <div className="flex items-center justify-between gap-2">

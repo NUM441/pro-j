@@ -26,7 +26,7 @@ export default function ForgotPasswordPage() {
   if (submitted) {
     return (
       <main className="mx-auto flex min-h-[70vh] max-w-sm flex-col items-center justify-center gap-3 px-4 text-center">
-        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">
+        <h1 className="text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-50">
           เช็คอีเมลของคุณ
         </h1>
         <p className="text-sm text-stone-500 dark:text-stone-400">
@@ -39,7 +39,7 @@ export default function ForgotPasswordPage() {
   return (
     <main className="mx-auto flex min-h-[70vh] max-w-sm flex-col items-center justify-center gap-6 px-4">
       <div className="space-y-2 text-center">
-        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">
+        <h1 className="text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-50">
           ลืมรหัสผ่าน
         </h1>
         <p className="text-sm text-stone-500 dark:text-stone-400">
@@ -59,7 +59,7 @@ export default function ForgotPasswordPage() {
             autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:focus:ring-emerald-500/20"
           />
         </div>
 

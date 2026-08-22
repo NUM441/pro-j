@@ -20,7 +20,7 @@ export default function SearchForm({
           name="q"
           defaultValue={defaultValue ?? ""}
           placeholder="ค้นหาชื่อร้าน..."
-          className="w-full rounded-full border border-stone-300 py-2 pr-4 pl-10 text-sm outline-none focus:border-emerald-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+          className="w-full rounded-full border border-stone-300 py-2 pr-4 pl-10 text-sm outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:focus:ring-emerald-500/20"
         />
       </div>
       <button type="submit" className={chipClass(false)}>

@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import ContactChatWidget from "@/components/ContactChatWidget";
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
@@ -6,6 +7,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
     <>
       <Header />
       {children}
+      <Footer />
       <ContactChatWidget />
     </>
   );

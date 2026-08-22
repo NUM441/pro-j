@@ -101,7 +101,7 @@ export default function AdminReplyForm({ userId }: { userId: string }) {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         placeholder="พิมพ์ข้อความตอบกลับ..."
-        className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-emerald-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+        className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:focus:ring-emerald-500/20"
       />
       {error && <p className="text-sm text-red-500">{error}</p>}
       <div className="flex items-center gap-3">

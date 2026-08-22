@@ -85,7 +85,7 @@ export default function WelcomeImageForm({
           <Image src={preview} alt="รูปหน้า Welcome" fill className="object-cover" unoptimized />
         </div>
       ) : (
-        <p className="rounded-xl border border-dashed border-stone-300 p-8 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
+        <p className="rounded-2xl bg-stone-50 p-8 text-center text-sm text-stone-500 dark:bg-stone-900 dark:text-stone-400">
           ยังไม่ได้ตั้งรูป — หน้า Welcome จะแสดงไอคอนแทน
         </p>
       )}

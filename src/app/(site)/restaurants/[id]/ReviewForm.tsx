@@ -37,7 +37,7 @@ export default function ReviewForm({
 
   if (!currentUserId) {
     return (
-      <p className="rounded-xl border border-dashed border-stone-300 p-6 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
+      <p className="rounded-2xl bg-stone-50 p-6 text-center text-sm text-stone-500 dark:bg-stone-900 dark:text-stone-400">
         <Link href="/welcome" className="font-medium text-emerald-700 hover:underline dark:text-emerald-400">
           เข้าสู่ระบบ
         </Link>{" "}
@@ -136,7 +136,7 @@ export default function ReviewForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-xl border border-stone-200 bg-white p-4 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-xl border border-stone-200 bg-white p-4 dark:border-stone-800 dark:bg-stone-900">
       <div className="flex items-center gap-2">
         <span className="text-sm font-medium text-stone-700 dark:text-stone-300">ให้คะแนน</span>
         <StarRating rating={rating} size="md" onRate={setRating} />
@@ -148,7 +148,7 @@ export default function ReviewForm({
         placeholder="เล่าประสบการณ์ของคุณที่ร้านนี้..."
         value={comment}
         onChange={(e) => setComment(e.target.value)}
-        className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+        className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:focus:ring-emerald-500/20"
       />
 
       <div className="flex flex-col gap-1.5">
@@ -166,7 +166,12 @@ export default function ReviewForm({
             </button>
           </div>
         ) : (
-          <input type="file" accept="image/*" onChange={handlePhotoChange} className="text-sm" />
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handlePhotoChange}
+            className="text-sm text-stone-500 file:mr-3 file:rounded-full file:border file:border-stone-300 file:bg-white file:px-4 file:py-2 file:text-sm file:font-medium file:text-stone-700 hover:file:bg-stone-50 dark:text-stone-400 dark:file:border-stone-700 dark:file:bg-stone-900 dark:file:text-stone-200 dark:hover:file:bg-stone-800"
+          />
         )}
       </div>
 

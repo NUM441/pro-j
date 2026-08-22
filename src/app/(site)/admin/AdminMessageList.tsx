@@ -30,7 +30,7 @@ export default function AdminMessageList({
   }, [userId]);
 
   return (
-    <div className="flex flex-col gap-2 rounded-xl border border-stone-200 bg-white p-4 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+    <div className="flex flex-col gap-2 rounded-xl border border-stone-200 bg-white p-4 dark:border-stone-800 dark:bg-stone-900">
       {messages.map((m) => (
         <AdminMessageBubble
           key={m.id}

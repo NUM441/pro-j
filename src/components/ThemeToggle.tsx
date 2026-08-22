@@ -25,7 +25,7 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label="สลับโหมดมืด/สว่าง"
-      className="flex h-10 w-10 items-center justify-center rounded-full border border-stone-300 transition hover:bg-emerald-50 dark:border-stone-700 dark:hover:bg-emerald-950"
+      className="flex h-10 w-10 items-center justify-center rounded-full border border-stone-300 transition hover:bg-stone-100 dark:border-stone-700 dark:hover:bg-stone-800"
     >
       {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
     </button>

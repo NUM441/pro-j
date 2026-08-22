@@ -67,7 +67,7 @@ export default async function RestaurantDetailPage({
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <div className="flex min-w-0 items-center gap-2">
-            <h1 className="truncate text-2xl font-bold text-stone-900 dark:text-stone-50">
+            <h1 className="truncate text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-50">
               {restaurant.name}
             </h1>
             {userData.user && (
@@ -91,7 +91,7 @@ export default async function RestaurantDetailPage({
               {restaurant.categories.map((c) => (
                 <span
                   key={c}
-                  className="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300"
+                  className="rounded-full bg-stone-100 px-2 py-0.5 text-xs font-medium text-stone-700 dark:bg-stone-800 dark:text-stone-300"
                 >
                   {c}
                 </span>

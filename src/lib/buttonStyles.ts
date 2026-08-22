@@ -12,7 +12,7 @@ const variants: Record<Variant, string> = {
   primary:
     "border border-emerald-700 bg-emerald-700 text-white hover:bg-emerald-600 dark:border-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-500",
   secondary:
-    "border border-stone-300 text-stone-700 hover:bg-emerald-50 dark:border-stone-700 dark:text-stone-200 dark:hover:bg-emerald-950",
+    "border border-stone-300 text-stone-700 hover:bg-stone-100 dark:border-stone-700 dark:text-stone-200 dark:hover:bg-stone-800",
   danger:
     "border border-red-300 text-red-600 hover:bg-red-50 dark:border-red-900 dark:text-red-400 dark:hover:bg-red-950",
 };
@@ -24,7 +24,7 @@ export function buttonClass(variant: Variant = "primary", size: Size = "md") {
 export function chipClass(active: boolean) {
   return active
     ? "rounded-full border border-emerald-700 bg-emerald-700 px-3 py-2 text-sm font-medium text-white dark:border-emerald-600 dark:bg-emerald-600"
-    : "rounded-full border border-stone-300 px-3 py-2 text-sm text-stone-600 hover:bg-emerald-50 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-emerald-950";
+    : "rounded-full border border-stone-300 px-3 py-2 text-sm text-stone-600 hover:bg-stone-100 dark:border-stone-700 dark:text-stone-300 dark:hover:bg-stone-800";
 }
 
 export function badgeClass() {

@@ -25,7 +25,7 @@ export default function RestaurantCard({
   return (
     <Link
       href={`/restaurants/${restaurant.id}`}
-      className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition duration-300 hover:shadow-xl dark:bg-stone-900"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white transition duration-300 hover:-translate-y-0.5 hover:shadow-lg dark:border-stone-800 dark:bg-stone-900"
     >
       <div className="relative aspect-[4/3] w-full">
         <Image

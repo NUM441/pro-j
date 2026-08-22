@@ -199,7 +199,7 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
           required
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+          className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:focus:ring-emerald-500/20"
         />
       </div>
 
@@ -213,7 +213,7 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
           rows={4}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+          className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:focus:ring-emerald-500/20"
         />
       </div>
 
@@ -247,7 +247,7 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
           placeholder="https://maps.app.goo.gl/..."
           value={googleMapsUrl}
           onChange={(e) => setGoogleMapsUrl(e.target.value)}
-          className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+          className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:focus:ring-emerald-500/20"
         />
       </div>
 
@@ -258,7 +258,12 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
             <Image src={coverPreviewUrl} alt="รูปหน้าร้าน" fill className="object-cover" unoptimized />
           </div>
         )}
-        <input type="file" accept="image/*" onChange={handleCoverChange} className="text-sm" />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleCoverChange}
+          className="text-sm text-stone-500 file:mr-3 file:rounded-full file:border file:border-stone-300 file:bg-white file:px-4 file:py-2 file:text-sm file:font-medium file:text-stone-700 hover:file:bg-stone-50 dark:text-stone-400 dark:file:border-stone-700 dark:file:bg-stone-900 dark:file:text-stone-200 dark:hover:file:bg-stone-800"
+        />
       </div>
 
       <div className="flex flex-col gap-1.5">
@@ -294,7 +299,7 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
             accept="image/*"
             multiple
             onChange={handleFoodFilesChange}
-            className="text-sm"
+            className="text-sm text-stone-500 file:mr-3 file:rounded-full file:border file:border-stone-300 file:bg-white file:px-4 file:py-2 file:text-sm file:font-medium file:text-stone-700 hover:file:bg-stone-50 dark:text-stone-400 dark:file:border-stone-700 dark:file:bg-stone-900 dark:file:text-stone-200 dark:hover:file:bg-stone-800"
           />
         )}
       </div>

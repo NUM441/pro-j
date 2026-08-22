@@ -24,7 +24,7 @@ export default function ReservationForm({ restaurantId, currentUserId, currentUs
 
   if (!currentUserId) {
     return (
-      <p className="rounded-xl border border-dashed border-stone-300 p-4 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
+      <p className="rounded-2xl bg-stone-50 p-4 text-center text-sm text-stone-500 dark:bg-stone-900 dark:text-stone-400">
         <Link href="/welcome" className="font-medium text-emerald-700 hover:underline dark:text-emerald-400">
           เข้าสู่ระบบ
         </Link>{" "}
@@ -81,7 +81,7 @@ export default function ReservationForm({ restaurantId, currentUserId, currentUs
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-xl border border-stone-200 bg-white p-4 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-xl border border-stone-200 bg-white p-4 dark:border-stone-800 dark:bg-stone-900">
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
           <label htmlFor="date" className="text-sm font-medium text-stone-700 dark:text-stone-300">
@@ -93,7 +93,7 @@ export default function ReservationForm({ restaurantId, currentUserId, currentUs
             required
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-emerald-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:focus:ring-emerald-500/20"
           />
         </div>
         <div className="flex flex-col gap-1.5">
@@ -106,7 +106,7 @@ export default function ReservationForm({ restaurantId, currentUserId, currentUs
             required
             value={time}
             onChange={(e) => setTime(e.target.value)}
-            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-emerald-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:focus:ring-emerald-500/20"
           />
         </div>
       </div>
@@ -123,7 +123,7 @@ export default function ReservationForm({ restaurantId, currentUserId, currentUs
             required
             value={partySize}
             onChange={(e) => setPartySize(Number(e.target.value))}
-            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-emerald-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:focus:ring-emerald-500/20"
           />
         </div>
         <div className="flex flex-col gap-1.5">
@@ -136,7 +136,7 @@ export default function ReservationForm({ restaurantId, currentUserId, currentUs
             required
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-emerald-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+            className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:focus:ring-emerald-500/20"
           />
         </div>
       </div>
@@ -150,7 +150,7 @@ export default function ReservationForm({ restaurantId, currentUserId, currentUs
           rows={2}
           value={note}
           onChange={(e) => setNote(e.target.value)}
-          className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none focus:border-emerald-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+          className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:focus:ring-emerald-500/20"
         />
       </div>
 

@@ -41,7 +41,7 @@ export default async function ProfilePage() {
           name={user.user_metadata?.full_name ?? user.email ?? ""}
         />
         <div className="flex flex-col gap-1">
-          <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">
+          <h1 className="text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-50">
             {user.user_metadata?.full_name ?? "โปรไฟล์ของฉัน"}
           </h1>
           <p className="text-sm text-stone-500 dark:text-stone-400">{user.email}</p>
@@ -75,7 +75,7 @@ export default async function ProfilePage() {
         </div>
 
         {!restaurants || restaurants.length === 0 ? (
-          <p className="rounded-xl border border-dashed border-stone-300 p-8 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
+          <p className="rounded-2xl bg-stone-50 p-8 text-center text-sm text-stone-500 dark:bg-stone-900 dark:text-stone-400">
             คุณยังไม่ได้ลงร้านอาหาร กดปุ่ม &quot;เพิ่มร้านใหม่&quot; เพื่อเริ่มต้น
           </p>
         ) : (
@@ -84,7 +84,7 @@ export default async function ProfilePage() {
               <Link
                 key={restaurant.id}
                 href={`/profile/restaurants/${restaurant.id}/edit`}
-                className="flex items-center gap-3 rounded-xl border border-stone-200 bg-white p-3 shadow-sm transition hover:bg-stone-50 dark:border-stone-800 dark:bg-stone-900 dark:hover:bg-stone-800"
+                className="flex items-center gap-3 rounded-xl border border-stone-200 bg-white p-3 transition hover:bg-stone-50 hover:shadow-sm dark:border-stone-800 dark:bg-stone-900 dark:hover:bg-stone-800"
               >
                 <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
                   <Image
@@ -111,7 +111,7 @@ export default async function ProfilePage() {
         <h2 className="text-lg font-semibold text-stone-900 dark:text-stone-50">รายการโปรด</h2>
 
         {!myFavorites || myFavorites.length === 0 ? (
-          <p className="rounded-xl border border-dashed border-stone-300 p-8 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
+          <p className="rounded-2xl bg-stone-50 p-8 text-center text-sm text-stone-500 dark:bg-stone-900 dark:text-stone-400">
             คุณยังไม่มีร้านโปรด กดรูปหัวใจที่การ์ดร้านหรือหน้าร้านเพื่อบันทึกไว้
           </p>
         ) : (
@@ -122,7 +122,7 @@ export default async function ProfilePage() {
                 <Link
                   key={f.restaurant_id}
                   href={`/restaurants/${f.restaurant_id}`}
-                  className="flex items-center gap-3 rounded-xl border border-stone-200 bg-white p-3 shadow-sm transition hover:bg-stone-50 dark:border-stone-800 dark:bg-stone-900 dark:hover:bg-stone-800"
+                  className="flex items-center gap-3 rounded-xl border border-stone-200 bg-white p-3 transition hover:bg-stone-50 hover:shadow-sm dark:border-stone-800 dark:bg-stone-900 dark:hover:bg-stone-800"
                 >
                   <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
                     <Image

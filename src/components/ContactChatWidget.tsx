@@ -125,12 +125,12 @@ export default function ContactChatWidget() {
     <div className="fixed right-4 bottom-4 z-50 flex flex-col items-end gap-3">
       {open && (
         <div className="flex h-96 max-h-[calc(100vh-6rem)] w-80 max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-xl dark:border-stone-800 dark:bg-stone-900">
-          <div className="flex items-center justify-between border-b border-stone-200 bg-emerald-700 px-4 py-3 dark:border-stone-800">
-            <span className="text-sm font-semibold text-white">ติดต่อแอดมิน</span>
+          <div className="flex items-center justify-between border-b border-stone-200 bg-white px-4 py-3 dark:border-stone-800 dark:bg-stone-900">
+            <span className="text-sm font-semibold text-stone-900 dark:text-stone-50">ติดต่อแอดมิน</span>
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="flex h-8 w-8 items-center justify-center rounded-full border border-white/40 text-white/80 hover:text-white"
+              className="flex h-8 w-8 items-center justify-center rounded-full border border-stone-300 text-stone-500 hover:text-stone-900 dark:border-stone-700 dark:text-stone-400 dark:hover:text-stone-50"
               aria-label="ปิด"
             >
               <X className="h-4 w-4" />
@@ -204,7 +204,7 @@ export default function ContactChatWidget() {
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                     placeholder="พิมพ์ข้อความ..."
-                    className="flex-1 rounded-full border border-stone-300 px-3 py-2 text-sm outline-none focus:border-emerald-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+                    className="flex-1 rounded-full border border-stone-300 px-3 py-2 text-sm outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:focus:ring-emerald-500/20"
                   />
                   <button type="submit" disabled={sending} className={buttonClass("primary", "sm")}>
                     ส่ง

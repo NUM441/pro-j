@@ -1,3 +1,4 @@
+import { Store } from "lucide-react";
 import { createAdminClient } from "@/lib/supabase/admin";
 import type { OwnerApplication } from "@/lib/supabase/owner-applications";
 import OwnerApplicationActions from "./OwnerApplicationActions";
@@ -25,16 +26,19 @@ export default async function OwnerApplicationsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">คำขอเป็นเจ้าของร้าน</h1>
+      <h1 className="text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-50">คำขอเป็นเจ้าของร้าน</h1>
 
       {!applications || applications.length === 0 ? (
-        <p className="rounded-xl border border-dashed border-stone-300 p-8 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
+        <div className="flex flex-col items-center gap-3 rounded-2xl bg-stone-50 p-10 text-center text-sm text-stone-500 dark:bg-stone-900 dark:text-stone-400">
+          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-stone-100 dark:bg-stone-800">
+            <Store className="h-5 w-5 text-stone-400 dark:text-stone-500" />
+          </span>
           ยังไม่มีคำขอเข้ามา
-        </p>
+        </div>
       ) : (
         <div className="flex flex-col gap-4">
           {applications.map((a) => (
-            <div key={a.id} className="flex flex-col gap-2 rounded-xl border border-stone-200 bg-white p-4 shadow-sm dark:border-stone-800 dark:bg-stone-900">
+            <div key={a.id} className="flex flex-col gap-2 rounded-xl border border-stone-200 bg-white p-4 dark:border-stone-800 dark:bg-stone-900">
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="font-semibold text-stone-900 dark:text-stone-50">{a.restaurant_name}</p>

@@ -28,13 +28,13 @@ export default async function Home() {
   return (
     <main className="flex flex-1 flex-col">
       <section className="mx-auto flex max-w-3xl flex-col items-center gap-4 px-4 py-16 text-center sm:py-24">
-        <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">
+        <span className="rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-stone-700 dark:bg-stone-800 dark:text-stone-300">
           นครสวรรค์ / ปากน้ำโพ
         </span>
-        <h1 className="text-4xl font-bold tracking-tight text-stone-900 sm:text-5xl dark:text-stone-50">
+        <h1 className="text-5xl font-bold tracking-tight text-stone-900 sm:text-6xl dark:text-stone-50">
           Nakhon Sawan Food Guide
         </h1>
-        <p className="max-w-xl text-balance text-stone-600 dark:text-stone-400">
+        <p className="max-w-xl text-balance text-lg text-stone-500 dark:text-stone-400">
           คู่มือร้านอาหารนครสวรรค์ รวมร้านเด็ด ของกิน และของฝาก
           สำหรับนักท่องเที่ยว คนในพื้นที่ และนักเดินทางที่แวะผ่านเมืองปากน้ำโพ
         </p>
@@ -43,8 +43,10 @@ export default async function Home() {
 
       <section className="w-full px-4 pb-24 sm:px-6">
         {!restaurants || restaurants.length === 0 ? (
-          <div className="flex flex-col items-center gap-2 rounded-2xl border border-dashed border-stone-300 p-10 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
-            <UtensilsCrossed className="h-6 w-6" />
+          <div className="flex flex-col items-center gap-3 rounded-2xl bg-stone-50 p-10 text-center text-sm text-stone-500 dark:bg-stone-900 dark:text-stone-400">
+            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-stone-100 dark:bg-stone-800">
+              <UtensilsCrossed className="h-5 w-5 text-stone-400 dark:text-stone-500" />
+            </span>
             รายชื่อร้านอาหารกำลังจะมาเร็ว ๆ นี้
           </div>
         ) : (

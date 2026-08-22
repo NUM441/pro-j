@@ -44,7 +44,7 @@ export default async function AdminConversationPage({
           >
             <ArrowLeft className="h-4 w-4" /> กลับไปกล่องข้อความ
           </Link>
-          <h1 className="truncate text-2xl font-bold text-stone-900 dark:text-stone-50">{currentName}</h1>
+          <h1 className="truncate text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-50">{currentName}</h1>
           <p className="truncate text-sm text-stone-500 dark:text-stone-400">{currentEmail}</p>
         </div>
         <DeleteConversationButton userId={userId} userName={currentName} redirectAfter />

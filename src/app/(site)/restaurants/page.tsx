@@ -43,9 +43,9 @@ export default async function RestaurantsPage({
   const qSuffix = q ? `&q=${encodeURIComponent(q)}` : "";
 
   return (
-    <main className="flex w-full flex-col gap-6 px-4 py-12 sm:px-6">
+    <main className="flex w-full flex-1 flex-col gap-6 px-4 py-12 sm:px-6">
       <div className="text-center">
-        <h1 className="text-2xl font-bold text-stone-900 dark:text-stone-50">ร้านอาหารในนครสวรรค์</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-stone-900 dark:text-stone-50">ร้านอาหารในนครสวรรค์</h1>
         <p className="text-sm text-stone-500 dark:text-stone-400">
           รวมร้านอาหารที่สมาชิกในชุมชนแนะนำ
         </p>
@@ -73,14 +73,16 @@ export default async function RestaurantsPage({
       </div>
 
       {!restaurants || restaurants.length === 0 ? (
-        <div className="flex flex-col items-center gap-2 rounded-2xl border border-dashed border-stone-300 p-10 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
+        <div className="flex flex-col items-center gap-3 rounded-2xl bg-stone-50 p-10 text-center text-sm text-stone-500 dark:bg-stone-900 dark:text-stone-400">
           {q ? (
             `ไม่พบร้านที่ชื่อตรงกับ "${q}"`
           ) : category ? (
             `ยังไม่มีร้านในหมวด "${category}"`
           ) : (
             <>
-              <UtensilsCrossed className="h-6 w-6" />
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-stone-100 dark:bg-stone-800">
+                <UtensilsCrossed className="h-5 w-5 text-stone-400 dark:text-stone-500" />
+              </span>
               ยังไม่มีร้านอาหารในระบบ
             </>
           )}

@@ -18,7 +18,7 @@ export default function StarRating({ rating, size = "sm", onRate }: Props) {
     <span className={`inline-flex ${gap} leading-none`}>
       {STARS.map((star) => {
         const filled = star <= Math.round(rating);
-        const color = filled ? "fill-orange-500 text-orange-500" : "fill-none text-stone-300 dark:text-stone-600";
+        const color = filled ? "fill-amber-400 text-amber-400" : "fill-none text-stone-300 dark:text-stone-600";
 
         return onRate ? (
           <button

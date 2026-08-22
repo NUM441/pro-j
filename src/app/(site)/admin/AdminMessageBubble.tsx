@@ -34,8 +34,8 @@ export default function AdminMessageBubble({
     <div
       className={
         message.is_admin
-          ? "relative flex max-w-[80%] flex-col gap-1 rounded-2xl rounded-tl-sm bg-stone-100 py-2 pr-8 pl-3 text-sm text-stone-800 dark:bg-stone-800 dark:text-stone-100"
-          : "relative ml-auto flex max-w-[80%] flex-col gap-1 rounded-2xl rounded-tr-sm bg-emerald-100 py-2 pr-8 pl-3 text-sm text-emerald-900 dark:bg-emerald-950 dark:text-emerald-200"
+          ? "relative ml-auto flex max-w-[80%] flex-col gap-1 rounded-2xl rounded-tr-sm bg-emerald-100 py-2 pr-8 pl-3 text-sm text-emerald-900 dark:bg-emerald-950 dark:text-emerald-200"
+          : "relative flex max-w-[80%] flex-col gap-1 rounded-2xl rounded-tl-sm bg-stone-100 py-2 pr-8 pl-3 text-sm text-stone-800 dark:bg-stone-800 dark:text-stone-100"
       }
     >
       {message.image_url && (

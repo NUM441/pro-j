@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { UtensilsCrossed } from "lucide-react";
 import DeleteRestaurantButton from "./DeleteRestaurantButton";
 
 export type AdminRestaurantRow = {
@@ -24,9 +25,12 @@ export default function AdminRestaurantsList({ initialRestaurants }: { initialRe
 
   if (restaurants.length === 0) {
     return (
-      <p className="rounded-xl border border-dashed border-stone-300 p-8 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
+      <div className="flex flex-col items-center gap-3 rounded-2xl bg-stone-50 p-10 text-center text-sm text-stone-500 dark:bg-stone-900 dark:text-stone-400">
+        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-stone-100 dark:bg-stone-800">
+          <UtensilsCrossed className="h-5 w-5 text-stone-400 dark:text-stone-500" />
+        </span>
         ยังไม่มีร้านอาหารในระบบ
-      </p>
+      </div>
     );
   }
 
@@ -35,7 +39,7 @@ export default function AdminRestaurantsList({ initialRestaurants }: { initialRe
       {restaurants.map((r) => (
         <div
           key={r.id}
-          className="flex items-center gap-3 rounded-xl border border-stone-200 bg-white p-4 shadow-sm dark:border-stone-800 dark:bg-stone-900"
+          className="flex items-center gap-3 rounded-xl border border-stone-200 bg-white p-4 dark:border-stone-800 dark:bg-stone-900"
         >
           <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
             <Image src={r.coverPhotoUrl} alt={r.name} fill className="object-cover" unoptimized />
