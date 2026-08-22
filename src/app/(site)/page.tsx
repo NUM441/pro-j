@@ -11,7 +11,7 @@ export default async function Home() {
       .from("restaurants")
       .select("*, reviews(rating)")
       .order("created_at", { ascending: false })
-      .limit(6)
+      .limit(12)
       .returns<RestaurantWithReviews[]>(),
     supabase.auth.getUser(),
   ]);
@@ -60,7 +60,7 @@ export default async function Home() {
                 ดูร้านทั้งหมด <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {restaurants.map((restaurant) => (
                 <RestaurantCard
                   key={restaurant.id}
