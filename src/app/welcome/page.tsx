@@ -57,7 +57,10 @@ export default async function WelcomePage({
           <>
             <div className="space-y-2">
               <h1 className={`text-3xl font-bold ${heading}`}>
-                ยินดีต้อนรับ{name ? ` ${name}` : ""}!
+                ยินดีต้อนรับ{name ? ` ${name}` : ""}!{" "}
+                <span className="align-middle rounded-full bg-red-600 px-2 py-0.5 text-xs font-bold text-white">
+                  DEMO
+                </span>
               </h1>
               <p className={body}>บัญชีของคุณพร้อมใช้งานแล้ว ตอนนี้คุณสามารถ...</p>
             </div>
@@ -90,7 +93,10 @@ export default async function WelcomePage({
           <>
             <div className="space-y-2">
               <h1 className={`text-3xl font-bold ${heading}`}>
-                ยินดีต้อนรับสู่ Nakhon Sawan Food Guide
+                ยินดีต้อนรับสู่ Nakhon Sawan Food Guide{" "}
+                <span className="align-middle rounded-full bg-red-600 px-2 py-0.5 text-xs font-bold text-white">
+                  DEMO
+                </span>
               </h1>
               <p className={body}>
                 คู่มือร้านอาหารนครสวรรค์ สำหรับนักท่องเที่ยว คนในพื้นที่ และนักเดินทางที่แวะผ่าน
