@@ -27,6 +27,9 @@ export default async function Header() {
             <span className="text-base font-bold text-stone-900 sm:text-lg dark:text-stone-50">
               Nakhon Sawan Food Guide
             </span>
+            <span className="rounded-full bg-red-100 px-2 py-0.5 text-xs font-bold text-red-600 dark:bg-red-950 dark:text-red-400">
+              DEMO
+            </span>
           </Link>
         </div>
 
