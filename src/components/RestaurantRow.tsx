@@ -69,7 +69,7 @@ export default function RestaurantRow({
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerLeave={handlePointerUp}
-        className="flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 select-none active:cursor-grabbing sm:px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-3 select-none active:cursor-grabbing sm:px-6 [scrollbar-color:#d6d3d1_transparent] [scrollbar-width:thin] dark:[scrollbar-color:#57534e_transparent] [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-stone-300 [&::-webkit-scrollbar-track]:bg-transparent dark:[&::-webkit-scrollbar-thumb]:bg-stone-600"
       >
         {restaurants.map((restaurant) => (
           <div key={restaurant.id} className="w-56 shrink-0 snap-start sm:w-60">
