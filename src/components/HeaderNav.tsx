@@ -20,7 +20,7 @@ export default function HeaderNav() {
   )[0]?.href;
 
   return (
-    <nav className="hidden items-center gap-1 rounded-full bg-stone-100 p-1 md:flex">
+    <nav className="order-3 flex w-full items-center gap-1 overflow-x-auto rounded-full bg-stone-100 p-1 md:order-none md:w-auto">
       {ITEMS.map((item) => {
         const active = item.href === activeHref;
         return (
@@ -29,8 +29,8 @@ export default function HeaderNav() {
             href={item.href}
             className={
               active
-                ? "rounded-full bg-white px-4 py-1.5 text-sm font-medium text-stone-900 shadow-sm"
-                : "rounded-full px-4 py-1.5 text-sm font-medium text-stone-500 transition hover:text-stone-900"
+                ? "shrink-0 rounded-full bg-white px-3 py-1 text-xs font-medium text-stone-900 shadow-sm sm:px-4 sm:py-1.5 sm:text-sm"
+                : "shrink-0 rounded-full px-3 py-1 text-xs font-medium text-stone-500 transition hover:text-stone-900 sm:px-4 sm:py-1.5 sm:text-sm"
             }
           >
             {item.label}
