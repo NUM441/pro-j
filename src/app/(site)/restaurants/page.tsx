@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { UtensilsCrossed } from "lucide-react";
+import { LocateFixed, UtensilsCrossed } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { CATEGORIES } from "@/lib/supabase/restaurants";
 import RestaurantCard, { type RestaurantWithReviews } from "@/components/RestaurantCard";
@@ -54,6 +54,13 @@ export default async function RestaurantsPage({
             category={category}
             className="mx-auto mt-2 w-full max-w-sm"
           />
+          <Link
+            href="/restaurants/nearby"
+            className="mx-auto flex w-fit items-center gap-1.5 rounded-full bg-stone-900 px-4 py-2 text-sm font-medium text-white shadow-md transition hover:bg-stone-800"
+          >
+            <LocateFixed className="h-4 w-4" />
+            ร้านใกล้ฉัน
+          </Link>
         </div>
       </section>
 

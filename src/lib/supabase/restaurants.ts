@@ -12,5 +12,7 @@ export type Restaurant = {
   cover_photo_url: string;
   food_photo_urls: string[];
   categories: string[];
+  latitude: number | null;
+  longitude: number | null;
   created_at: string;
 };

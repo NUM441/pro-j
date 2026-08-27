@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { X } from "lucide-react";
+import { LocateFixed, X } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import {
   CATEGORIES,
@@ -32,6 +32,10 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
   const [name, setName] = useState(restaurant?.name ?? "");
   const [description, setDescription] = useState(restaurant?.description ?? "");
   const [googleMapsUrl, setGoogleMapsUrl] = useState(restaurant?.google_maps_url ?? "");
+  const [latitude, setLatitude] = useState<number | null>(restaurant?.latitude ?? null);
+  const [longitude, setLongitude] = useState<number | null>(restaurant?.longitude ?? null);
+  const [locating, setLocating] = useState(false);
+  const [locateError, setLocateError] = useState<string | null>(null);
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
     restaurant?.categories ?? [],
   );
@@ -70,6 +74,31 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
 
   function removeFoodPhoto(index: number) {
     setFoodPhotos((prev) => prev.filter((_, i) => i !== index));
+  }
+
+  function handleUseCurrentLocation() {
+    if (!navigator.geolocation) {
+      setLocateError("เบราว์เซอร์นี้ไม่รองรับการระบุตำแหน่ง GPS");
+      return;
+    }
+    setLocating(true);
+    setLocateError(null);
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setLatitude(position.coords.latitude);
+        setLongitude(position.coords.longitude);
+        setLocating(false);
+      },
+      (err) => {
+        setLocateError(
+          err.code === err.PERMISSION_DENIED
+            ? "กรุณาอนุญาตการเข้าถึงตำแหน่ง GPS เพื่อระบุตำแหน่งร้าน"
+            : "ไม่สามารถระบุตำแหน่งได้ กรุณาลองใหม่อีกครั้ง",
+        );
+        setLocating(false);
+      },
+      { enableHighAccuracy: true, timeout: 10000 },
+    );
   }
 
   function toggleCategory(category: string) {
@@ -135,6 +164,8 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
         cover_photo_url: coverPhotoUrl,
         food_photo_urls: foodPhotoUrls,
         categories: selectedCategories,
+        latitude,
+        longitude,
       };
 
       const { error: dbError } =
@@ -249,6 +280,30 @@ export default function RestaurantForm({ mode, ownerId, restaurant }: Props) {
           onChange={(e) => setGoogleMapsUrl(e.target.value)}
           className="rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 outline-none transition focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:focus:ring-emerald-500/20"
         />
+      </div>
+
+      <div className="flex flex-col gap-1.5">
+        <span className="text-sm font-medium text-stone-700 dark:text-stone-300">
+          ตำแหน่ง GPS ของร้าน
+        </span>
+        <p className="text-xs text-stone-500 dark:text-stone-400">
+          ใช้สำหรับฟีเจอร์ &quot;ร้านใกล้ฉัน&quot; แนะนำให้กดปุ่มนี้ขณะอยู่ที่ร้านเพื่อความแม่นยำ
+        </p>
+        <button
+          type="button"
+          onClick={handleUseCurrentLocation}
+          disabled={locating}
+          className={`${buttonClass("secondary", "sm")} w-fit gap-2`}
+        >
+          <LocateFixed className="h-4 w-4" />
+          {locating ? "กำลังระบุตำแหน่ง..." : "ใช้ตำแหน่งปัจจุบัน"}
+        </button>
+        {locateError && <p className="text-sm text-red-500">{locateError}</p>}
+        {latitude !== null && longitude !== null && (
+          <p className="text-xs text-stone-500 dark:text-stone-400">
+            ตำแหน่งที่บันทึก: {latitude.toFixed(5)}, {longitude.toFixed(5)}
+          </p>
+        )}
       </div>
 
       <div className="flex flex-col gap-1.5">

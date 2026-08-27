@@ -12,11 +12,13 @@ export default function RestaurantCard({
   currentUserId,
   isFavorited,
   headingLevel: Heading,
+  distanceKm,
 }: {
   restaurant: RestaurantWithReviews;
   currentUserId: string | null;
   isFavorited: boolean;
   headingLevel: "h2" | "h3";
+  distanceKm?: number;
 }) {
   const rating = averageRating(restaurant.reviews);
   const hasReviews = restaurant.reviews.length > 0;
@@ -56,8 +58,12 @@ export default function RestaurantCard({
         <Heading className="truncate font-semibold text-stone-900 dark:text-stone-50">
           {restaurant.name}
         </Heading>
-        {primaryCategory && (
-          <p className="text-sm text-stone-500 dark:text-stone-400">{primaryCategory}</p>
+        {(primaryCategory || distanceKm !== undefined) && (
+          <p className="text-sm text-stone-500 dark:text-stone-400">
+            {primaryCategory}
+            {primaryCategory && distanceKm !== undefined && " · "}
+            {distanceKm !== undefined && `${distanceKm.toFixed(1)} กม.`}
+          </p>
         )}
       </div>
     </Link>
