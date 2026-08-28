@@ -8,12 +8,16 @@ const STATUS_LABEL = {
   pending: "รอดำเนินการ",
   confirmed: "ยืนยันแล้ว",
   declined: "ปฏิเสธแล้ว",
+  arrived: "เช็คอินแล้ว",
+  no_show: "ไม่ได้เข้าร้าน",
 };
 
 const STATUS_STYLE = {
   pending: "bg-yellow-100 text-yellow-700 dark:bg-yellow-950 dark:text-yellow-300",
   confirmed: "bg-green-100 text-green-700 dark:bg-green-950 dark:text-green-300",
   declined: "bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300",
+  arrived: "bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300",
+  no_show: "bg-stone-200 text-stone-600 dark:bg-stone-800 dark:text-stone-300",
 };
 
 export default async function MyBookingsPage() {

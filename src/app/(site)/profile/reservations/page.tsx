@@ -10,12 +10,16 @@ const STATUS_LABEL = {
   pending: "รอดำเนินการ",
   confirmed: "ยืนยันแล้ว",
   declined: "ปฏิเสธแล้ว",
+  arrived: "ลูกค้ามาแล้ว",
+  no_show: "ลูกค้าไม่มา",
 };
 
 const STATUS_STYLE = {
   pending: "bg-yellow-100 text-yellow-700 dark:bg-yellow-950 dark:text-yellow-300",
   confirmed: "bg-green-100 text-green-700 dark:bg-green-950 dark:text-green-300",
   declined: "bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300",
+  arrived: "bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300",
+  no_show: "bg-stone-200 text-stone-600 dark:bg-stone-800 dark:text-stone-300",
 };
 
 export default async function OwnerReservationsPage() {
@@ -87,7 +91,12 @@ export default async function OwnerReservationsPage() {
 
               {r.note && <p className="text-sm text-stone-500 dark:text-stone-400">หมายเหตุ: {r.note}</p>}
 
-              <ReservationStatusButtons reservationId={r.id} status={r.status} />
+              <ReservationStatusButtons
+                reservationId={r.id}
+                status={r.status}
+                reservationDate={r.reservation_date}
+                reservationTime={r.reservation_time}
+              />
             </div>
           ))}
         </div>
