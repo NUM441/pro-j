@@ -20,7 +20,7 @@ export default function HeaderNav() {
   )[0]?.href;
 
   return (
-    <nav className="order-3 flex w-full items-center gap-1 overflow-x-auto rounded-full bg-stone-100 p-1 md:order-none md:w-auto">
+    <nav className="order-3 flex w-full items-center justify-center gap-1 overflow-x-auto rounded-full bg-stone-100 p-1 dark:bg-stone-800">
       {ITEMS.map((item) => {
         const active = item.href === activeHref;
         return (
