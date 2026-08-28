@@ -20,6 +20,7 @@ export default function ReservationStatusButtons({
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [isLate, setIsLate] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -31,14 +32,24 @@ export default function ReservationStatusButtons({
 
   async function updateStatus(next: ReservationStatus) {
     setLoading(true);
+    setError(null);
     const supabase = createClient();
-    await supabase.from("reservations").update({ status: next }).eq("id", reservationId);
+    const { error: updateError } = await supabase
+      .from("reservations")
+      .update({ status: next })
+      .eq("id", reservationId);
     setLoading(false);
+    if (updateError) {
+      setError(updateError.message);
+      return;
+    }
     router.refresh();
   }
 
+  let actions: React.ReactNode;
+
   if (status === "pending") {
-    return (
+    actions = (
       <div className="flex items-center gap-3">
         <button
           type="button"
@@ -58,10 +69,8 @@ export default function ReservationStatusButtons({
         </button>
       </div>
     );
-  }
-
-  if (status === "confirmed") {
-    return (
+  } else if (status === "confirmed") {
+    actions = (
       <div className="flex flex-col items-start gap-1.5">
         {isLate && (
           <p className="text-xs font-medium text-amber-600 dark:text-amber-400">
@@ -96,10 +105,8 @@ export default function ReservationStatusButtons({
         </div>
       </div>
     );
-  }
-
-  if (status === "arrived") {
-    return (
+  } else if (status === "arrived") {
+    actions = (
       <div className="flex items-center gap-3">
         <button
           type="button"
@@ -119,24 +126,32 @@ export default function ReservationStatusButtons({
         </button>
       </div>
     );
+  } else {
+    const revertTarget: ReservationStatus =
+      status === "checked_out" ? "arrived" : status === "no_show" ? "confirmed" : "pending";
+    const revertLabel =
+      status === "checked_out"
+        ? "เปลี่ยนกลับเป็นลูกค้ามาแล้ว"
+        : status === "no_show"
+          ? "เปลี่ยนกลับเป็นยืนยันแล้ว"
+          : "เปลี่ยนกลับเป็นรอดำเนินการ";
+
+    actions = (
+      <button
+        type="button"
+        onClick={() => updateStatus(revertTarget)}
+        disabled={loading}
+        className="text-xs text-stone-500 hover:underline disabled:opacity-60 dark:text-stone-400"
+      >
+        {revertLabel}
+      </button>
+    );
   }
 
-  const revertTarget: ReservationStatus = status === "checked_out" ? "arrived" : status === "no_show" ? "confirmed" : "pending";
-  const revertLabel =
-    status === "checked_out"
-      ? "เปลี่ยนกลับเป็นลูกค้ามาแล้ว"
-      : status === "no_show"
-        ? "เปลี่ยนกลับเป็นยืนยันแล้ว"
-        : "เปลี่ยนกลับเป็นรอดำเนินการ";
-
   return (
-    <button
-      type="button"
-      onClick={() => updateStatus(revertTarget)}
-      disabled={loading}
-      className="text-xs text-stone-500 hover:underline disabled:opacity-60 dark:text-stone-400"
-    >
-      {revertLabel}
-    </button>
+    <div className="flex flex-col gap-1.5">
+      {actions}
+      {error && <p className="text-xs text-red-500">{error}</p>}
+    </div>
   );
 }
