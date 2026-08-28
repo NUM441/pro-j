@@ -1,4 +1,10 @@
-export type ReservationStatus = "pending" | "confirmed" | "declined" | "arrived" | "no_show";
+export type ReservationStatus =
+  | "pending"
+  | "confirmed"
+  | "declined"
+  | "arrived"
+  | "no_show"
+  | "checked_out";
 
 export type Reservation = {
   id: string;

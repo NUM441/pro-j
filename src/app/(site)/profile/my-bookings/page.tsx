@@ -10,6 +10,7 @@ const STATUS_LABEL = {
   declined: "ปฏิเสธแล้ว",
   arrived: "เช็คอินแล้ว",
   no_show: "ไม่ได้เข้าร้าน",
+  checked_out: "เช็คเอาท์แล้ว",
 };
 
 const STATUS_STYLE = {
@@ -18,6 +19,7 @@ const STATUS_STYLE = {
   declined: "bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300",
   arrived: "bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300",
   no_show: "bg-stone-200 text-stone-600 dark:bg-stone-800 dark:text-stone-300",
+  checked_out: "bg-sky-100 text-sky-700 dark:bg-sky-950 dark:text-sky-300",
 };
 
 export default async function MyBookingsPage() {

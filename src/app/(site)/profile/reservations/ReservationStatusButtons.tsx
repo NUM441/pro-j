@@ -98,14 +98,45 @@ export default function ReservationStatusButtons({
     );
   }
 
+  if (status === "arrived") {
+    return (
+      <div className="flex items-center gap-3">
+        <button
+          type="button"
+          onClick={() => updateStatus("checked_out")}
+          disabled={loading}
+          className={buttonClass("primary", "sm")}
+        >
+          เช็คเอาท์
+        </button>
+        <button
+          type="button"
+          onClick={() => updateStatus("confirmed")}
+          disabled={loading}
+          className="text-xs text-stone-500 hover:underline disabled:opacity-60 dark:text-stone-400"
+        >
+          ยกเลิก
+        </button>
+      </div>
+    );
+  }
+
+  const revertTarget: ReservationStatus = status === "checked_out" ? "arrived" : status === "no_show" ? "confirmed" : "pending";
+  const revertLabel =
+    status === "checked_out"
+      ? "เปลี่ยนกลับเป็นลูกค้ามาแล้ว"
+      : status === "no_show"
+        ? "เปลี่ยนกลับเป็นยืนยันแล้ว"
+        : "เปลี่ยนกลับเป็นรอดำเนินการ";
+
   return (
     <button
       type="button"
-      onClick={() => updateStatus("pending")}
+      onClick={() => updateStatus(revertTarget)}
       disabled={loading}
       className="text-xs text-stone-500 hover:underline disabled:opacity-60 dark:text-stone-400"
     >
-      เปลี่ยนกลับเป็นรอดำเนินการ
+      {revertLabel}
     </button>
   );
 }
